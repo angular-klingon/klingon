@@ -1,0 +1,78 @@
+<form [formGroup]="newForm">
+    <h3>Basic options</h3>
+    <p>
+        <md-input-container>
+            <input formControlName="app-name" mdInput placeholder="Application name" required>
+            <md-hint align="start">Default applications are created in a directory of the same name, with an initialized Angular application.</md-hint>
+        </md-input-container>
+    </p>
+    <p>
+        <md-input-container>
+            <input formControlName="prefix" mdInput placeholder="Prefix">
+            <md-hint align="start">The prefix to use for all component selectors.</md-hint>
+        </md-input-container>
+    </p>
+    <p>
+        <md-input-container>
+            <input formControlName="directory" mdInput placeholder="Directory name" required>
+            <md-hint align="start">The directory name to create the app in.</md-hint>
+        </md-input-container>
+    </p>
+    <p>
+        <md-hint class="fixe-height" align="start">The style file default extension:</md-hint>
+        <md-select formControlName="style">
+            <md-option *ngFor="let style of styleExt" [value]="style">
+                {{ style }}
+            </md-option>
+        </md-select>
+    </p>
+    <app-drop-down [open]="false">
+        <h3>Advanced Options</h3>
+        <main>
+            <md-input-container>
+                <input formControlName="source-dir" mdInput placeholder="Source directory">
+                <md-hint align="start">The name of the source directory.</md-hint>
+            </md-input-container>
+            <md-list>
+                <md-list-item>
+                    <md-checkbox formControlName="verbose">Adds more details to output logging</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="dry-run">Run through without making any changes</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="inline-style">Should have an inline style</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="inline-template">Should have an inline template</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="minimal">Should create a minimal app</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="routing">Generate a routing module</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="skip-commit">Skip committing the first commit to git</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="skip-git">Skip initializing a git repository</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="skip-install">Skip installing packages</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="skip-tests">Skip creating spec files (and e2e files)</md-checkbox>
+                </md-list-item>
+            </md-list>
+        </main>
+    </app-drop-down>
+</form>
+<p>
+    <button md-fab color="warn" [disabled]="newForm.invalid">
+      <md-icon>playlist_add_check</md-icon>
+    </button>
+    <button md-fab color="primary" [disabled]="newForm.invalid">
+      <md-icon>check</md-icon>
+    </button>
+</p>

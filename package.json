@@ -1,0 +1,8 @@
+{
+	"devDependencies": {
+		"lerna": "^2.0.0"
+	},
+	"dependencies": {
+		"tty.js": "^0.2.15"
+	}
+}

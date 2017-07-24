@@ -1,0 +1,14 @@
+md-toolbar {
+    height: 170px;
+    position: fixed;
+}
+
+md-card {
+    width: 80vw;
+    margin: 0 auto;
+    top: 100px;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}

@@ -1,0 +1,28 @@
+{
+    "name": "klingon",
+    "version": "0.1.0",
+    "description": "A companion UI for your Angular CLI",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": "git@github.com:manekinekko/klingon.git",
+    "bugs": {
+        "url": "https://github.com/manekinekko/klingon/issues"
+    },
+    "keywords": [
+        "angular",
+        "cli",
+        "gui",
+        "ui"
+    ],
+    "author": "Wassim Chegham <github@wassimchegham.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "1.6.2"
+    },
+    "engines": {
+        "node": ">= 6 <= 8",
+        "npm": ">= 3"
+    }
+}

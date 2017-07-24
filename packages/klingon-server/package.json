@@ -1,0 +1,33 @@
+{
+    "name": "klingon-server",
+    "version": "0.1.0",
+    "description": "The backend service for the Klingon UI",
+    "scripts": {
+        "start": "node terminal.js"
+    },
+    "repository": "git@github.com:manekinekko/klingon-server.git",
+    "bugs": {
+        "url": "https://github.com/manekinekko/klingon-server/issues"
+    },
+    "keywords": [
+        "angular",
+        "cli",
+        "server"
+    ],
+    "author": "Wassim Chegham <github@wassimchegham.com>",
+    "license": "MIT",
+    "devDependencies": {},
+    "engines": {
+        "node": ">= 6 <= 8",
+        "npm": ">= 3"
+    },
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "cors": "^2.8.4",
+        "express": "^4.15.3",
+        "express-ws": "^3.0.0",
+        "node-pty": "^0.6.10",
+        "socket.io": "^2.0.3",
+        "xterm": "^2.8.1"
+    }
+}
