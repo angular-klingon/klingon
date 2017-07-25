@@ -15,16 +15,10 @@
 
     <md-divider></md-divider>
 
-    <app-drop-down [open]="false" contentHeight="1700px">
+    <app-drop-down [open]="false" contentHeight="1870px">
         <h3 class="title">Advanced Options</h3>
         <h6 class="sub-title">Configure other flags for the serve command</h6>
         <main class="content">
-            <p>
-                <md-checkbox formControlName="hmr">Enable hot module replacement (HMR).</md-checkbox>
-            </p>
-            <p>
-                <md-checkbox formControlName="live-reload">Whether to reload the page on change, using live-reload</md-checkbox>
-            </p>
             <p>
                 <md-input-container>
                     <input formControlName="proxy-config" mdInput placeholder="Proxy Configuration File" />
@@ -44,12 +38,6 @@
                 </md-input-container>
             </p>
             <p>
-                <md-checkbox formControlName="open">Opens the url in default browser</md-checkbox>
-            </p>
-            <p>
-                <md-checkbox formControlName="ssl">Serve using HTTPS</md-checkbox>
-            </p>
-            <p>
                 <md-input-container>
                     <input formControlName="ssl-cert" mdInput placeholder="SSL Certificate" />
                     <md-hint align="start">SSL certificate to use for serving HTTPS.</md-hint>
@@ -60,9 +48,6 @@
                     <input formControlName="ssl-key" mdInput placeholder="SSL Key" />
                     <md-hint align="start">SSL key to use for serving HTTPS.</md-hint>
                 </md-input-container>
-            </p>
-            <p>
-                <md-checkbox formControlName="aot">Build using Ahead of Time compilation</md-checkbox>
             </p>
             <p>
                 <md-input-container>
@@ -77,21 +62,30 @@
                 </md-input-container>
             </p>
             <p>
+                <md-input-container>
+                    <input formControlName="i18n-file" mdInput placeholder="I18n File" />
+                    <md-hint align="start">Localization file to use for i18n.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="output-path" mdInput placeholder="Output Path" />
+                    <md-hint align="start">Path where output will be placed.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="poll" mdInput placeholder="Poll" />
+                    <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
+                </md-input-container>
+            </p>
+            <p>
                 <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
                 <md-select formControlName="environment">
                     <md-option *ngFor="let env of environments" [value]="env">
                         {{ env }}
                     </md-option>
                 </md-select>
-            </p>
-            <p>
-                <md-checkbox formControlName="extract-css">Extract css from global styles onto css files instead of js ones</md-checkbox>
-            </p>
-            <p>
-                <md-input-container>
-                    <input formControlName="i18n-file" mdInput placeholder="I18n File" />
-                    <md-hint align="start">Localization file to use for i18n.</md-hint>
-                </md-input-container>
             </p>
             <p>
                 <md-hint class="fixe-height" align="start">Format of the localization file specified with --i18n-file:</md-hint>
@@ -118,24 +112,6 @@
                 </md-select>
             </p>
             <p>
-                <md-input-container>
-                    <input formControlName="output-path" mdInput placeholder="Output Path" />
-                    <md-hint align="start">Path where output will be placed.</md-hint>
-                </md-input-container>
-            </p>
-            <p>
-                <md-input-container>
-                    <input formControlName="poll" mdInput placeholder="Poll" />
-                    <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
-                </md-input-container>
-            </p>
-            <p>
-                <md-checkbox formControlName="progress">Log progress to the console while building</md-checkbox>
-            </p>
-            <p>
-                <md-checkbox formControlName="sourcemap">Output sourcemaps</md-checkbox>
-            </p>
-            <p>
                 <md-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</md-hint>
                 <md-select formControlName="target">
                     <md-option *ngFor="let target of targets" [value]="target">
@@ -143,15 +119,41 @@
                     </md-option>
                 </md-select>
             </p>
-            <p>
-                <md-checkbox formControlName="vendor-chunk">Use a separate bundle containing only vendor libraries</md-checkbox>
-            </p>
-            <p>
-                <md-checkbox formControlName="verbose">Adds more details to output logging</md-checkbox>
-            </p>
-            <p>
-                <md-checkbox formControlName="watch">Run build when files change</md-checkbox>
-            </p>
+            <md-list>
+                <md-list-item>
+                    <md-checkbox formControlName="open">Opens the url in default browser</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="ssl">Serve using HTTPS</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="aot">Build using Ahead of Time compilation</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="extract-css">Extract css from global styles onto css files instead of js ones</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="hmr">Enable hot module replacement (HMR).</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="live-reload">Whether to reload the page on change, using live-reload</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="progress">Log progress to the console while building</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="sourcemap">Output sourcemaps</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="vendor-chunk">Use a separate bundle containing only vendor libraries</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="verbose">Adds more details to output logging</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="watch">Run build when files change</md-checkbox>
+                </md-list-item>
+            </md-list>
         </main>
     </app-drop-down>
 </form>
