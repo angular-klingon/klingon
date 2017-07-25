@@ -5,153 +5,161 @@
             <md-hint align="start">The host that should be bound to for serving.</md-hint>
         </md-input-container>
     </p>
-    <p>
-        <md-checkbox formControlName="hmr">Enable hot module replacement (HMR).</md-checkbox>
-    </p>
-    <p>
-        <md-checkbox formControlName="live-reload">Whether to reload the page on change, using live-reload</md-checkbox>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="public-host" mdInput placeholder="Public Host" />
-            <md-hint align="start">Specify the URL that the browser client will use.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="disable-host-check" mdInput placeholder="DisbalHost" />
-            <md-hint align="start">Specify the URL that the browser client will use.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-checkbox formControlName="open">Opens the url in default browser</md-checkbox>
-    </p>
+
     <p>
         <md-input-container>
             <input formControlName="port" mdInput placeholder="Port" />
             <md-hint align="start">Port to listen to for serving.</md-hint>
         </md-input-container>
     </p>
-    <p>
-        <md-checkbox formControlName="ssl">Serve using HTTPS</md-checkbox>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="ssl-cert" mdInput placeholder="SSL Certificate" />
-            <md-hint align="start">SSL certificate to use for serving HTTPS.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="ssl-key" mdInput placeholder="SSL Key" />
-            <md-hint align="start">SSL key to use for serving HTTPS.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-checkbox formControlName="aot">Build using Ahead of Time compilation</md-checkbox>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="base-href" mdInput placeholder="Base HREF" />
-            <md-hint align="start">Base url for the application being built.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="deploy-url" mdInput placeholder="Deploy Url" />
-            <md-hint align="start">URL where files will be deployed.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
-        <md-select formControlName="environment">
-            <md-option *ngFor="let env of environments" [value]="env">
-                {{ env }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-checkbox formControlName="extract-css">Extract css from global styles onto css files instead of js ones</md-checkbox>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="i18n-file" mdInput placeholder="I18n File" />
-            <md-hint align="start">Localization file to use for i18n.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Format of the localization file specified with --i18n-file:</md-hint>
-        <md-select formControlName="i18n-format">
-            <md-option *ngFor="let format of i18nFormats" [value]="format">
-                {{ format }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Locale to use for i18n:</md-hint>
-        <md-select formControlName="locale">
-            <md-option *ngFor="let locale of locales" [value]="locale">
-                {{ locale }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</md-hint>
-        <md-select formControlName="output-hashing">
-            <md-option *ngFor="let hash of hashings" [value]="hash">
-                {{ hash }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="output-path" mdInput placeholder="Output Path" />
-            <md-hint align="start">Path where output will be placed.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="poll" mdInput placeholder="Poll" />
-            <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-checkbox formControlName="progress">Log progress to the console while building</md-checkbox>
-    </p>
-    <p>
-        <md-checkbox formControlName="sourcemap">Output sourcemaps</md-checkbox>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</md-hint>
-        <md-select formControlName="target">
-            <md-option *ngFor="let target of targets" [value]="target">
-                {{ target }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-checkbox formControlName="vendor-chunk">Use a separate bundle containing only vendor libraries</md-checkbox>
-    </p>
-    <p>
-        <md-checkbox formControlName="verbose">Adds more details to output logging</md-checkbox>
-    </p>
-    <p>
-        <md-checkbox formControlName="watch">Run build when files change</md-checkbox>
-    </p>
 
-    <app-drop-down [open]="false">
-        <h3>Advanced Options</h3>
-        <main>
-            <md-list>
-                <md-list-item>
+    <md-divider></md-divider>
 
-                </md-list-item>
-            </md-list>
+    <app-drop-down [open]="false" contentHeight="1700px">
+        <h3 class="title">Advanced Options</h3>
+        <h6 class="sub-title">Configure other flags for the serve command</h6>
+        <main class="content">
+            <p>
+                <md-checkbox formControlName="hmr">Enable hot module replacement (HMR).</md-checkbox>
+            </p>
+            <p>
+                <md-checkbox formControlName="live-reload">Whether to reload the page on change, using live-reload</md-checkbox>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="proxy-config" mdInput placeholder="Proxy Configuration File" />
+                    <md-hint align="start">Specify the path of the proxy configuration file.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="public-host" mdInput placeholder="Public Host" />
+                    <md-hint align="start">Specify the URL that the browser client will use.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="disable-host-check" mdInput placeholder="Disable Host" />
+                    <md-hint align="start">Specify the URL that the browser client will use.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-checkbox formControlName="open">Opens the url in default browser</md-checkbox>
+            </p>
+            <p>
+                <md-checkbox formControlName="ssl">Serve using HTTPS</md-checkbox>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="ssl-cert" mdInput placeholder="SSL Certificate" />
+                    <md-hint align="start">SSL certificate to use for serving HTTPS.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="ssl-key" mdInput placeholder="SSL Key" />
+                    <md-hint align="start">SSL key to use for serving HTTPS.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-checkbox formControlName="aot">Build using Ahead of Time compilation</md-checkbox>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="base-href" mdInput placeholder="Base HREF" />
+                    <md-hint align="start">Base url for the application being built.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="deploy-url" mdInput placeholder="Deploy Url" />
+                    <md-hint align="start">URL where files will be deployed.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
+                <md-select formControlName="environment">
+                    <md-option *ngFor="let env of environments" [value]="env">
+                        {{ env }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-checkbox formControlName="extract-css">Extract css from global styles onto css files instead of js ones</md-checkbox>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="i18n-file" mdInput placeholder="I18n File" />
+                    <md-hint align="start">Localization file to use for i18n.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Format of the localization file specified with --i18n-file:</md-hint>
+                <md-select formControlName="i18n-format">
+                    <md-option *ngFor="let format of i18nFormats" [value]="format">
+                        {{ format }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Locale to use for i18n:</md-hint>
+                <md-select formControlName="locale">
+                    <md-option *ngFor="let locale of locales" [value]="locale">
+                        {{ locale }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</md-hint>
+                <md-select formControlName="output-hashing">
+                    <md-option *ngFor="let hash of hashings" [value]="hash">
+                        {{ hash }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="output-path" mdInput placeholder="Output Path" />
+                    <md-hint align="start">Path where output will be placed.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="poll" mdInput placeholder="Poll" />
+                    <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-checkbox formControlName="progress">Log progress to the console while building</md-checkbox>
+            </p>
+            <p>
+                <md-checkbox formControlName="sourcemap">Output sourcemaps</md-checkbox>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</md-hint>
+                <md-select formControlName="target">
+                    <md-option *ngFor="let target of targets" [value]="target">
+                        {{ target }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-checkbox formControlName="vendor-chunk">Use a separate bundle containing only vendor libraries</md-checkbox>
+            </p>
+            <p>
+                <md-checkbox formControlName="verbose">Adds more details to output logging</md-checkbox>
+            </p>
+            <p>
+                <md-checkbox formControlName="watch">Run build when files change</md-checkbox>
+            </p>
         </main>
     </app-drop-down>
 </form>
-<p>
-    <button md-fab color="primary" [disabled]="form.invalid">
-      <md-icon>check</md-icon>
+<p class="button-container">
+    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="serve()">
+      <md-icon>play_circle_outline</md-icon> Serve
+    </button>
+    <button md-raised-button color="warn" [disabled]="form.invalid" (click)="stop()">
+      <md-icon>stop</md-icon> Stop
     </button>
 </p>

@@ -11,18 +11,21 @@
             <md-hint align="start">The prefix to use for all component selectors.</md-hint>
         </md-input-container>
     </p>
-    <p>
-        <md-hint class="fixe-height" align="start">The style file default extension:</md-hint>
-        <md-select formControlName="style">
-            <md-option *ngFor="let style of styleExt" [value]="style">
-                {{ style }}
-            </md-option>
-        </md-select>
-    </p>
 
-    <app-drop-down [open]="false" contentHeight="650px">
-        <h3>Advanced Options</h3>
-        <main>
+    <md-divider></md-divider>
+
+    <app-drop-down [open]="false" contentHeight="720px">
+        <h3 class="title">Advanced Options</h3>
+        <h6 class="sub-title">Configure other flags for the create command</h6>
+        <main class="content">
+            <p>
+                <md-hint class="fixe-height" align="start">The style file default extension:</md-hint>
+                <md-select formControlName="style">
+                    <md-option *ngFor="let style of styleExt" [value]="style">
+                        {{ style }}
+                    </md-option>
+                </md-select>
+            </p>
             <md-input-container>
                 <input formControlName="source-dir" mdInput placeholder="Source directory">
                 <md-hint align="start">The name of the source directory.</md-hint>
@@ -31,6 +34,7 @@
                 <input formControlName="directory" mdInput placeholder="Directory name">
                 <md-hint align="start">The directory name to create the app in.</md-hint>
             </md-input-container>
+
             <md-list>
                 <md-list-item>
                     <md-checkbox formControlName="verbose">Adds more details to output logging</md-checkbox>
@@ -66,11 +70,11 @@
         </main>
     </app-drop-down>
 </form>
-<p>
-    <button md-fab color="warn" [disabled]="form.invalid" (click)="dryRun()">
-      <md-icon>playlist_add_check</md-icon>
+<p class="button-container">
+    <button md-raised-button color="warn" [disabled]="form.invalid" (click)="dryRun()">
+      <md-icon>playlist_add_check</md-icon> Dry Run
     </button>
-    <button md-fab color="primary" [disabled]="form.invalid" (click)="create()">
-      <md-icon>check</md-icon>
+    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="create()">
+      <md-icon>check</md-icon> Create
     </button>
 </p>
