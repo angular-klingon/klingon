@@ -1,4 +1,4 @@
-<form [formGroup]="newForm">
+<form [formGroup]="form">
     <p>
         <md-input-container>
             <input formControlName="app-name" mdInput placeholder="Application name" required>
@@ -12,12 +12,6 @@
         </md-input-container>
     </p>
     <p>
-        <md-input-container>
-            <input formControlName="directory" mdInput placeholder="Directory name" required>
-            <md-hint align="start">The directory name to create the app in.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
         <md-hint class="fixe-height" align="start">The style file default extension:</md-hint>
         <md-select formControlName="style">
             <md-option *ngFor="let style of styleExt" [value]="style">
@@ -26,12 +20,16 @@
         </md-select>
     </p>
 
-    <app-drop-down [open]="false">
+    <app-drop-down [open]="false" contentHeight="650px">
         <h3>Advanced Options</h3>
         <main>
             <md-input-container>
                 <input formControlName="source-dir" mdInput placeholder="Source directory">
                 <md-hint align="start">The name of the source directory.</md-hint>
+            </md-input-container>
+            <md-input-container>
+                <input formControlName="directory" mdInput placeholder="Directory name">
+                <md-hint align="start">The directory name to create the app in.</md-hint>
             </md-input-container>
             <md-list>
                 <md-list-item>
@@ -69,10 +67,10 @@
     </app-drop-down>
 </form>
 <p>
-    <button md-fab color="warn" [disabled]="newForm.invalid" (click)="dryRun()">
+    <button md-fab color="warn" [disabled]="form.invalid" (click)="dryRun()">
       <md-icon>playlist_add_check</md-icon>
     </button>
-    <button md-fab color="primary" [disabled]="newForm.invalid" (click)="create()">
+    <button md-fab color="primary" [disabled]="form.invalid" (click)="create()">
       <md-icon>check</md-icon>
     </button>
 </p>

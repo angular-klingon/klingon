@@ -1,3 +1,4 @@
+import { CliService } from './cli/cli.service';
 import { TerminalComponent } from './terminal/terminal/terminal.component';
 import { TerminalModule } from './terminal/terminal.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,12 +23,14 @@ import {MdListModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { CliCreateComponent } from './cli/create/create.component';
+import { CliServeComponent } from './cli/serve/serve.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DropDownComponent,
-    CliCreateComponent
+    CliCreateComponent,
+    CliServeComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { CliCreateComponent } from './cli/create/create.component';
     MdMenuModule,
     MdListModule
   ],
-  providers: [],
+  providers: [CliService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

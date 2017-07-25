@@ -1,3 +1,4 @@
+import { CliService } from './../cli.service';
 import { TerminalService } from './../../terminal/terminal.service';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -11,28 +12,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CliCreateComponent implements OnInit {
   
-  newForm: FormGroup;
+  form: FormGroup;
   styleExt = ['css', 'scss','less','sass','styl'];
 
-  constructor(public term: TerminalService) {
-    this.newForm = this.buildNewForm();
+  constructor(
+    public term: TerminalService,
+    public cli: CliService) {
+
+    this.form = this.buildForm();
   }
 
   ngOnInit() {
   }
 
   dryRun() {
-    this.term.send(`ng new ${this.newForm.value['app-name']} ${this.serialize()} --dry-run=true`);
+    this.term.send(`ng new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)} --dry-run=true`);
   }
 
   create() {
-    this.term.send(`ng new ${this.newForm.value['app-name']} ${this.serialize()}`);
+    this.term.send(`ng new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)}`);
   } 
 
-  buildNewForm() {
+  buildForm() {
     return new FormGroup({
       "app-name": new FormControl("", Validators.required),
-      directory: new FormControl("/tmp/", Validators.required),
+      directory: new FormControl("./"),
       prefix: new FormControl("app"),
       "source-dir": new FormControl("src"),
       style: new FormControl("css"),
@@ -47,13 +51,5 @@ export class CliCreateComponent implements OnInit {
       "skip-install": new FormControl(false),
       "skip-tests": new FormControl(false)
     });
-  }
-
-  private serialize() {
-    const vals = this.newForm.value;
-    return Object.keys(vals)
-      .filter( key => key !== 'app-name')
-      .map( key => `--${key}=${vals[key]}`)
-      .join(' ');
   }
 }
