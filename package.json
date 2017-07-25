@@ -6,6 +6,7 @@
         "tty.js": "^0.2.15"
     },
     "scripts": {
+        "postinstall": "lerna bootstrap",
         "start:app": "cd packages/klingon-app/ && npm start",
         "start:server": "cd packages/klingon-server/ && npm start"
     }
