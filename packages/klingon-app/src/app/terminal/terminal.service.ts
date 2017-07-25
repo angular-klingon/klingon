@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 export interface Terminal {
   _initialized: boolean;
+  textarea: HTMLTextAreaElement;
   colors: string[];
   theme: string;
   convertEol: boolean;
@@ -25,6 +26,7 @@ export interface Terminal {
   proposeGeometry();
   attach(socket: WebSocket);
   writeln(message: string);
+  write(message: string);
   send(data: string);
 };
 
@@ -47,8 +49,11 @@ export class TerminalService {
   }
 
   async createTerminal(terminalContainer: HTMLElement) {
+
+    return new Promise( async(resolve, reject) => {
+
     this.term = new (window as any).Terminal();
-    this.term.on('resize', function(size) {
+    this.term.on('resize', (size) => {
       if (!this.pid) {
         return;
       }
@@ -59,14 +64,14 @@ export class TerminalService {
       fetch(url, { method: 'POST' });
     });
 
-    this.socketURL = `ws://localhost:3000/terminals/`;
+    this.socketURL = `ws://localhost:3000/terminals`;
 
     this.term.open(terminalContainer, false);
     this.term.fit();
 
-    var initialGeometry = this.term.proposeGeometry(),
-      cols = initialGeometry.cols,
-      rows = 50;
+    const initialGeometry = this.term.proposeGeometry();
+    const cols = 120;
+    const rows = 50;
 
     const res = await fetch(`http://localhost:3000/terminals?cols=${cols}&rows=${rows}`, {
       method: 'POST'
@@ -77,14 +82,26 @@ export class TerminalService {
     this.socket.onopen = () => {
       this.term.attach(this.socket);
       this.term._initialized = true;
-      this.term.writeln('>> Welcome to Klingon v0.1.0 <<');
-      
+      setTimeout(_ => resolve(), 100);
     };
     this.socket.onclose = this.socketError;
     this.socket.onerror = this.socketError;
+    });
   }
 
   socketError() {
+  }
+
+  on(event, callback) {
+    this.term.on(event, callback);
+  }
+
+  send(data) {
+    this.term.send(`${data}\n`);
+  }
+
+  write(data) {
+    this.term.write(data);
   }
 
   cliVersion() {

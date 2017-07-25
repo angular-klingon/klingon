@@ -1,3 +1,4 @@
+import { TerminalService } from './../../terminal/terminal.service';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -13,12 +14,20 @@ export class CliCreateComponent implements OnInit {
   newForm: FormGroup;
   styleExt = ['css', 'scss','less','sass','styl'];
 
-  constructor() {
+  constructor(public term: TerminalService) {
     this.newForm = this.buildNewForm();
   }
 
   ngOnInit() {
   }
+
+  dryRun() {
+    this.term.send(`ng new ${this.newForm.value['app-name']} ${this.serialize()} --dry-run=true`);
+  }
+
+  create() {
+    this.term.send(`ng new ${this.newForm.value['app-name']} ${this.serialize()}`);
+  } 
 
   buildNewForm() {
     return new FormGroup({
@@ -38,5 +47,13 @@ export class CliCreateComponent implements OnInit {
       "skip-install": new FormControl(false),
       "skip-tests": new FormControl(false)
     });
+  }
+
+  private serialize() {
+    const vals = this.newForm.value;
+    return Object.keys(vals)
+      .filter( key => key !== 'app-name')
+      .map( key => `--${key}=${vals[key]}`)
+      .join(' ');
   }
 }

@@ -25,7 +25,6 @@ import {
     }
 
     main {
-        width: 100%;
         height: 200px;
         padding: 10px;
     }
@@ -55,49 +54,57 @@ export class TerminalComponent implements OnInit {
     this.title = new EventEmitter();
   }
 
-  ngOnInit() {
-    this.term.createTerminal(this.terminalRef.nativeElement);
+  async ngOnInit() {
+    await this.term.createTerminal(this.terminalRef.nativeElement);
+    this.term.send('ng -v');
 
-    this.terminalRef.nativeElement.addEventListener('open', this.onOpen.bind(this));
-    this.terminalRef.nativeElement.addEventListener('close', this.onClose.bind(this));
-    this.terminalRef.nativeElement.addEventListener('key', this.onKey.bind(this));
-    this.terminalRef.nativeElement.addEventListener('keydown', this.onKeydown.bind(this));
-    this.terminalRef.nativeElement.addEventListener('keypress', this.onKeypress.bind(this));
-    this.terminalRef.nativeElement.addEventListener('scroll', this.onScroll.bind(this));
-    this.terminalRef.nativeElement.addEventListener('resize', this.onResize.bind(this));
-    this.terminalRef.nativeElement.addEventListener('title', this.onTitle.bind(this));
+    this.term.on('open', this.onOpen.bind(this));
+    this.term.on('close', this.onClose.bind(this));
+    this.term.on('key', this.onKey.bind(this));
+    this.term.on('keydown', this.onKeydown.bind(this));
+    this.term.on('keypress', this.onKeypress.bind(this));
+    this.term.on('scroll', this.onScroll.bind(this));
+    this.term.on('resize', this.onResize.bind(this));
+    this.term.on('title', this.onTitle.bind(this));
   }
 
   onOpen(event) {
-    debugger;
+    //console.log('Terminal::onOpen', event);
     this.open.emit();
   }
 
   onClose(event) {
+    //console.log('Terminal::onClose', event);
     this.close.emit();
   }
 
   onKey(event) {
+    //console.log('Terminal::onKey', event);
     this.key.emit();
   }
 
   onKeydown(event) {
+    //console.log('Terminal::onKeydown', event);
     this.keydown.emit();
   }
 
   onKeypress(event) {
+    //console.log('Terminal::onKeypress', event);
     this.keypress.emit();
   }
 
   onScroll(event) {
+    //console.log('Terminal::onScroll', event);
     this.scroll.emit();
   }
 
   onResize(event) {
+    //console.log('Terminal::onResize', event);
     this.resize.emit();
   }
 
   onTitle(event) {
+    //console.log('Terminal::onTitle', event);
     this.title.emit();
   }
 

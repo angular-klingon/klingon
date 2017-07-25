@@ -1,5 +1,4 @@
 <form [formGroup]="newForm">
-    <h3>Basic options</h3>
     <p>
         <md-input-container>
             <input formControlName="app-name" mdInput placeholder="Application name" required>
@@ -26,6 +25,7 @@
             </md-option>
         </md-select>
     </p>
+
     <app-drop-down [open]="false">
         <h3>Advanced Options</h3>
         <main>
@@ -69,10 +69,10 @@
     </app-drop-down>
 </form>
 <p>
-    <button md-fab color="warn" [disabled]="newForm.invalid">
+    <button md-fab color="warn" [disabled]="newForm.invalid" (click)="dryRun()">
       <md-icon>playlist_add_check</md-icon>
     </button>
-    <button md-fab color="primary" [disabled]="newForm.invalid">
+    <button md-fab color="primary" [disabled]="newForm.invalid" (click)="create()">
       <md-icon>check</md-icon>
     </button>
 </p>

@@ -9,10 +9,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class AppComponent {
 
-
   constructor(public term: TerminalService) {
-  }
-
-  onTerminalOpen() {
   }
 }

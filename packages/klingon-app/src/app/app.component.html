@@ -14,6 +14,10 @@
         <md-icon>bug_report</md-icon>
         <span>Contribute</span>
       </button>
+        <!-- <button md-menu-item (click)="openShell()">
+        <md-icon>settings_input_composite</md-icon>
+        <span>Open Shell</span>
+      </button> -->
         <button md-menu-item disabled>
         <md-icon>help</md-icon>
         <span>Help</span>
@@ -53,12 +57,9 @@
             <h1>Build your application</h1>
             <p>...</p>
         </md-tab>
-
-        <md-tab>
-            <ng-template md-tab-label>
-                Shell
-            </ng-template>
-            <app-terminal></app-terminal>
-        </md-tab>
     </md-tab-group>
+</md-card>
+
+<md-card>
+    <app-terminal></app-terminal>
 </md-card>
