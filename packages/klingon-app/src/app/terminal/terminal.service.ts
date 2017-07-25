@@ -1,5 +1,5 @@
+import { CliService } from './../cli/cli.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 
 export interface Terminal {
   _initialized: boolean;
@@ -28,6 +28,7 @@ export interface Terminal {
   writeln(message: string);
   write(message: string);
   send(data: string);
+  clear();
 };
 
 interface CommandResult {
@@ -43,8 +44,10 @@ export class TerminalService {
   socketURL: string;
   socket: WebSocket;
 
-  constructor(public http: HttpClient) {
-    this.runCommand('ng -v')
+  constructor(
+    public cli: CliService
+  ) {
+    this.cli.runCommand('ng -v')
       .subscribe( (data: CommandResult) => console.log(data.stdout || data.stderr))
   }
 
@@ -52,7 +55,10 @@ export class TerminalService {
 
     return new Promise( async(resolve, reject) => {
 
-    this.term = new (window as any).Terminal();
+    this.term = new (window as any).Terminal({
+      cursorBlink: true,
+      debug: true
+    });
     this.term.on('resize', (size) => {
       if (!this.pid) {
         return;
@@ -70,7 +76,7 @@ export class TerminalService {
     this.term.fit();
 
     const initialGeometry = this.term.proposeGeometry();
-    const cols = 120;
+    const cols = 180;
     const rows = 50;
 
     const res = await fetch(`http://localhost:3000/terminals?cols=${cols}&rows=${rows}`, {
@@ -97,6 +103,7 @@ export class TerminalService {
   }
 
   send(data) {
+    this.term.clear();
     this.term.send(`${data}\n`);
   }
 
@@ -104,15 +111,8 @@ export class TerminalService {
     this.term.write(data);
   }
 
-  cliVersion() {
-    return this.runCommand('ng -v');
+  stop() {
+    this.term.send('\x03');
   }
 
-  cliHelp() {
-    return this.runCommand('ng help');
-  }
-
-  runCommand(command) {
-    return this.http.post(`http://localhost:3000/cli/run`, {command});
-  }
 }
