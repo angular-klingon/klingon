@@ -30,7 +30,7 @@
             <ng-template md-tab-label>New</ng-template>
             <app-cli-create></app-cli-create>
         </md-tab>
-        <md-tab>
+        <md-tab [disabled]="true">
             <ng-template md-tab-label>
                 Generate
             </ng-template>
@@ -41,7 +41,7 @@
             </ng-template>
             <app-cli-serve></app-cli-serve>
         </md-tab>
-        <md-tab>
+        <md-tab [disabled]="true">
             <ng-template md-tab-label>
                 Test
             </ng-template>
@@ -49,16 +49,22 @@
             <h1>Test your application</h1>
             <p>...</p>
         </md-tab>
-        <md-tab>
+        <md-tab [disabled]="true">
             <ng-template md-tab-label>
                 Build
             </ng-template>
             <h1>Build your application</h1>
             <p>...</p>
         </md-tab>
+        <md-tab>
+            <ng-template md-tab-label>
+                Shell
+            </ng-template>
+            <app-terminal height="500px"></app-terminal>
+        </md-tab>
     </md-tab-group>
 </md-card>
 
 <md-card>
-    <app-terminal height="500px"></app-terminal>
+    <!-- <app-terminal height="500px"></app-terminal> -->
 </md-card>

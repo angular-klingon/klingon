@@ -8,6 +8,13 @@
 
     <p>
         <md-input-container>
+            <input formControlName="app" mdInput placeholder="Application" />
+            <md-hint align="start">The application to serve.</md-hint>
+        </md-input-container>
+    </p>
+
+    <p>
+        <md-input-container>
             <input formControlName="port" mdInput placeholder="Port" />
             <md-hint align="start">Port to listen to for serving.</md-hint>
         </md-input-container>
@@ -158,10 +165,10 @@
     </app-drop-down>
 </form>
 <p class="button-container">
-    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="serve()">
-      <md-icon>play_circle_outline</md-icon> Serve
-    </button>
     <button md-raised-button color="warn" [disabled]="form.invalid" (click)="stop()">
       <md-icon>stop</md-icon> Stop
+    </button>
+    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="serve()">
+      <md-icon>play_circle_outline</md-icon> Serve
     </button>
 </p>

@@ -39,6 +39,7 @@ export class CliServeComponent implements OnInit {
   buildForm() {
     return new FormGroup({
       "host": new FormControl("127.0.0.1"),
+      "app": new FormControl(""),
       hmr: new FormControl(false),
       "live-reload": new FormControl(true),
       "public-host": new FormControl(),
@@ -60,7 +61,7 @@ export class CliServeComponent implements OnInit {
       "output-hashing": new FormControl(false),
       "output-path": new FormControl(),
       poll: new FormControl(),
-      progress: new FormControl(false),
+      progress: new FormControl(true),
       sourcemap: new FormControl(true),
       target: new FormControl(this.targets[0]),
       "vendor-chunk": new FormControl(true),

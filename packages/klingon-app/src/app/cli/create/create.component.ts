@@ -36,7 +36,7 @@ export class CliCreateComponent implements OnInit {
   buildForm() {
     return new FormGroup({
       "app-name": new FormControl("", Validators.required),
-      directory: new FormControl("./"),
+      directory: new FormControl(""),
       prefix: new FormControl("app"),
       "source-dir": new FormControl("src"),
       style: new FormControl("css"),

@@ -8,4 +8,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+window.onload = () => {
+  document.body.appendChild(document.createElement('app-root'));
+  platformBrowserDynamic().bootstrapModule(AppModule);
+};

@@ -22,7 +22,7 @@ app.post('/terminals', (req, res) => {
         name: 'xterm-color',
         cols: cols || 80,
         rows: rows || 24,
-        cwd: '/tmp/', //process.env.PWD
+        cwd: '/Users/wassimchegham/Sandbox/oss/klingon-workspace', //process.env.PWD
         env: process.env
     });
 
