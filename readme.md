@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/manekinekko/klingon.svg?style=svg)](https://circleci.com/gh/manekinekko/klingon)
 # Klingon
 
 WIP
