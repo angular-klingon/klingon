@@ -24,13 +24,15 @@ import { AppComponent } from './app.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { CliCreateComponent } from './cli/create/create.component';
 import { CliServeComponent } from './cli/serve/serve.component';
+import { BuildComponent } from './cli/build/build.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DropDownComponent,
     CliCreateComponent,
-    CliServeComponent
+    CliServeComponent,
+    BuildComponent
   ],
   imports: [
     BrowserModule,

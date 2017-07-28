@@ -44,16 +44,14 @@
             <ng-template md-tab-label>
                 Test
             </ng-template>
-
             <h1>Test your application</h1>
             <p>...</p>
         </md-tab>
-        <md-tab [disabled]="true">
+        <md-tab>
             <ng-template md-tab-label>
                 Build
             </ng-template>
-            <h1>Build your application</h1>
-            <p>...</p>
+            <app-cli-build></app-cli-build>
         </md-tab>
         <md-tab>
             <ng-template md-tab-label>

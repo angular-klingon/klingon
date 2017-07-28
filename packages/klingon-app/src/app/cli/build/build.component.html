@@ -1,0 +1,142 @@
+<form [formGroup]="form">
+    <p></p>
+    <p>
+        <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
+        <md-select formControlName="environment">
+            <md-option *ngFor="let env of environments" [value]="env">
+                {{ env }}
+            </md-option>
+        </md-select>
+    </p>
+    <md-divider></md-divider>
+
+    <app-drop-down [open]="false" contentHeight="900px">
+        <h3 class="title">Advanced Options</h3>
+        <h6 class="sub-title">Configure other flags for the build command</h6>
+        <main class="content">
+
+            <p>
+                <md-input-container>
+                    <input formControlName="app" mdInput placeholder="Application" />
+                    <md-hint align="start">Specifies app name or index to use.</md-hint>
+                </md-input-container>
+            </p>
+
+            <p>
+                <md-input-container>
+                    <input formControlName="base-href" mdInput placeholder="Base Href" />
+                    <md-hint align="start">Base url for the application being built.</md-hint>
+                </md-input-container>
+            </p>
+
+            <p>
+                <md-input-container>
+                    <input formControlName="deploy-url" mdInput placeholder="Deploy URL" />
+                    <md-hint align="start">URL where files will be deployed.</md-hint>
+                </md-input-container>
+            </p>
+
+            <p>
+                <md-input-container>
+                    <input formControlName="i18n-file" mdInput placeholder="I18n File" />
+                    <md-hint align="start">Localization file to use for i18n.</md-hint>
+                </md-input-container>
+            </p>
+
+            <p>
+                <md-input-container>
+                    <input formControlName="output-path" mdInput placeholder="Output Path" />
+                    <md-hint align="start">Path where output will be placed.</md-hint>
+                </md-input-container>
+            </p>
+
+            <p>
+                <md-input-container>
+                    <input formControlName="poll" mdInput placeholder="Poll" />
+                    <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
+                </md-input-container>
+            </p>
+
+            <p>
+                <md-hint class="fixe-height" align="start">Format of the localization file:</md-hint>
+                <md-select formControlName="i18n-format">
+                    <md-option *ngFor="let format of i18nFormats" [value]="format">
+                        {{ format }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Locale to use for i18n:</md-hint>
+                <md-select formControlName="locale">
+                    <md-option *ngFor="let locale of locales" [value]="locale">
+                        {{ locale }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</md-hint>
+                <md-select formControlName="output-hashing">
+                    <md-option *ngFor="let hash of hashings" [value]="hash">
+                        {{ hash }}
+                    </md-option>
+                </md-select>
+            </p>
+            <p>
+                <md-hint class="fixe-height" align="start">Defines the build target:</md-hint>
+                <md-select formControlName="target">
+                    <md-option *ngFor="let target of targets" [value]="target">
+                        {{ target }}
+                    </md-option>
+                </md-select>
+            </p>
+
+            <md-list>
+                <md-list-item>
+                    <md-checkbox formControlName="aot">Build using Ahead of Time compilation</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="extract-css">Extract css from global styles onto css files instead of js ones</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="delete-output-path">Delete the output-path directory</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="progress">Log progress to the console while building</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="sourcemap">Output sourcemaps</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="stats-json">Generates a stats.json file which can be analyzed using tools such as: webpack-bundle-analyzer.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="vendor-chunk">Use a separate bundle containing only vendor libraries.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="common-chunk">Use a separate bundle containing code used across multiple bundles.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="verbose">Adds more details to output logging.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="show-circular-dependencies">Show circular dependency warnings on builds.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="build-optimizer">(Experimental) Enables optimizations when using Ahead of Time compilation.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="named-chunks">Use file name for lazy loaded chunks.</md-checkbox>
+                </md-list-item>
+
+            </md-list>
+        </main>
+    </app-drop-down>
+</form>
+<p class="button-container">
+    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="build()">
+      <md-icon>play_arrow</md-icon> Build
+    </button>
+</p>
