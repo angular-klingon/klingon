@@ -1,0 +1,102 @@
+<form [formGroup]="form">
+    <p>
+        <md-hint class="fixe-height" align="start">Override which browsers tests are run against:</md-hint>
+        <md-select formControlName="browsers">
+            <md-option *ngFor="let browser of browsers" [value]="browser">
+                {{ browser }}
+            </md-option>
+        </md-select>
+    </p>
+    <p>
+        <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
+        <md-select formControlName="environment">
+            <md-option *ngFor="let env of environments" [value]="env">
+                {{ env }}
+            </md-option>
+        </md-select>
+    </p>
+    <p>
+        <md-hint class="fixe-height" align="start">Level of logging.:</md-hint>
+        <md-select formControlName="log-level">
+            <md-option *ngFor="let level of logLevels" [value]="level">
+                {{ level }}
+            </md-option>
+        </md-select>
+    </p>
+    <md-list>
+        <md-list-item>
+            <md-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</md-checkbox>
+        </md-list-item>
+        <md-list-item>
+            <md-checkbox formControlName="single-run">Run tests a single time.</md-checkbox>
+        </md-list-item>
+        <md-list-item>
+            <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
+        </md-list-item>
+    </md-list>
+
+    <md-divider></md-divider>
+
+    <app-drop-down [open]="false" contentHeight="1870px">
+        <h3 class="title">Advanced Options</h3>
+        <h6 class="sub-title">Configure other flags for the serve command</h6>
+        <main class="content">
+            <p>
+                <md-input-container>
+                    <input formControlName="app" mdInput placeholder="Application">
+                    <md-hint align="start">Specifies app name or index to use.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="config" mdInput placeholder="Protractor Configuration File">
+                    <md-hint align="start">Use a specific config file. Defaults to the protractor config file in angular-cli.json.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="port" mdInput placeholder="Port">
+                    <md-hint align="start">Port where the web server will be listening.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="reporters" mdInput placeholder="List of reporters">
+                    <md-hint align="start">List of reporters to use.</md-hint>
+                </md-input-container>
+            </p>
+            <p>
+                <md-input-container>
+                    <input formControlName="poll" mdInput placeholder="Poll" />
+                    <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
+                </md-input-container>
+            </p>
+
+            <md-list>
+                <md-list-item>
+                    <md-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="colors">Enable or disable colors in the output (reporters and logs).</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="progress">Log progress to the console while in progress.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="single-run">Run tests a single time.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="sourcemap">Output sourcemaps.</md-checkbox>
+                </md-list-item>
+                <md-list-item>
+                    <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
+                </md-list-item>
+            </md-list>
+        </main>
+    </app-drop-down>
+</form>
+<p class="button-container">
+    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="run()">
+      <md-icon>play_arrow</md-icon> Run
+    </button>
+</p>
