@@ -86,10 +86,28 @@ export class TerminalService {
     const pid = await res.text();
     this.socket = new WebSocket(`${this.socketURL}/${pid}`);
     this.socket.onopen = () => {
-      this.term.attach(this.socket);
+      // this.term.attach(this.socket);
+      Attacher.attach(this.term, this.socket, true, 10);
       this.term._initialized = true;
       setTimeout(_ => resolve(), 100);
     };
+    // this.socket.onmessage = function(event) {
+      
+    //   let json = null;
+    //   try {
+    //     json = JSON.parse(event.data);
+    //   }
+    //   catch(e) {}
+
+    //   if (json) {
+    //     console.log(event, json);
+    //     const message = new MessageEvent('message', {
+    //       data : json.stdout
+    //     });
+    //     this.dispatchEvent(message);
+    //   }
+
+    // };
     this.socket.onclose = this.socketError;
     this.socket.onerror = this.socketError;
     });
@@ -115,4 +133,73 @@ export class TerminalService {
     this.term.send('\x03');
   }
 
+}
+
+
+class Attacher {
+  constructor() {}
+
+  static attach(term, socket, bidirectional, buffered) {
+    bidirectional = (typeof bidirectional == 'undefined') ? true : bidirectional;
+    term.socket = socket;
+
+    term._flushBuffer = function () {
+      term.write(term._attachSocketBuffer);
+      term._attachSocketBuffer = null;
+      clearTimeout(term._attachSocketBufferTimer);
+      term._attachSocketBufferTimer = null;
+    };
+
+    term._pushToBuffer = function (data) {
+      if (term._attachSocketBuffer) {
+        term._attachSocketBuffer += data;
+      } else {
+        term._attachSocketBuffer = data;
+        setTimeout(term._flushBuffer, 10);
+      }
+    };
+
+    term._getMessage = function (ev) {
+      var data = "";
+      try { 
+        data = JSON.parse(ev.data);
+        data = (data as any).stdout;
+      } catch(e){};
+      if (buffered) {
+        term._pushToBuffer(data);
+      } else {
+        term.write(data);
+      }
+      console.log('socket::received');
+      console.log(data);
+    };
+
+    term._sendData = function (data) {
+      socket.send(data);
+      console.log('socket::sent');
+      console.log(data);
+    };
+
+    socket.addEventListener('message', term._getMessage);
+
+    if (bidirectional) {
+      term.on('data', term._sendData);
+    }
+
+    socket.addEventListener('close', Attacher.detach.bind(term, socket));
+    socket.addEventListener('error', Attacher.detach.bind(term, socket));
+  };
+
+  static detach (term, socket) {
+    debugger;
+    term.off('data', term._sendData);
+
+    socket = (typeof socket == 'undefined') ? term.socket : socket;
+
+    if (socket) {
+      socket.removeEventListener('message', term._getMessage);
+    }
+
+    delete term.socket;
+  }
 }
