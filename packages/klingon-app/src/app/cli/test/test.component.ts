@@ -26,7 +26,7 @@ export class CliTestComponent extends FlagsComponent implements OnInit {
 
   ngOnInit() {}
 
-  serve() {
+  run() {
     this.term.send(`ng test ${ this.cli.serialize(this.form.value)}`);
   }
 
