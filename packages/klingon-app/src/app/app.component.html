@@ -1,6 +1,5 @@
 <md-toolbar color="warn">
-    <img width="54" src="assets/ngKlingon__white.png" alt="">
-    <h1>ngKlingon</h1>
+    <!-- <h1>ngKlingon</h1> -->
     <span class="fill-remaining-space"></span>
     <button md-icon-button [mdMenuTriggerFor]="menu">
       <md-icon>more_vert</md-icon>
@@ -60,11 +59,17 @@
             <ng-template md-tab-label>
                 Shell
             </ng-template>
-            <app-terminal height="500px"></app-terminal>
+            <!-- <app-terminal height="500px"></app-terminal> -->
         </md-tab>
     </md-tab-group>
 </md-card>
 
 <md-card>
-    <!-- <app-terminal height="500px"></app-terminal> -->
+    <app-drop-down contentHeight="500px">
+        <h3 class="title">Open the shell</h3>
+        <h6 class="sub-title">Access the shell</h6>
+        <div class="content">
+            <app-terminal height="500px"></app-terminal>
+        </div>
+    </app-drop-down>
 </md-card>
