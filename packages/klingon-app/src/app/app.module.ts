@@ -25,6 +25,8 @@ import { DropDownComponent } from './drop-down/drop-down.component';
 import { CliCreateComponent } from './cli/create/create.component';
 import { CliServeComponent } from './cli/serve/serve.component';
 import { BuildComponent } from './cli/build/build.component';
+import { FlagsComponent } from './cli/flags/flags.component';
+import { CliTestComponent } from './cli/test/test.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { BuildComponent } from './cli/build/build.component';
     DropDownComponent,
     CliCreateComponent,
     CliServeComponent,
-    BuildComponent
+    BuildComponent,
+    FlagsComponent,
+    CliTestComponent
   ],
   imports: [
     BrowserModule,

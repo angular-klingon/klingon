@@ -9,6 +9,17 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class AppComponent {
 
+  selectedIndex: number = 0;
+
   constructor(public term: TerminalService) {
+  }
+
+  ngOnInit(){
+    this.selectedIndex = parseInt(localStorage.getItem('ui.selectedIndex') || '0', 10);
+    localStorage.setItem('ui.selectedIndex', `${this.selectedIndex}`);
+  }
+
+  storeIndex(index: number) {
+    localStorage.setItem('ui.selectedIndex', `${index}`);
   }
 }

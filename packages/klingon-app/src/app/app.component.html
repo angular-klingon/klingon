@@ -24,40 +24,25 @@
     </md-menu>
 </md-toolbar>
 <md-card>
-    <md-tab-group>
+    <md-tab-group (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex">
         <md-tab>
             <ng-template md-tab-label>New</ng-template>
             <app-cli-create></app-cli-create>
         </md-tab>
         <md-tab [disabled]="true">
-            <ng-template md-tab-label>
-                Generate
-            </ng-template>
+            <ng-template md-tab-label>Generate</ng-template>
         </md-tab>
         <md-tab>
-            <ng-template md-tab-label>
-                Serve
-            </ng-template>
+            <ng-template md-tab-label>Serve</ng-template>
             <app-cli-serve></app-cli-serve>
         </md-tab>
-        <md-tab [disabled]="true">
-            <ng-template md-tab-label>
-                Test
-            </ng-template>
-            <h1>Test your application</h1>
-            <p>...</p>
+        <md-tab>
+            <ng-template md-tab-label>Test</ng-template>
+            <app-cli-test></app-cli-test>
         </md-tab>
         <md-tab>
-            <ng-template md-tab-label>
-                Build
-            </ng-template>
+            <ng-template md-tab-label>Build</ng-template>
             <app-cli-build></app-cli-build>
-        </md-tab>
-        <md-tab>
-            <ng-template md-tab-label>
-                Shell
-            </ng-template>
-            <!-- <app-terminal height="500px"></app-terminal> -->
         </md-tab>
     </md-tab-group>
 </md-card>
