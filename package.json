@@ -8,6 +8,7 @@
     "scripts": {
         "postinstall": "lerna bootstrap",
         "start:app": "cd packages/klingon-app/ && npm start",
-        "start:server": "cd packages/klingon-server/ && npm start"
+        "start:server": "cd packages/klingon-server/ && npm start",
+        "electron": "electron klingon-app/dist/"
     }
 }
