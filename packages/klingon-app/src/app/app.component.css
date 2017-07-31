@@ -1,5 +1,5 @@
 :host md-toolbar {
-    height: 170px;
+    height: 149px;
     position: fixed;
     background-image: url('/assets/ngKlingon__white.png');
     background-size: 90px;
@@ -7,10 +7,12 @@
     background-position: center top;
 }
 
-md-card {
+.mat-card {
+    background: white;
     width: 80vw;
     margin: 0 auto;
     top: 100px;
+    padding: 0;
 }
 
 .fill-remaining-space {

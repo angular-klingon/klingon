@@ -1,26 +1,26 @@
 <form [formGroup]="form">
-    <p>
-        <md-input-container>
-            <input formControlName="host" mdInput placeholder="Host">
-            <md-hint align="start">The host that should be bound to for serving.</md-hint>
-        </md-input-container>
-    </p>
+    <section>
+        <p>
+            <md-input-container>
+                <input formControlName="host" mdInput placeholder="Host">
+                <md-hint align="start">The host that should be bound to for serving.</md-hint>
+            </md-input-container>
+        </p>
 
-    <p>
-        <md-input-container>
-            <input formControlName="app" mdInput placeholder="Application" />
-            <md-hint align="start">The application to serve.</md-hint>
-        </md-input-container>
-    </p>
+        <p>
+            <md-input-container>
+                <input formControlName="app" mdInput placeholder="Application" />
+                <md-hint align="start">The application to serve.</md-hint>
+            </md-input-container>
+        </p>
 
-    <p>
-        <md-input-container>
-            <input formControlName="port" mdInput placeholder="Port" />
-            <md-hint align="start">Port to listen to for serving.</md-hint>
-        </md-input-container>
-    </p>
-
-    <md-divider></md-divider>
+        <p>
+            <md-input-container>
+                <input formControlName="port" mdInput placeholder="Port" />
+                <md-hint align="start">Port to listen to for serving.</md-hint>
+            </md-input-container>
+        </p>
+    </section>
 
     <app-drop-down [open]="false" contentHeight="1870px">
         <h3 class="title">Advanced Options</h3>
@@ -163,12 +163,15 @@
             </md-list>
         </main>
     </app-drop-down>
-</form>
-<p class="button-container">
-    <button md-raised-button color="warn" [disabled]="form.invalid" (click)="stop()">
+
+    <section>
+        <p class="button-container">
+            <button md-raised-button color="warn" [disabled]="form.invalid" (click)="stop()">
       <md-icon>stop</md-icon> Stop
     </button>
-    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="serve()">
+            <button md-raised-button color="primary" [disabled]="form.invalid" (click)="serve()">
       <md-icon>play_circle_outline</md-icon> Serve
     </button>
-</p>
+        </p>
+    </section>
+</form>

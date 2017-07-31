@@ -10,37 +10,51 @@ import {
 @Component({
   selector: 'app-drop-down',
   template: `
-    <section>
-      <header (click)="toggle()">
-        <ng-content select=".title"></ng-content>
-        <div>
-          <ng-content *ngIf=" state === 'keyboard_arrow_down'"  select=".sub-title"></ng-content>
-        </div>
-        <md-icon>{{state}}</md-icon>
-      </header>
-      <div #contentAreaRef class="content-area" [class.open]="state == 'keyboard_arrow_up'" >
+    <md-divider></md-divider>
+    <header (click)="toggle()">
+      <ng-content select="md-icon"></ng-content>
+      <ng-content select=".title"></ng-content>
+      <div>
+        <ng-content *ngIf=" state === 'keyboard_arrow_down'"  select=".sub-title"></ng-content>
+      </div>
+      <md-icon>{{state}}</md-icon>
+    </header>
+    <section [class.open]="state == 'keyboard_arrow_up'" >
+      <div #contentAreaRef class="content-area" >
         <ng-content select=".content"></ng-content>
       </div>
     </section>
+    <md-divider></md-divider>
   `,
   styles: [`
     :host {
-      display: block; padding: 10px 0;
+      display: block;
+    }
+    :host section {
+      padding: 0;
+      opacity: 0;
+    }
+    :host section.open {
+      padding: 20px;
+      opacity: 1;
     }
     header {
       display: flex; cursor: pointer;
-      margin-bottom: 30px;
+      padding: 10px;
     }
     header div {
       flex: 1 1 auto;
     }
-    .content-area {
+    div.content-area {
       height: 0; 
       overflow: hidden; 
-      transition: height 100ms linear;
+      transition: height 150ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
     }
-    .content-area.open { 
+    section.open div.content-area { 
       height: initial;
+    }
+    ::ng-deep md-icon {
+      margin: 0 10px 0 0;
     }
     ::ng-deep .title {
       margin: 0; 

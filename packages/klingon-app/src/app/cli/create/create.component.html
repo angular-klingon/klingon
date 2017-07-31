@@ -1,18 +1,18 @@
 <form [formGroup]="form">
-    <p>
-        <md-input-container>
-            <input formControlName="app-name" mdInput placeholder="Application name" required>
-            <md-hint align="start">Default applications are created in a directory of the same name, with an initialized Angular application.</md-hint>
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container>
-            <input formControlName="prefix" mdInput placeholder="Prefix">
-            <md-hint align="start">The prefix to use for all component selectors.</md-hint>
-        </md-input-container>
-    </p>
-
-    <md-divider></md-divider>
+    <section>
+        <p>
+            <md-input-container>
+                <input formControlName="app-name" mdInput placeholder="Application name" required>
+                <md-hint align="start">Default applications are created in a directory of the same name, with an initialized Angular application.</md-hint>
+            </md-input-container>
+        </p>
+        <p>
+            <md-input-container>
+                <input formControlName="prefix" mdInput placeholder="Prefix">
+                <md-hint align="start">The prefix to use for all component selectors.</md-hint>
+            </md-input-container>
+        </p>
+    </section>
 
     <app-drop-down [open]="false" contentHeight="720px">
         <h3 class="title">Advanced Options</h3>
@@ -69,12 +69,15 @@
             </md-list>
         </main>
     </app-drop-down>
-</form>
-<p class="button-container">
-    <button md-raised-button color="warn" [disabled]="form.invalid" (click)="dryRun()">
-      <md-icon>playlist_add_check</md-icon> Dry Run
-    </button>
-    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="create()">
+
+    <section>
+        <p class="button-container">
+            <button md-raised-button color="warn" [disabled]="form.invalid" (click)="dryRun()">
+            <md-icon>playlist_add_check</md-icon> Dry Run
+          </button>
+            <button md-raised-button color="primary" [disabled]="form.invalid" (click)="create()">
       <md-icon>check</md-icon> Create
     </button>
-</p>
+        </p>
+    </section>
+</form>

@@ -1,43 +1,45 @@
 <form [formGroup]="form">
-    <p>
-        <md-hint class="fixe-height" align="start">Override which browsers tests are run against:</md-hint>
-        <md-select formControlName="browsers">
-            <md-option *ngFor="let browser of browsers" [value]="browser">
-                {{ browser }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
-        <md-select formControlName="environment">
-            <md-option *ngFor="let env of environments" [value]="env">
-                {{ env }}
-            </md-option>
-        </md-select>
-    </p>
-    <p>
-        <md-hint class="fixe-height" align="start">Level of logging.:</md-hint>
-        <md-select formControlName="log-level">
-            <md-option *ngFor="let level of logLevels" [value]="level">
-                {{ level }}
-            </md-option>
-        </md-select>
-    </p>
-    <md-list>
-        <md-list-item>
-            <md-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</md-checkbox>
-        </md-list-item>
-        <md-list-item>
-            <md-checkbox formControlName="single-run">Run tests a single time.</md-checkbox>
-        </md-list-item>
-        <md-list-item>
-            <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
-        </md-list-item>
-    </md-list>
 
-    <md-divider></md-divider>
+    <section>
+        <p>
+            <md-hint class="fixe-height" align="start">Override which browsers tests are run against:</md-hint>
+            <md-select formControlName="browsers">
+                <md-option *ngFor="let browser of browsers" [value]="browser">
+                    {{ browser }}
+                </md-option>
+            </md-select>
+        </p>
+        <p>
+            <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
+            <md-select formControlName="environment">
+                <md-option *ngFor="let env of environments" [value]="env">
+                    {{ env }}
+                </md-option>
+            </md-select>
+        </p>
+        <p>
+            <md-hint class="fixe-height" align="start">Level of logging:</md-hint>
+            <md-select formControlName="log-level">
+                <md-option *ngFor="let level of logLevels" [value]="level">
+                    {{ level }}
+                </md-option>
+            </md-select>
+        </p>
 
-    <app-drop-down [open]="false" contentHeight="1870px">
+        <md-list>
+            <md-list-item>
+                <md-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</md-checkbox>
+            </md-list-item>
+            <md-list-item>
+                <md-checkbox formControlName="single-run">Run tests a single time.</md-checkbox>
+            </md-list-item>
+            <md-list-item>
+                <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
+            </md-list-item>
+        </md-list>
+    </section>
+
+    <app-drop-down [open]="false" contentHeight="840px">
         <h3 class="title">Advanced Options</h3>
         <h6 class="sub-title">Configure other flags for the serve command</h6>
         <main class="content">
@@ -94,9 +96,12 @@
             </md-list>
         </main>
     </app-drop-down>
-</form>
-<p class="button-container">
-    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="run()">
+
+    <section>
+        <p class="button-container">
+            <button md-raised-button color="primary" [disabled]="form.invalid" (click)="run()">
       <md-icon>play_arrow</md-icon> Run
     </button>
-</p>
+        </p>
+    </section>
+</form>

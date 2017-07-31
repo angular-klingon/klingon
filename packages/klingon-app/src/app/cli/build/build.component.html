@@ -1,16 +1,17 @@
 <form [formGroup]="form">
-    <p></p>
-    <p>
-        <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
-        <md-select formControlName="environment">
-            <md-option *ngFor="let env of environments" [value]="env">
-                {{ env }}
-            </md-option>
-        </md-select>
-    </p>
-    <md-divider></md-divider>
+    <section>
+        <p>
+            <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
+            <md-select formControlName="environment">
+                <md-option *ngFor="let env of environments" [value]="env">
+                    {{ env }}
+                </md-option>
+            </md-select>
+        </p>
+    </section>
 
-    <app-drop-down [open]="false" contentHeight="900px">
+    <app-drop-down [open]="false" contentHeight="1480px">
+        <md-icon>settings</md-icon>
         <h3 class="title">Advanced Options</h3>
         <h6 class="sub-title">Configure other flags for the build command</h6>
         <main class="content">
@@ -134,9 +135,12 @@
             </md-list>
         </main>
     </app-drop-down>
-</form>
-<p class="button-container">
-    <button md-raised-button color="primary" [disabled]="form.invalid" (click)="build()">
+
+    <section>
+        <p class="button-container">
+            <button md-raised-button color="primary" [disabled]="form.invalid" (click)="build()">
       <md-icon>play_arrow</md-icon> Build
     </button>
-</p>
+        </p>
+    </section>
+</form>

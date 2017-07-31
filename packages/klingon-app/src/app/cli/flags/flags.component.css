@@ -1,6 +1,13 @@
 :host {
     display: block;
-    padding: 10px 10px 0;
+}
+
+:host section {
+    padding: 20px;
+}
+
+section p.button-container {
+    text-align: right;
 }
 
 form {
