@@ -69,9 +69,7 @@ export class TerminalComponent implements OnInit {
 
     this.r.setStyle(this.terminalRef.nativeElement, 'height', this.height);
 
-
     await this.term.createTerminal(this.terminalRef.nativeElement);
-    this.term.send('ng -v');
 
     this.term.on('open', this.onOpen.bind(this));
     this.term.on('close', this.onClose.bind(this));
@@ -132,7 +130,11 @@ export class TerminalComponent implements OnInit {
 
   onRefresh(event) {
     console.log('Terminal::onRefresh', event);
-    this.refresh.emit();
+    const error = this.terminalRef.nativeElement.querySelector('.terminal .xterm-color-1');
+
+    this.refresh.emit({
+      error
+    });
   }
 
 }

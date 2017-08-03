@@ -1,4 +1,4 @@
-import { CliService } from './../cli/cli.service';
+import { CliService } from './../../cli/cli.service';
 import { Injectable } from '@angular/core';
 
 export interface Terminal {
@@ -31,11 +31,6 @@ export interface Terminal {
   clear();
 };
 
-interface CommandResult {
-  stderr: string;
-  stdout: string;
-}
-
 @Injectable()
 export class TerminalService {
 
@@ -47,8 +42,6 @@ export class TerminalService {
   constructor(
     public cli: CliService
   ) {
-    this.cli.runCommand('ng -v')
-      .subscribe( (data: CommandResult) => console.log(data.stdout || data.stderr))
   }
 
   async createTerminal(terminalContainer: HTMLElement) {
@@ -56,7 +49,7 @@ export class TerminalService {
     return new Promise( async(resolve, reject) => {
 
     this.term = new (window as any).Terminal({
-      cursorBlink: true,
+      cursorBlink: false,
       debug: true
     });
     this.term.on('resize', (size) => {
@@ -103,8 +96,10 @@ export class TerminalService {
   }
 
   send(data) {
-    this.term.clear();
-    this.term.send(`${data}\n`);
+    // this.term.clear();
+    // this.term.send(`${data}\n`);
+    return this.cli.runNgCommand(data)
+      
   }
 
   write(data) {
