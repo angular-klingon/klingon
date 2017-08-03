@@ -1,0 +1,18 @@
+:host section {
+    padding: 6px;
+    height: 400px;
+    max-height: 400px;
+    background: black;
+    color: lime;
+    overflow-y: scroll;
+}
+
+:host .hasError {
+    color: red;
+}
+
+:host code {
+    width: 100%;
+    display: block;
+    overflow-wrap: break-word;
+}
