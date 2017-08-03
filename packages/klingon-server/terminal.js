@@ -4,7 +4,8 @@ const expressWs = require('express-ws')(app);
 const os = require('os');
 const cors = require('cors');
 const pty = require('node-pty');
-const bodyParser = require('body-parser')
+const { spawn } = require('child_process');
+const bodyParser = require('body-parser');
 
 app.use(cors());
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 
 const terminals = {};
 const logs = {};
+const websocket = {};
 
 app.post('/terminals', (req, res) => {
     const cols = parseInt(req.query.cols);
@@ -36,35 +38,63 @@ app.post('/terminals', (req, res) => {
     res.end();
 });
 
-app.post('/terminals/:pid/size', (req, res) => {
-    const pid = parseInt(req.params.pid);
-    const cols = parseInt(req.query.cols);
-    const rows = parseInt(req.query.rows);
-    const term = terminals[pid];
+// app.post('/terminals/:pid/size', (req, res) => {
+//     const pid = parseInt(req.params.pid);
+//     const cols = parseInt(req.query.cols);
+//     const rows = parseInt(req.query.rows);
+//     const term = terminals[pid];
 
-    term.resize(cols, rows);
-    console.log(`Resized terminal ${pid} to ${cols} cols and ${rows} rows.`);
-    res.end();
-});
+//     term.resize(cols, rows);
+//     console.log(`Resized terminal ${pid} to ${cols} cols and ${rows} rows.`);
+//     res.end();
+// });
 
-app.post('/cli/run', (req, res) => {
-    const exec = require('child_process').exec;
-    exec(`${req.body.command}`, (e, stdout, stderr) => {
-        if (e instanceof Error) {
-            console.error(e);
-            res.status(500).send({
-                stdout,
-                stderr
-            });
-            throw e;
-        }
-        res.status(200).send({
-            stdout,
-            stderr
+app.ws('/cli', (ws, res) => {
+    ws.on('message', (msg) => {
+        msg = JSON.parse(msg);
+
+        const flags = msg.stdin.split(' ');
+        console.log('<<<', flags);
+
+        const child = spawn('ng', flags, {
+            cwd: '/Users/wassimchegham/Sandbox/oss/klingon-workspace', //process.env.PWD
+            env: process.env
         });
+
+        child.stdin.setEncoding('utf-8');
+        child.stdout.setEncoding('utf-8');
+        child.stderr.setEncoding('utf-8');
+
+        child.stdout.on('data', (stdout) => {
+            console.log('We received a reply: ' + stdout);
+            ws.send(JSON.stringify({
+                stdout
+            }));
+        });
+        child.stderr.on('data', (stderr) => {
+            console.log('There was an error: ' + stderr);
+            ws.send(JSON.stringify({
+                stderr
+            }));
+        });
+        child.on('exit', (exit) => {
+            console.log("Child exited with code: " + exit);
+            ws.send(JSON.stringify({
+                exit
+            }));
+        });
+
+        if (msg.KILL) {
+            child.kill('SIGINT');
+            ws.send(JSON.stringify({
+                killed: true
+            }));
+        }
+    });
+    ws.on('close', () => {
+        console.log(`Clean things up WS`);
     });
 });
-
 
 app.ws('/terminals/:pid', (ws, req) => {
     const term = terminals[parseInt(req.params.pid)];
@@ -73,12 +103,14 @@ app.ws('/terminals/:pid', (ws, req) => {
 
     term.on('data', (data) => {
         try {
+            console.log('>>>', data);
             ws.send(data);
         } catch (ex) {
             // The WebSocket is not open, ignore
         }
     });
     ws.on('message', (msg) => {
+        console.log('<<<', msg);
         term.write(msg);
     });
     ws.on('close', () => {
