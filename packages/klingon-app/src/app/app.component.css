@@ -9,12 +9,22 @@
 
 .mat-card {
     background: white;
-    width: 80vw;
+    width: 70vw;
     margin: 0 auto;
     top: 100px;
     padding: 0;
 }
 
-.fill-remaining-space {
+@media (max-width: 600px) {
+    .mat-card {
+        width: 99vw;
+    }
+}
+
+span.fill-remaining-space {
     flex: 1 1 auto;
+}
+
+snack-bar-container.error-container {
+    background: red;
 }
