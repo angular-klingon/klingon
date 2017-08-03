@@ -29,18 +29,13 @@ import {
   styles: [`
     :host {
       display: block;
-    }
-    :host section {
-      padding: 0;
-      opacity: 0;
-    }
-    :host section.open {
-      padding: 20px;
-      opacity: 1;
+      margin-top: -1px;
     }
     header {
       display: flex; cursor: pointer;
       padding: 10px;
+      align-items: center;
+      justify-content: center;
     }
     header div {
       flex: 1 1 auto;
@@ -48,7 +43,7 @@ import {
     div.content-area {
       height: 0; 
       overflow: hidden; 
-      transition: height 150ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
+      transition: height 450ms cubic-bezier(0.550, 0.055, 0.675, 0.190);
     }
     section.open div.content-area { 
       height: initial;
@@ -57,9 +52,8 @@ import {
       margin: 0 10px 0 0;
     }
     ::ng-deep .title {
-      margin: 0; 
-      margin: 0; 
-      min-width: 30vw; 
+      margin: 0;
+      font-size: 1em;
     }
     ::ng-deep .sub-title {
       padding: 6px;
@@ -72,6 +66,7 @@ import {
     }
     ::ng-deep .content {
       min-height: 50px;
+      padding: 0 20px;
     }
   `]
 })
