@@ -1,4 +1,7 @@
 <md-toolbar color="primary">
+    <button md-icon-button>
+      <md-icon>dehaze</md-icon>
+    </button>
     <!-- <h1>ngKlingon</h1> -->
     <span class="fill-remaining-space"></span>
     <button md-icon-button [mdMenuTriggerFor]="menu">
@@ -30,32 +33,32 @@
 <md-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex">
     <md-tab>
         <ng-template md-tab-label>New</ng-template>
-        <app-cli-create></app-cli-create>
+        <app-cli-create (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
     </md-tab>
     <md-tab [disabled]="true">
         <ng-template md-tab-label>Generate</ng-template>
     </md-tab>
     <md-tab>
         <ng-template md-tab-label>Serve</ng-template>
-        <app-cli-serve></app-cli-serve>
+        <app-cli-serve (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-serve>
     </md-tab>
     <md-tab>
         <ng-template md-tab-label>Test</ng-template>
-        <app-cli-test></app-cli-test>
+        <app-cli-test (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-test>
     </md-tab>
     <md-tab>
         <ng-template md-tab-label>Build</ng-template>
-        <app-cli-build></app-cli-build>
+        <app-cli-build (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-build>
     </md-tab>
 </md-tab-group>
 
 <br>
 
 <md-card>
-    <app-drop-down contentHeight="500px">
+    <app-drop-down contentHeight="542px">
         <md-icon>keyboard</md-icon>
         <h3 class="title">Shell</h3>
-        <h6 class="sub-title">Access the shell</h6>
+        <h6 class="sub-title">Access the "GOD" mode!</h6>
         <div class="content">
             <app-terminal height="500px"></app-terminal>
         </div>

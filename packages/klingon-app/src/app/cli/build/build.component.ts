@@ -1,6 +1,5 @@
 import { FlagsComponent } from './../flags/flags.component';
 import { FormControl } from '@angular/forms';
-import { TerminalService } from './../../terminal/terminal.service';
 import { CliService } from './../cli.service';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +15,6 @@ import { Component, OnInit } from '@angular/core';
 export class BuildComponent extends FlagsComponent implements OnInit {
 
   constructor(
-    public term: TerminalService,
     public cli: CliService
   ) {
     super();
@@ -26,7 +24,18 @@ export class BuildComponent extends FlagsComponent implements OnInit {
   ngOnInit() {}
 
   build() {
-    this.term.send(`ng build ${ this.cli.serialize(this.form.value)}`);
+    this.isWorking = true;
+    this.cli.runNgCommand(`build ${ this.cli.serialize(this.form.value)}`)
+      .subscribe(data => {
+        this.isWorking = false;
+
+        if (data.stderr) {
+          this.onStdErr.next(data.stderr);
+        }
+        else {
+          this.onStdOut.next(data.stdout);
+        }
+      });
   }
 
 }

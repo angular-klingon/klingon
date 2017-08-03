@@ -1,10 +1,8 @@
 import { browser } from 'protractor';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
-import { CliService } from './../cli.service';
-import { TerminalService } from './../../terminal/terminal.service';
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-cli-flags",
@@ -13,6 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlagsComponent implements OnInit {
 
+  @Output() onStdErr: EventEmitter<string>;
+  @Output() onStdOut: EventEmitter<string>;
+
+  protected isWorking: boolean;
+  
   static Flags = {
     CREATE: 0,
     SERVE: 1,
@@ -31,9 +34,13 @@ export class FlagsComponent implements OnInit {
   targets = ['development', 'production'];
 
   constructor() {
+      this.onStdErr = new EventEmitter<string>();
+      this.onStdOut = new EventEmitter<string>();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isWorking = false;
+  }
 
   buildForm(flag: number) {
 

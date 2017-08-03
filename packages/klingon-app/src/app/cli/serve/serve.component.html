@@ -9,23 +9,25 @@
 
         <p>
             <md-input-container>
-                <input formControlName="app" mdInput placeholder="Application" />
-                <md-hint align="start">The application to serve.</md-hint>
-            </md-input-container>
-        </p>
-
-        <p>
-            <md-input-container>
                 <input formControlName="port" mdInput placeholder="Port" />
                 <md-hint align="start">Port to listen to for serving.</md-hint>
             </md-input-container>
         </p>
     </section>
 
-    <app-drop-down [open]="false" contentHeight="1870px">
+    <app-drop-down [open]="false" contentHeight="1990px">
         <h3 class="title">Advanced Options</h3>
+        <md-icon>settings</md-icon>
         <h6 class="sub-title">Configure other flags for the serve command</h6>
         <main class="content">
+
+            <p>
+                <md-input-container>
+                    <input formControlName="app" mdInput placeholder="Application" />
+                    <md-hint align="start">The application to serve.</md-hint>
+                </md-input-container>
+            </p>
+
             <p>
                 <md-input-container>
                     <input formControlName="proxy-config" mdInput placeholder="Proxy Configuration File" />
@@ -164,6 +166,15 @@
         </main>
     </app-drop-down>
 
+    <app-drop-down [open]="false" contentHeight="420px">
+        <md-icon>subject</md-icon>
+        <h3 class="title">Logs</h3>
+        <h6 class="sub-title">View command history and logs</h6>
+        <main class="content">
+            <app-cli-log [stdout]="onStdOut | async" [stderr]="onStdErr | async"></app-cli-log>
+        </main>
+    </app-drop-down>
+
     <section>
         <p class="button-container">
             <button md-raised-button color="warn" [disabled]="form.invalid" (click)="stop()">
@@ -175,3 +186,5 @@
         </p>
     </section>
 </form>
+<md-progress-bar *ngIf="isWorking" color="primary" mode="indeterminate">
+</md-progress-bar>

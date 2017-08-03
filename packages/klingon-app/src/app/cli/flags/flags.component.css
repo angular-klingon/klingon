@@ -6,6 +6,10 @@
     padding: 20px;
 }
 
+:host md-select {
+    margin: 0 0 0 5px;
+}
+
 section p.button-container {
     text-align: right;
 }

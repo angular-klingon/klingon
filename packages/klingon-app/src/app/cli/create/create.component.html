@@ -2,7 +2,7 @@
     <section>
         <p>
             <md-input-container>
-                <input formControlName="app-name" mdInput placeholder="Application name" required>
+                <input autocomplete="off" formControlName="app-name" mdInput placeholder="Application name" required>
                 <md-hint align="start">Default applications are created in a directory of the same name, with an initialized Angular application.</md-hint>
             </md-input-container>
         </p>
@@ -16,6 +16,7 @@
 
     <app-drop-down [open]="false" contentHeight="720px">
         <h3 class="title">Advanced Options</h3>
+        <md-icon>settings</md-icon>
         <h6 class="sub-title">Configure other flags for the create command</h6>
         <main class="content">
             <p>
@@ -70,6 +71,15 @@
         </main>
     </app-drop-down>
 
+    <app-drop-down [open]="false" contentHeight="420px">
+        <md-icon>subject</md-icon>
+        <h3 class="title">Logs</h3>
+        <h6 class="sub-title">View command history and logs</h6>
+        <main class="content">
+            <app-cli-log [stdout]="onStdOut | async" [stderr]="onStdErr | async"></app-cli-log>
+        </main>
+    </app-drop-down>
+
     <section>
         <p class="button-container">
             <button md-raised-button color="warn" [disabled]="form.invalid" (click)="dryRun()">
@@ -81,3 +91,5 @@
         </p>
     </section>
 </form>
+<md-progress-bar *ngIf="isWorking" color="primary" mode="indeterminate">
+</md-progress-bar>

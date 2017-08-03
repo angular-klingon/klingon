@@ -1,6 +1,5 @@
 import { CliService } from './cli/cli.service';
-import { TerminalComponent } from './terminal/terminal/terminal.component';
-import { TerminalModule } from './terminal/terminal.module';
+import { TerminalModule } from './_shared/terminal/terminal.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MdTabsModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
 import { MdToolbarModule } from '@angular/material';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdInputModule } from '@angular/material';
 import { MdTooltipModule } from '@angular/material';
 import {MdCheckboxModule} from '@angular/material';
@@ -19,32 +18,21 @@ import {MdButtonModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 import {MdListModule} from '@angular/material';
+import {MdSnackBarModule} from '@angular/material';
+import {MdProgressBarModule} from '@angular/material';
+import {MdSlideToggleModule} from '@angular/material';
 
-import { AppComponent } from './app.component';
-import { DropDownComponent } from './drop-down/drop-down.component';
+import { AppComponent, SnackBarErrorComponent, SnackBarSuccessComponent } from './app.component';
+import { DropDownComponent } from './_shared/drop-down/drop-down.component';
 import { CliCreateComponent } from './cli/create/create.component';
 import { CliServeComponent } from './cli/serve/serve.component';
 import { BuildComponent } from './cli/build/build.component';
 import { FlagsComponent } from './cli/flags/flags.component';
 import { CliTestComponent } from './cli/test/test.component';
+import { LogComponent } from './_shared/log/log.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    DropDownComponent,
-    CliCreateComponent,
-    CliServeComponent,
-    BuildComponent,
-    FlagsComponent,
-    CliTestComponent
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    TerminalModule,
-    NoopAnimationsModule,
-    MdTabsModule,
+const MdModules = [
+  MdTabsModule,
     MdIconModule,
     MdToolbarModule,
     MdInputModule,
@@ -55,7 +43,36 @@ import { CliTestComponent } from './cli/test/test.component';
     MdButtonModule,
     MdCardModule,
     MdMenuModule,
-    MdListModule
+    MdListModule,
+    MdSnackBarModule,
+    MdProgressBarModule,
+    MdSlideToggleModule
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    DropDownComponent,
+    CliCreateComponent,
+    CliServeComponent,
+    BuildComponent,
+    FlagsComponent,
+    CliTestComponent,
+    LogComponent,
+    SnackBarSuccessComponent,
+    SnackBarErrorComponent
+  ],
+  entryComponents: [
+    SnackBarSuccessComponent,
+    SnackBarErrorComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    TerminalModule,
+    BrowserAnimationsModule,
+    ...MdModules
   ],
   providers: [CliService],
   bootstrap: [AppComponent]

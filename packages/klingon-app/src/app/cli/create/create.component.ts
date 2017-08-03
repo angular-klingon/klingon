@@ -1,6 +1,5 @@
 import { FlagsComponent } from './../flags/flags.component';
 import { CliService } from './../cli.service';
-import { TerminalService } from './../../terminal/terminal.service';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -20,20 +19,34 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
   styleExt = ['css', 'scss','less','sass','styl'];
 
   constructor(
-    public term: TerminalService,
     public cli: CliService) {
     super();
-    this.form = this.buildForm(FlagsComponent.Flags.CREATE);
   }
 
   ngOnInit() {
+    this.form = this.buildForm(FlagsComponent.Flags.CREATE);
   }
 
   dryRun() {
-    this.term.send(`ng new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)} --dry-run=true`);
+    this.run('--dry-run=true');
   }
 
   create() {
-    this.term.send(`ng new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)}`);
+    this.run();
   } 
+
+  run(extra='') {
+    this.isWorking = true;
+    this.cli.runNgCommand(`new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)} ${extra}`)
+      .subscribe(data => {
+        this.isWorking = false;
+        
+        if (data.stderr) {
+          this.onStdErr.next(data.stderr);
+        }
+        else {
+          this.onStdOut.next(data.stdout);
+        }
+      });
+  }
 }

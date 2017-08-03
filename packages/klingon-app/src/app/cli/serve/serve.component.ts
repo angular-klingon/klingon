@@ -1,6 +1,5 @@
 import { FlagsComponent } from './../flags/flags.component';
 import { CliService } from './../cli.service';
-import { TerminalService } from './../../terminal/terminal.service';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -17,7 +16,6 @@ import { Component, OnInit } from '@angular/core';
 export class CliServeComponent extends FlagsComponent implements OnInit {
 
   constructor(
-    public term: TerminalService,
     public cli: CliService
   ) {
     super();
@@ -27,10 +25,21 @@ export class CliServeComponent extends FlagsComponent implements OnInit {
   ngOnInit() {}
 
   serve() {
-    this.term.send(`ng serve ${ this.cli.serialize(this.form.value)}`);
+    this.isWorking = true;
+    this.cli.runNgCommand(`serve ${ this.cli.serialize(this.form.value)}`)  
+      .subscribe(data => {
+        this.isWorking = false;
+
+        if (data.stderr) {
+          this.onStdErr.next(data.stderr);
+        }
+        else {
+          this.onStdOut.next(data.stdout);
+        }
+      });
   }
 
   stop() {
-    this.term.stop();
+    // this.cli.stop();
   }
 }

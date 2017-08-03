@@ -1,12 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from "rxjs/Subject";
+
+
+export interface CommandResult {
+  stderr: string;
+  stdout: string;
+}
 
 @Injectable()
 export class CliService {
 
-  constructor(
-    public http: HttpClient
-  ) { }
+  response$: Subject<CommandResult>;
+  ws: WebSocket;
+  isConnectionOn;
+
+  constructor() {
+    this.response$ = new Subject();
+    this.ws = new WebSocket(`ws://localhost:3000/cli`);
+    this.ws.onopen = (e) => {
+      this.isConnectionOn = true;
+    };
+    this.ws.onclose = (e) => {
+      this.isConnectionOn = false;
+    };
+    this.ws.onerror = (e) => {
+      this.isConnectionOn = false;
+    };
+    this.ws.onmessage = (e) => {
+      this.response$.next(JSON.parse(e.data));
+    };
+  }
 
   serialize(values) {
     return Object.keys(values)
@@ -16,15 +40,26 @@ export class CliService {
   }
 
   cliVersion() {
-    return this.runCommand('ng -v');
+    return this.runNgCommand('-v');
   }
 
   cliHelp() {
-    return this.runCommand('ng help');
+    return this.runNgCommand('help');
   }
 
-  runCommand(command) {
-    return this.http.post(`http://localhost:3000/cli/run`, {command});
+  runNgCommand(stdin) {
+    if (this.isConnectionOn) {
+      this._send(stdin);
+    }
+    return this.response$;
+  }
+
+  _send(stdin) {
+    console.log(stdin);
+    
+    this.ws.send(JSON.stringify({
+      stdin
+    }));
   }
 
 }
