@@ -1,0 +1,39 @@
+{
+    "name": "klingon-website",
+    "version": "1.0.0",
+    "description": "A one page app landing page for Angular Klingon.",
+    "keywords": [
+        "angular",
+        "cli"
+    ],
+    "scripts": {
+        "build": "gulp clean && gulp"
+    },
+    "homepage": "https://angular.run",
+    "bugs": {
+        "url": "https://github.com/manekinekko/klingon/issues",
+        "email": "feedback@startbootstrap.com"
+    },
+    "license": "MIT",
+    "author": "Wassim Chegham",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/manekinekko/klingon.git"
+    },
+    "dependencies": {
+        "bootstrap": "^4.0.0-beta",
+        "font-awesome": "4.7.0",
+        "jquery": "3.2.1",
+        "popper.js": "1.12.1",
+        "simple-line-icons": "2.4.1"
+    },
+    "devDependencies": {
+        "browser-sync": "2.18.13",
+        "gulp": "^3.9.1",
+        "gulp-clean": "^0.3.2",
+        "gulp-clean-css": "3.7.0",
+        "gulp-htmlmin": "^3.0.0",
+        "gulp-rename": "^1.2.2",
+        "gulp-sass": "^3.1.0"
+    }
+}

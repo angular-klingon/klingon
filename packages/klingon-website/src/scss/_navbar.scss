@@ -1,0 +1,26 @@
+// Styling for the navbar
+#mainNav {
+    border-color: fade-out($gray-darker, .95);
+    background-color: $theme-primary;
+    @include transition-all;
+    @include heading-font;
+    .navbar-brand {
+        color: white;
+        @include heading-font;
+        &:hover,
+        &:focus {
+            color: fade(white, 90%);
+        }
+    }
+    @media (min-width: 992px) {
+        border-color: transparent;
+        background-color: transparent;
+        .navbar-brand {
+            color: fade(white, 70%);
+            &:hover,
+            &:focus {
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+// Styling for the masthead
+header.masthead {
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    color: white;
+    background: url("../img/pattern.png"), $theme-secondary;
+    background: url("../img/pattern.png"), -webkit-linear-gradient(to left, $theme-secondary, $theme-tertiary);
+    background: url("../img/pattern.png"), linear-gradient(to left, $theme-secondary, $theme-tertiary);
+    .header-content {
+        max-width: 500px;
+        text-align: center;
+        h1 {
+            font-size: 30px;
+        }
+        img {
+            width: 100%;
+        }
+    }
+    @media (min-width: 992px) {
+        height: 100vh;
+        min-height: 775px;
+        padding-top: 0;
+        padding-bottom: 0;
+        .header-content {
+            margin-bottom: 0;
+            text-align: left;
+            h1 {
+                font-size: 50px;
+            }
+            img:not(.logo) {
+                width: 757px;
+            }
+        }
+    }
+}
