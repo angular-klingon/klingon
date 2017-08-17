@@ -1,9 +1,8 @@
 [![CircleCI](https://circleci.com/gh/manekinekko/klingon.svg?style=svg)](https://circleci.com/gh/manekinekko/klingon)
 # Klingon
 
-WIP
+![image](https://user-images.githubusercontent.com/1699357/29433535-dc8fe89e-839f-11e7-89a4-4aee1ccdfc03.png)
 
-![image](https://user-images.githubusercontent.com/1699357/28571542-a16493e6-7143-11e7-9962-5e512e0a18fd.png)
 
 ### Repo organisation
 
