@@ -12,6 +12,10 @@ This monorepo hosts 4 projects:
 3. [klingon-electron](https://github.com/manekinekko/klingon/tree/master/packages/klingon-electron): the electron shell host for the companion application.
 4. [klingon-website](https://github.com/manekinekko/klingon/tree/master/packages/klingon-website): the source code for [angular.run](https://angular.run).
 
+### Contribution guide
+
+You are welcome to contribute to this project. This project is still in its early stage, no feature is frozen yet. All suggestions/fixes/help are more than welcome. Please contact me ([@manekinekko](https://twitter.com/manekinekko)) if you need some help getting started with the setup.
+
 ### How to run locally (wip)
 
 1. Run the server `npm run start:server`
