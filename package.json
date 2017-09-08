@@ -13,8 +13,8 @@
     "scripts": {
         "publish:all": "lerna publish --skip-git --skip-npm && lerna exec -- npm publish --access=public",
         "postinstall": "lerna bootstrap",
-        "start:app": "cd packages/klingon-ui/ && npm start",
+        "start:ui": "cd packages/klingon-ui/ && npm start",
         "start:server": "cd packages/klingon-server/ && npm start",
-        "electron": "electron klingon-ui/dist/"
+        "start:app": "electron klingon-ui/dist/"
     }
 }
