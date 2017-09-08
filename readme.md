@@ -1,6 +1,5 @@
 [![CircleCI](https://circleci.com/gh/manekinekko/klingon.svg?style=svg)](https://circleci.com/gh/manekinekko/klingon)
 
-
 | Klingon App | Klingon UI | Klingon Server | Klingon Website |
 |--|--|--|--|
 | [![Klingon App](https://img.shields.io/npm/v/@klingon/app.svg)](https://www.npmjs.com/package/@klingon/app) |  [![Klingon UI](https://img.shields.io/npm/v/@klingon/ui.svg)](https://www.npmjs.com/package/@klingon/ui) | [![Klingon Server](https://img.shields.io/npm/v/@klingon/server.svg)](https://www.npmjs.com/package/@klingon/server) | [![Klingon Website](https://img.shields.io/npm/v/@klingon/website.svg)](https://www.npmjs.com/package/@klingon/website) |
@@ -18,7 +17,7 @@ This monorepo hosts 4 projects:
 3. [klingon-app](https://github.com/manekinekko/klingon/tree/master/packages/klingon-app): the electron shell host for the companion application.
 4. [klingon-website](https://github.com/manekinekko/klingon/tree/master/packages/klingon-website): the source code for [angular.run](https://angular.run).
 
-### Contribution guide
+### Contributions [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/manekinekko/klingon/issues)
 
 You are welcome to contribute to this project. This project is still in its early stage, no feature is frozen yet. All suggestions/fixes/help are more than welcome. Please contact me ([@manekinekko](https://twitter.com/manekinekko)) if you need some help getting started with the setup.
 
