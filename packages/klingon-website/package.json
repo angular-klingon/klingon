@@ -1,6 +1,6 @@
 {
-    "name": "klingon-website",
-    "version": "1.0.0",
+    "name": "@klingon/website",
+    "version": "0.1.0",
     "description": "A one page app landing page for Angular Klingon.",
     "keywords": [
         "angular",
