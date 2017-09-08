@@ -1,5 +1,5 @@
 {
-    "name": "klingon-server",
+    "name": "@klingon/server",
     "version": "0.1.0",
     "description": "The backend service for the Klingon UI",
     "scripts": {
