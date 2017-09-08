@@ -1,5 +1,5 @@
 {
-    "name": "klingon",
+    "name": "@klingon/core",
     "description": "The perfect companion for @angular/cli",
     "version": "0.1.0",
     "author": {
