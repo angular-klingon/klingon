@@ -1,9 +1,14 @@
 {
+    "name": "klingon",
+    "description": "The perfect companion for @angular/cli",
+    "version": "0.1.0",
+    "author": {
+        "email": "contact@wassimchegham.com",
+        "name": "Wassim Chegham",
+        "url": "https://angular.run"
+    },
     "devDependencies": {
         "lerna": "^2.0.0"
-    },
-    "dependencies": {
-        "tty.js": "^0.2.15"
     },
     "scripts": {
         "postinstall": "lerna bootstrap",
