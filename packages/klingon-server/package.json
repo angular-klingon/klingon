@@ -1,6 +1,6 @@
 {
     "name": "@klingon/server",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "The backend service for the Klingon UI",
     "scripts": {
         "start": "node terminal.js"
@@ -16,7 +16,6 @@
     ],
     "author": "Wassim Chegham <github@wassimchegham.com>",
     "license": "MIT",
-    "devDependencies": {},
     "engines": {
         "node": ">= 6 <= 8",
         "npm": ">= 3"
