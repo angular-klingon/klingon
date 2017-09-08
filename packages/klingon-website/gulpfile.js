@@ -46,13 +46,16 @@ gulp.task('minify-css', ['sass'], function() {
 // Copy vendor files from /node_modules into /dist/vendor
 // NOTE: requires `npm install` before running!
 gulp.task('copy', function() {
-    gulp.src('src/img/**.*')
-        .pipe(gulp.dest('dist/img'))
+    gulp.src('src/img/**/*')
+        .pipe(gulp.dest('dist/img'));
+
+    gulp.src('src/manifest.json')
+        .pipe(gulp.dest('dist/'));
 
     gulp.src([
             'node_modules/bootstrap/dist/css/bootstrap.min.css'
         ])
-        .pipe(gulp.dest('dist/vendor/bootstrap'))
+        .pipe(gulp.dest('dist/vendor/bootstrap'));
 
 })
 
