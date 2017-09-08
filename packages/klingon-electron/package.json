@@ -1,5 +1,5 @@
 {
-    "name": "klingon",
+    "name": "@klingon/app",
     "version": "0.1.0",
     "description": "A companion UI for your Angular CLI",
     "main": "main.js",
