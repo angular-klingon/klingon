@@ -33,6 +33,7 @@ You are welcome to contribute to this project. This project is still in its earl
 
 ### How to run locally (wip)
 
+1. [Install electron](https://github.com/electron/electron) if is hasn't been done already.
 1. Run the server `npm run start:server`
 2. Run the application `npm run start:app`
 
