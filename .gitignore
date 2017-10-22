@@ -1,3 +1,4 @@
 *.old
 *.log
+**/.DS_STORE
 /node_modules
