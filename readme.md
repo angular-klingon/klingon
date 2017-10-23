@@ -34,6 +34,12 @@ You are welcome to contribute to this project. This project is still in its earl
 ### How to run locally (wip)
 
 1. [Install electron](https://github.com/electron/electron) if it hasn't been done already.
-1. Run the server `npm run start:server`
-2. Run the application `npm run start:app`
+2. Run the server `npm run start:server`
+3. Run the ui `npm run start:ui`
+4. Run the application within the electron shell `npm run start:app` or go to [http://localhost:4200](http://localhost:4200)
 
+### How to package the application
+
+- For OSX `npm run package:app:osx`
+- For Windows `npm run package:app:win` (not tested yet)
+- For Linux `npm run package:app:linux` (not tested yet)

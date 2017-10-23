@@ -1,10 +1,20 @@
 {
     "name": "@klingon/app",
+    "productName": "ngKlingon",
     "version": "0.2.0",
     "description": "A companion UI for your Angular CLI",
     "main": "main.js",
+    "config": {
+      "klingonMacIcon": "dist-ui/assets/ngKlingon__red.icns",
+      "klingonLinuxIcon": "dist-ui/assets/ngKlingon__red.png",
+      "klingonWinIcon": "dist-ui/assets/ngKlingon__red.ico",
+      "releaseBuildsPath": "release-builds"
+    },
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "package:osx": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=$npm_package_config_klingonMacIcon --prune=true --out=$npm_package_config_releaseBuildsPath",
+        "package:win": "electron-packager . ngKlingon --overwrite --asar=true --platform=win32 --arch=ia32 --icon=$npm_package_config_klingonWinIcon --prune=true --out=$npm_package_config_releaseBuildsPath",    
+        "package:linux": "electron-packager . ngKlingon --overwrite --asar=true --platform=linux --arch=x64 --icon=$npm_package_config_klingonLinuxIcon --prune=true --out=$npm_package_config_releaseBuildsPath"
     },
     "repository": "git@github.com:manekinekko/klingon.git",
     "bugs": {
@@ -19,7 +29,8 @@
     "author": "Wassim Chegham <github@wassimchegham.com>",
     "license": "MIT",
     "devDependencies": {
-        "electron": "1.6.2"
+        "electron": "1.6.2",
+        "electron-packager": "^9.1.0"
     },
     "engines": {
         "node": ">= 6 <= 8",
