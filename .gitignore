@@ -2,3 +2,4 @@
 *.log
 **/.DS_STORE
 /node_modules
+lerna-debug.log
