@@ -10,15 +10,6 @@
         "build": "gulp clean && gulp"
     },
     "homepage": "https://angular.run",
-    "bugs": {
-        "url": "https://github.com/manekinekko/klingon/issues"
-    },
-    "license": "MIT",
-    "author": "Wassim Chegham",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/manekinekko/klingon.git"
-    },
     "dependencies": {
         "bootstrap": "^4.0.0-beta",
         "font-awesome": "4.7.0",
@@ -34,5 +25,15 @@
         "gulp-htmlmin": "^3.0.0",
         "gulp-rename": "^1.2.2",
         "gulp-sass": "^3.1.0"
+    },
+    "repository": "git@github.com:manekinekko/klingon.git",
+    "bugs": {
+        "url": "https://github.com/manekinekko/klingon/issues"
+    },
+    "author": "Wassim Chegham <github@wassimchegham.com>",
+    "license": "MIT",
+    "engines": {
+        "node": ">= 6 <= 8",
+        "npm": ">= 3"
     }
 }

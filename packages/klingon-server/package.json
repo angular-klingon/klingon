@@ -5,21 +5,11 @@
     "scripts": {
         "start": "node terminal.js"
     },
-    "repository": "git@github.com:manekinekko/klingon-server.git",
-    "bugs": {
-        "url": "https://github.com/manekinekko/klingon-server/issues"
-    },
     "keywords": [
         "angular",
         "cli",
         "server"
     ],
-    "author": "Wassim Chegham <github@wassimchegham.com>",
-    "license": "MIT",
-    "engines": {
-        "node": ">= 6 <= 8",
-        "npm": ">= 3"
-    },
     "dependencies": {
         "body-parser": "^1.17.2",
         "cors": "^2.8.4",
@@ -28,5 +18,15 @@
         "node-pty": "^0.6.10",
         "socket.io": "^2.0.3",
         "xterm": "^2.8.1"
+    },
+    "repository": "git@github.com:manekinekko/klingon.git",
+    "bugs": {
+        "url": "https://github.com/manekinekko/klingon/issues"
+    },
+    "author": "Wassim Chegham <github@wassimchegham.com>",
+    "license": "MIT",
+    "engines": {
+        "node": ">= 6 <= 8",
+        "npm": ">= 3"
     }
 }
