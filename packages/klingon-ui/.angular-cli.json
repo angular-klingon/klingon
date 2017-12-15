@@ -28,7 +28,8 @@
             "../node_modules/xterm/dist/addons/fit/fit.js",
             "../node_modules/xterm/dist/addons/linkify/linkify.js",
             "../node_modules/xterm/dist/addons/fullscreen/fullscreen.js",
-            "../node_modules/xterm/dist/addons/terminado/terminado.js"
+            "../node_modules/xterm/dist/addons/terminado/terminado.js",
+            "../node_modules/hammerjs/hammer.min.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {
