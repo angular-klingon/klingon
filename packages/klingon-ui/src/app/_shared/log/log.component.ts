@@ -8,7 +8,7 @@ export interface StdSimpleChange extends SimpleChange {
 @Component({
   selector: 'app-cli-log',
   template: `
-    <!--<button md-raised-button (click)="clear()">Clear</button> <br/>-->
+    <!--<button mat-raised-button (click)="clear()">Clear</button> <br/>-->
     <section>
       <code *ngFor="let logItem of logs"  [ngClass]="{ hasError: !!logItem.isError }"  [innerText]="logItem.text"></code>
     </section>

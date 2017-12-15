@@ -1,66 +1,74 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { MdSnackBar } from '@angular/material';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-snack-bar-error',
-  styles: [`
+  styles: [
+    `
     :host {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
     }
-    span { 
+    span {
       color: #F44336;
       font-family: Roboto,"Helvetica Neue",sans-serif;
-    } 
-    md-icon {
+    }
+    mat-icon {
       color: #F44336;
     }
-  `],
-  template: '<md-icon>error</md-icon><span>An error has occured. Check the logs tab.</span>'
+  `
+  ],
+  template:
+    '<mat-icon>error</mat-icon><span>An error has occured. Check the logs tab.</span>'
 })
 export class SnackBarErrorComponent {}
 
 @Component({
   selector: 'app-snack-bar-success',
-  styles: [`
+  styles: [
+    `
     :host {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
     }
-    span { 
+    span {
       color: #81C784;
       font-family: Roboto,"Helvetica Neue",sans-serif;
-    } 
-    md-icon {
+    }
+    mat-icon {
       color: #4CAF50;
     }
-  `],
-  template: '<md-icon>verified_user</md-icon><span>Command executed successfully.</span>'
+  `
+  ],
+  template:
+    '<mat-icon>verified_user</mat-icon><span>Command executed successfully.</span>'
 })
 export class SnackBarSuccessComponent {}
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-
-  selectedIndex: number = 0;
+export class AppComponent implements OnInit {
+  selectedIndex = 0;
 
   constructor(
-    public snackBarError: MdSnackBar,
-    public snackBarSuccess: MdSnackBar) {
-  }
+    public snackBarError: MatSnackBar,
+    public snackBarSuccess: MatSnackBar
+  ) {}
 
-  ngOnInit(){
-    this.selectedIndex = parseInt(localStorage.getItem('ui.selectedIndex') || '0', 10);
+  ngOnInit() {
+    this.selectedIndex = parseInt(
+      localStorage.getItem('ui.selectedIndex') || '0',
+      10
+    );
     localStorage.setItem('ui.selectedIndex', `${this.selectedIndex}`);
   }
 

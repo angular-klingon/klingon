@@ -6,7 +6,7 @@
     padding: 20px;
 }
 
-:host md-select {
+:host mat-select {
     margin: 0 0 0 5px;
 }
 
@@ -18,12 +18,12 @@ form {
     width: 100%;
 }
 
-md-input-container,
+mat-form-field,
 input {
     width: 100%;
 }
 
-md-input-container {
+mat-form-field {
     padding: 10px 0;
 }
 
@@ -32,7 +32,7 @@ form {
     flex-direction: column;
 }
 
-md-hint.fixe-height {
+mat-hint.fixe-height {
     top: 5px;
     position: relative;
 }

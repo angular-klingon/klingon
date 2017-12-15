@@ -2,104 +2,104 @@
 
     <section>
         <p>
-            <md-hint class="fixe-height" align="start">Override which browsers tests are run against:</md-hint>
-            <md-select formControlName="browsers">
-                <md-option *ngFor="let browser of browsers" [value]="browser">
+            <mat-hint class="fixe-height" align="start">Override which browsers tests are run against:</mat-hint>
+            <mat-select formControlName="browsers">
+                <mat-option *ngFor="let browser of browsers" [value]="browser">
                     {{ browser }}
-                </md-option>
-            </md-select>
+                </mat-option>
+            </mat-select>
         </p>
         <p>
-            <md-hint class="fixe-height" align="start">Defines the build environment:</md-hint>
-            <md-select formControlName="environment">
-                <md-option *ngFor="let env of environments" [value]="env">
+            <mat-hint class="fixe-height" align="start">Defines the build environment:</mat-hint>
+            <mat-select formControlName="environment">
+                <mat-option *ngFor="let env of environments" [value]="env">
                     {{ env }}
-                </md-option>
-            </md-select>
+                </mat-option>
+            </mat-select>
         </p>
         <p>
-            <md-hint class="fixe-height" align="start">Level of logging:</md-hint>
-            <md-select formControlName="log-level">
-                <md-option *ngFor="let level of logLevels" [value]="level">
+            <mat-hint class="fixe-height" align="start">Level of logging:</mat-hint>
+            <mat-select formControlName="log-level">
+                <mat-option *ngFor="let level of logLevels" [value]="level">
                     {{ level }}
-                </md-option>
-            </md-select>
+                </mat-option>
+            </mat-select>
         </p>
 
-        <md-list>
-            <md-list-item>
-                <md-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox formControlName="single-run">Run tests a single time.</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
-            </md-list-item>
-        </md-list>
+        <mat-list>
+            <mat-list-item>
+                <mat-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</mat-checkbox>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-checkbox formControlName="single-run">Run tests a single time.</mat-checkbox>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-checkbox formControlName="watch">Run build when files change.</mat-checkbox>
+            </mat-list-item>
+        </mat-list>
     </section>
 
     <app-drop-down [open]="false" contentHeight="850px">
         <h3 class="title">Advanced Options</h3>
-        <md-icon>settings</md-icon>
+        <mat-icon>settings</mat-icon>
         <h6 class="sub-title">Configure other flags for the serve command</h6>
         <main class="content">
             <p>
-                <md-input-container>
-                    <input formControlName="app" mdInput placeholder="Application">
-                    <md-hint align="start">Specifies app name or index to use.</md-hint>
-                </md-input-container>
+                <mat-form-field>
+                    <input formControlName="app" matInput placeholder="Application">
+                    <mat-hint align="start">Specifies app name or index to use.</mat-hint>
+                </mat-form-field>
             </p>
             <p>
-                <md-input-container>
-                    <input formControlName="config" mdInput placeholder="Protractor Configuration File">
-                    <md-hint align="start">Use a specific config file. Defaults to the protractor config file in angular-cli.json.</md-hint>
-                </md-input-container>
+                <mat-form-field>
+                    <input formControlName="config" matInput placeholder="Protractor Configuration File">
+                    <mat-hint align="start">Use a specific config file. Defaults to the protractor config file in angular-cli.json.</mat-hint>
+                </mat-form-field>
             </p>
             <p>
-                <md-input-container>
-                    <input formControlName="port" mdInput placeholder="Port">
-                    <md-hint align="start">Port where the web server will be listening.</md-hint>
-                </md-input-container>
+                <mat-form-field>
+                    <input formControlName="port" matInput placeholder="Port">
+                    <mat-hint align="start">Port where the web server will be listening.</mat-hint>
+                </mat-form-field>
             </p>
             <p>
-                <md-input-container>
-                    <input formControlName="reporters" mdInput placeholder="List of reporters">
-                    <md-hint align="start">List of reporters to use.</md-hint>
-                </md-input-container>
+                <mat-form-field>
+                    <input formControlName="reporters" matInput placeholder="List of reporters">
+                    <mat-hint align="start">List of reporters to use.</mat-hint>
+                </mat-form-field>
             </p>
             <p>
-                <md-input-container>
-                    <input formControlName="poll" mdInput placeholder="Poll" />
-                    <md-hint align="start">Enable and define the file watching poll time period (milliseconds).</md-hint>
-                </md-input-container>
+                <mat-form-field>
+                    <input formControlName="poll" matInput placeholder="Poll" />
+                    <mat-hint align="start">Enable and define the file watching poll time period (milliseconds).</mat-hint>
+                </mat-form-field>
             </p>
 
-            <md-list>
-                <md-list-item>
-                    <md-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox formControlName="colors">Enable or disable colors in the output (reporters and logs).</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox formControlName="progress">Log progress to the console while in progress.</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox formControlName="single-run">Run tests a single time.</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox formControlName="sourcemap">Output sourcemaps.</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox formControlName="watch">Run build when files change.</md-checkbox>
-                </md-list-item>
-            </md-list>
+            <mat-list>
+                <mat-list-item>
+                    <mat-checkbox formControlName="code-coverage">Coverage report will be in the coverage/ directory.</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-checkbox formControlName="colors">Enable or disable colors in the output (reporters and logs).</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-checkbox formControlName="progress">Log progress to the console while in progress.</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-checkbox formControlName="single-run">Run tests a single time.</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-checkbox formControlName="sourcemap">Output sourcemaps.</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-checkbox formControlName="watch">Run build when files change.</mat-checkbox>
+                </mat-list-item>
+            </mat-list>
         </main>
     </app-drop-down>
 
     <app-drop-down [open]="false" contentHeight="420px">
-        <md-icon>subject</md-icon>
+        <mat-icon>subject</mat-icon>
         <h3 class="title">Logs</h3>
         <h6 class="sub-title">View command history and logs</h6>
         <main class="content">
@@ -109,11 +109,11 @@
 
     <section>
         <p class="button-container">
-            <button md-raised-button color="primary" [disabled]="form.invalid" (click)="run()">
-      <md-icon>play_arrow</md-icon> Run
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="run()">
+      <mat-icon>play_arrow</mat-icon> Run
     </button>
         </p>
     </section>
 </form>
-<md-progress-bar *ngIf="isWorking" color="primary" mode="indeterminate">
-</md-progress-bar>
+<mat-progress-bar *ngIf="isWorking" color="primary" mode="indeterminate">
+</mat-progress-bar>

@@ -1,66 +1,66 @@
-<md-toolbar color="primary">
-    <button md-icon-button>
-      <md-icon>dehaze</md-icon>
+<mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>dehaze</mat-icon>
     </button>
     <!-- <h1>ngKlingon</h1> -->
     <span class="fill-remaining-space"></span>
-    <button md-icon-button [mdMenuTriggerFor]="menu">
-      <md-icon>more_vert</md-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <md-menu #menu="mdMenu">
-        <button md-menu-item>
-        <md-icon>account_circle</md-icon>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
         <span>About</span>
       </button>
-        <button md-menu-item>
-        <md-icon>bug_report</md-icon>
+        <button mat-menu-item>
+        <mat-icon>bug_report</mat-icon>
         <span>Contribute</span>
       </button>
-        <!-- <button md-menu-item (click)="openShell()">
-        <md-icon>settings_input_composite</md-icon>
+        <!-- <button mat-menu-item (click)="openShell()">
+        <mat-icon>settings_input_composite</mat-icon>
         <span>Open Shell</span>
       </button> -->
-        <button md-menu-item disabled>
-        <md-icon>help</md-icon>
+        <button mat-menu-item disabled>
+        <mat-icon>help</mat-icon>
         <span>Help</span>
       </button>
-    </md-menu>
-</md-toolbar>
-<!-- <md-card>
+    </mat-menu>
+</mat-toolbar>
+<!-- <mat-card>
 
-</md-card> -->
+</mat-card> -->
 
-<md-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex">
-    <md-tab>
-        <ng-template md-tab-label>New</ng-template>
+<mat-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex">
+    <mat-tab>
+        <ng-template mat-tab-label>New</ng-template>
         <app-cli-create (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
-    </md-tab>
-    <md-tab [disabled]="true">
-        <ng-template md-tab-label>Generate</ng-template>
-    </md-tab>
-    <md-tab>
-        <ng-template md-tab-label>Serve</ng-template>
+    </mat-tab>
+    <mat-tab [disabled]="true">
+        <ng-template mat-tab-label>Generate</ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Serve</ng-template>
         <app-cli-serve (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-serve>
-    </md-tab>
-    <md-tab>
-        <ng-template md-tab-label>Test</ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Test</ng-template>
         <app-cli-test (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-test>
-    </md-tab>
-    <md-tab>
-        <ng-template md-tab-label>Build</ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Build</ng-template>
         <app-cli-build (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-build>
-    </md-tab>
-</md-tab-group>
+    </mat-tab>
+</mat-tab-group>
 
 <br>
 
-<md-card>
+<mat-card>
     <app-drop-down contentHeight="542px">
-        <md-icon>keyboard</md-icon>
+        <mat-icon>keyboard</mat-icon>
         <h3 class="title">Shell</h3>
         <h6 class="sub-title">Access the "GOD" mode!</h6>
         <div class="content">
             <app-terminal height="500px"></app-terminal>
         </div>
     </app-drop-down>
-</md-card>
+</mat-card>

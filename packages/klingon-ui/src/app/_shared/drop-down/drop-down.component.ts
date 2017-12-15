@@ -10,21 +10,21 @@ import {
 @Component({
   selector: 'app-drop-down',
   template: `
-    <md-divider></md-divider>
+    <mat-divider></mat-divider>
     <header (click)="toggle()">
-      <ng-content select="md-icon"></ng-content>
+      <ng-content select="mat-icon"></ng-content>
       <ng-content select=".title"></ng-content>
       <div>
         <ng-content *ngIf=" state === 'keyboard_arrow_down'"  select=".sub-title"></ng-content>
       </div>
-      <md-icon>{{state}}</md-icon>
+      <mat-icon>{{state}}</mat-icon>
     </header>
     <section [class.open]="state == 'keyboard_arrow_up'" >
       <div #contentAreaRef class="content-area" >
         <ng-content select=".content"></ng-content>
       </div>
     </section>
-    <md-divider></md-divider>
+    <mat-divider></mat-divider>
   `,
   styles: [`
     :host {
@@ -48,7 +48,7 @@ import {
     section.open div.content-area { 
       height: initial;
     }
-    ::ng-deep md-icon {
+    ::ng-deep mat-icon {
       margin: 0 10px 0 0;
     }
     ::ng-deep .title {
