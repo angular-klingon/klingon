@@ -49,7 +49,7 @@ export class FlagsComponent implements OnInit {
         "app-name": new FormControl("", Validators.required),
         "directory": new FormControl(""),
         "prefix": new FormControl("app"),
-        "source-dir": new FormControl("src"),
+        // "source-dir": new FormControl("src"),
         "style": new FormControl("css"),
         "verbose": new FormControl(false),
         "inline-style": new FormControl(false),
