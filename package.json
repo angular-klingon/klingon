@@ -8,7 +8,7 @@
         "url": "https://angular.run"
     },
     "devDependencies": {
-        "lerna": "^2.0.0"
+        "lerna": "^3.2.1"
     },
     "scripts": {
         "publish:all": "lerna publish --skip-git --skip-npm && lerna exec -- npm publish --access=public",
