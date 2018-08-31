@@ -1,5 +1,6 @@
 *.old
 *.log
 **/.DS_STORE
+.idea
 /node_modules
 lerna-debug.log

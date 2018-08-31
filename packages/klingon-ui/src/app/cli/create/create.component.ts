@@ -14,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class CliCreateComponent extends FlagsComponent implements OnInit {
-  
+
   form: FormGroup;
   styleExt = ['css', 'scss','less','sass','styl'];
 
@@ -33,14 +33,18 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
 
   create() {
     this.run();
-  } 
+  }
 
   run(extra='') {
+    // save project directory to local storage to remember next time
+    const rootDir = this.form.value['root-dir'];
+    localStorage.setItem('ui.lastUsedRootDirectory', rootDir || "");
+
     this.isWorking = true;
-    this.cli.runNgCommand(`new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)} ${extra}`)
+    this.cli.runNgCommand(`new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)} ${extra}`, rootDir)
       .subscribe(data => {
         this.isWorking = false;
-        
+
         if (data.stderr) {
           this.onStdErr.next(data.stderr);
         }

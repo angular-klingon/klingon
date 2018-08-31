@@ -31,8 +31,3 @@ form {
     display: flex;
     flex-direction: column;
 }
-
-mat-hint.fixe-height {
-    top: 5px;
-    position: relative;
-}
