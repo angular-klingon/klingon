@@ -27,10 +27,6 @@ This monorepo hosts 4 projects:
 3. [klingon-app](https://github.com/manekinekko/klingon/tree/master/packages/klingon-app): the electron shell host for the companion application.
 4. [klingon-website](https://github.com/manekinekko/klingon/tree/master/packages/klingon-website): the source code for [angular.run](https://angular.run).
 
-### Contributions [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/manekinekko/klingon/issues)
-
-You are welcome to contribute to this project. This project is still in its early stage, no feature is frozen yet. All suggestions/fixes/help are more than welcome. Please contact me ([@manekinekko](https://twitter.com/manekinekko)) if you need some help getting started with the setup.
-
 ### How to run locally (wip)
 
 1. [Install electron](https://github.com/electron/electron) if it hasn't been done already.
@@ -44,12 +40,17 @@ You are welcome to contribute to this project. This project is still in its earl
 - For Windows `npm run package:app:win` (not tested yet)
 - For Linux `npm run package:app:linux` (not tested yet)
 
-## Contributing
 
- Want to file a bug, contribute some code, or improve documentation? Excellent !
- Read up on our guidelines for [contributing](https://github.com/manekinekko/klingon/blob/master/CONTRIBUTING.md).
+### Contributions [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/manekinekko/klingon/issues)
 
-## Contributors
+You are welcome to contribute to this project. This project is still in its early stage, no feature is frozen yet. All suggestions/fixes/help are more than welcome. Add your feedback to [this todo list](https://github.com/manekinekko/klingon/issues/3) for feature requests.
+
+Please contact me ([@manekinekko](https://twitter.com/manekinekko)) if you need some help getting started with the setup.
+
+Want to file a bug, contribute some code, or improve documentation? Excellent !
+Read up on our guidelines for [contributing](https://github.com/manekinekko/klingon/blob/master/CONTRIBUTING.md).
+
+### Contributors
 
 [<img alt="wassim chegham" src="https://avatars3.githubusercontent.com/u/1699357?s=60&v=4">](https://github.com/manekinekko)
 [<img alt="rudy-weber" src="https://avatars0.githubusercontent.com/u/3034760?s=60&v=4">](https://github.com/rudyWeber)
