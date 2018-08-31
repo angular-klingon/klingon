@@ -41,10 +41,12 @@
 
 <hr>
 
-| Klingon App | Klingon UI | Klingon Server | Klingon Website |
-|--|--|--|--|
-| [![Klingon App](https://img.shields.io/npm/v/@klingon/app.svg)](https://www.npmjs.com/package/@klingon/app) |  [![Klingon UI](https://img.shields.io/npm/v/@klingon/ui.svg)](https://www.npmjs.com/package/@klingon/ui) | [![Klingon Server](https://img.shields.io/npm/v/@klingon/server.svg)](https://www.npmjs.com/package/@klingon/server) | [![Klingon Website](https://img.shields.io/npm/v/@klingon/website.svg)](https://www.npmjs.com/package/@klingon/website) |
-
+| Package | Version | Description |
+|------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [klingon-app](https://github.com/manekinekko/klingon/tree/master/packages/klingon-app) | [![Klingon App](https://img.shields.io/npm/v/@klingon/app.svg)](https://www.npmjs.com/package/@klingon/app) | the electron shell host for the companion application. |
+| [klingon-ui](https://github.com/manekinekko/klingon/tree/master/packages/klingon-ui) | [![Klingon UI](https://img.shields.io/npm/v/@klingon/ui.svg)](https://www.npmjs.com/package/@klingon/ui) | the core application: the companion app. This app is built using the @angular/cli. |
+| [klingon-server](https://github.com/manekinekko/klingon/tree/master/packages/klingon-server) | [![Klingon Server](https://img.shields.io/npm/v/@klingon/server.svg)](https://www.npmjs.com/package/@klingon/server) | the server (agent) application that serves a backend for the companion application. Its role is to spin up PTY instances and allow the companion app to communicate with those PTY instances via WebSocket. |
+| [klingon-website](https://github.com/manekinekko/klingon/tree/master/packages/klingon-website) | [![Klingon Website](https://img.shields.io/npm/v/@klingon/website.svg)](https://www.npmjs.com/package/@klingon/website) | the source code for [angular.run](https://angular.run). |
 
 ### Repo organisation
 
