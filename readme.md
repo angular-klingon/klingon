@@ -2,6 +2,36 @@
   <h1 align="center">Angular Klingon</h1>
   <h4 align="center">The perfect @angular/cli companion.</h4>
 </p>
+
+<p align="center" >
+
+  <img src="https://img.shields.io/github/license/manekinekko/klingon.svg"/>
+  
+  <a href="https://app.buddy.works/manekinekko-1/klingon/pipelines/pipeline/150032">
+    <img src="https://app.buddy.works/manekinekko-1/klingon/pipelines/pipeline/150032/badge.svg?token=cee6a291d42aeeb701176104f8623d429614bf77cb0c7d7b68bc5a342e49ffe9"/>
+  </a>
+    
+  <a href="https://github.com/manekinekko/klingon/compare/master...develop">
+    <img src="https://img.shields.io/github/commits-since/manekinekko/klingon/master.svg?label=commits%20to%20deploy"/>
+  </a>
+  
+ <a href="https://github.com/manekinekko/klingon">
+    <img src="https://img.shields.io/github/contributors/manekinekko/klingon.svg"/>
+  </a>
+  
+ <a href="https://angular.run">
+    <img src="https://img.shields.io/website-up-down-ff69b4-ff69b4/http/shields.io.svg?label=angular.run"/>
+  </a>
+
+  <a href="https://twitter.comt/manekinekko">
+    <img src="https://img.shields.io/badge/say-thanks-ff69b4.svg"/>
+  </a>
+  
+  <a href="https://angular.io">
+    <img src="https://img.shields.io/badge/Made%20with-Angular-E13137.svg"/>
+  </a>
+  
+</p>
 <p align="center">
   <img with="192" align="center" src="https://angular.run/img/icons/android-chrome-192x192.png"/>
 </p>
@@ -10,8 +40,6 @@
 </p>
 
 <hr>
-
-[![CircleCI](https://circleci.com/gh/manekinekko/klingon.svg?style=svg)](https://circleci.com/gh/manekinekko/klingon)
 
 | Klingon App | Klingon UI | Klingon Server | Klingon Website |
 |--|--|--|--|
