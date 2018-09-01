@@ -56,7 +56,7 @@ app.ws('/cli', (ws, res) => {
         const flags = msg.stdin.split(' ');
         console.log('<<<', flags);
 
-        const child = spawn('ng', flags, {
+        const child = spawn(os.platform() === 'win32' ? 'ng.cmd' : 'ng', flags, {
             cwd: msg.dir || os.homedir(),
             env: process.env
         });
