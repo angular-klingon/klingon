@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
     console.log('onError::', message);
     this.snackBarError.openFromComponent(SnackBarErrorComponent, {
       duration: 3000,
-      extraClasses: ['error-container']
+      panelClass: ['error-container']
     });
   }
 
