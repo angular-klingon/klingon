@@ -15,7 +15,7 @@
         "postinstall": "lerna bootstrap",
         "start:ui": "cd packages/klingon-ui/ && npm start",
         "start:server": "cd packages/klingon-server/ && npm start",
-        "start:app": "KLINGON_ENV=DEV electron packages/klingon-app/",
+        "start:app": "cd packages/klingon-app && npm run start:dev",
         "build:website": "cd packages/klingon-website/ && npm run build",
         "build:server": "cd packages/klingon-server/ && npm run build",
         "build:app:ui": "cd packages/klingon-ui/ && npm run build -- --bh . && cd - && cp -R ./packages/klingon-ui/dist ./packages/klingon-app/dist-ui",
