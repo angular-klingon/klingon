@@ -1,95 +1,101 @@
 <form [formGroup]="form">
-    <section>
-        <p>
-            <mat-form-field>
-                <input autocomplete="off" formControlName="app-name" matInput placeholder="Application name" required>
-                <mat-hint align="start">Default applications are created in a directory of the same name, with an initialized Angular application.</mat-hint>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field>
-                <input formControlName="prefix" matInput placeholder="Prefix">
-                <mat-hint align="start">The prefix to use for all component selectors.</mat-hint>
-            </mat-form-field>
-        </p>
-    </section>
+  <section>
+    <p>
+      <mat-form-field>
+        <input autocomplete="off" formControlName="app-name" matInput placeholder="Application name" required>
+        <mat-hint align="start">Default applications are created in a subdirectory of the same name, with an initialized Angular application.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input formControlName="prefix" matInput placeholder="Prefix">
+        <mat-hint align="start">The prefix to use for all component selectors.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input autocomplete="off" formControlName="root-dir" matInput placeholder="Project Root Directory">
+        <mat-hint align="start">This app will be created in a subdirectory within this directory. Leave empty to use your home directory.</mat-hint>
+      </mat-form-field>
+    </p>
+  </section>
 
-    <app-drop-down [open]="false" contentHeight="720px">
-        <h3 class="title">Advanced Options</h3>
-        <mat-icon>settings</mat-icon>
-        <h6 class="sub-title">Configure other flags for the create command</h6>
-        <main class="content">
-            <p>
-                <mat-hint class="fixe-height" align="start">The style file default extension:</mat-hint>
-                <mat-select formControlName="style">
-                    <mat-option *ngFor="let style of styleExt" [value]="style">
-                        {{ style }}
-                    </mat-option>
-                </mat-select>
-            </p>
-            <mat-form-field>
-                <input formControlName="source-dir" matInput placeholder="Source directory">
-                <mat-hint align="start">The name of the source directory.</mat-hint>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="directory" matInput placeholder="Directory name">
-                <mat-hint align="start">The directory name to create the app in.</mat-hint>
-            </mat-form-field>
+  <app-drop-down [open]="false" contentHeight="750px">
+    <h3 class="title">Advanced Options</h3>
+    <mat-icon>settings</mat-icon>
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <mat-form-field>
+        <mat-select formControlName="style" placeholder="Default style extension">
+          <mat-option *ngFor="let style of styleExt" [value]="style">
+            {{ style }}
+          </mat-option>
+        </mat-select>
+        <mat-hint align="start">The style file default extension</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="source-dir" matInput placeholder="Source directory">
+        <mat-hint align="start">The name of the source directory.</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="directory" matInput placeholder="App directory name">
+        <mat-hint align="start">Name of the directory to create the app in, <em>relative</em> to the Project Root Directory. Leave empty to use this Application name</mat-hint>
+      </mat-form-field>
 
-            <mat-list>
-                <mat-list-item>
-                    <mat-checkbox formControlName="verbose">Adds more details to output logging</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="dry-run">Run through without making any changes</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="inline-style">Should have an inline style</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="inline-template">Should have an inline template</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="minimal">Should create a minimal app</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="routing">Generate a routing module</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="skip-commit">Skip committing the first commit to git</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="skip-git">Skip initializing a git repository</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="skip-install">Skip installing packages</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="skip-tests">Skip creating spec files (and e2e files)</mat-checkbox>
-                </mat-list-item>
-            </mat-list>
-        </main>
-    </app-drop-down>
+      <mat-list>
+        <mat-list-item>
+          <mat-checkbox formControlName="verbose">Adds more details to output logging</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="dry-run">Run through without making any changes</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="inline-style">Should have an inline style</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="inline-template">Should have an inline template</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="minimal">Should create a minimal app</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="routing">Generate a routing module</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="skip-commit">Skip committing the first commit to git</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="skip-git">Skip initializing a git repository</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="skip-install">Skip installing packages</mat-checkbox>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-checkbox formControlName="skip-tests">Skip creating spec files (and e2e files)</mat-checkbox>
+        </mat-list-item>
+      </mat-list>
+    </main>
+  </app-drop-down>
 
-    <app-drop-down [open]="false" contentHeight="420px">
-        <mat-icon>subject</mat-icon>
-        <h3 class="title">Logs</h3>
-        <h6 class="sub-title">View command history and logs</h6>
-        <main class="content">
-            <app-cli-log [stdout]="onStdOut | async" [stderr]="onStdErr | async"></app-cli-log>
-        </main>
-    </app-drop-down>
+  <app-drop-down [open]="false" contentHeight="420px">
+    <mat-icon>subject</mat-icon>
+    <h3 class="title">Logs</h3>
+    <h6 class="sub-title">View command history and logs</h6>
+    <main class="content">
+      <app-cli-log [stdout]="onStdOut | async" [stderr]="onStdErr | async"></app-cli-log>
+    </main>
+  </app-drop-down>
 
-    <section>
-        <p class="button-container">
-            <button mat-raised-button color="warn" [disabled]="form.invalid" (click)="dryRun()">
-            <mat-icon>playlist_add_check</mat-icon> Dry Run
-          </button>
-            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="create()">
-      <mat-icon>check</mat-icon> Create
-    </button>
-        </p>
-    </section>
+  <section>
+    <p class="button-container">
+      <button mat-raised-button color="warn" [disabled]="form.invalid" (click)="dryRun()">
+        <mat-icon>playlist_add_check</mat-icon> Dry Run
+      </button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="create()">
+        <mat-icon>check</mat-icon> Create
+      </button>
+    </p>
+  </section>
 </form>
 <mat-progress-bar *ngIf="isWorking" color="primary" mode="indeterminate">
 </mat-progress-bar>

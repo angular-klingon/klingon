@@ -15,7 +15,7 @@ export class FlagsComponent implements OnInit {
   @Output() onStdOut: EventEmitter<string>;
 
   protected isWorking: boolean;
-  
+
   static Flags = {
     CREATE: 0,
     SERVE: 1,
@@ -45,8 +45,11 @@ export class FlagsComponent implements OnInit {
   buildForm(flag: number) {
 
     if (flag === FlagsComponent.Flags.CREATE) {
+      const lastUsedRootDirectory = localStorage.getItem('ui.lastUsedRootDirectory');
+
       return new FormGroup({
         "app-name": new FormControl("", Validators.required),
+        "root-dir": new FormControl(lastUsedRootDirectory),
         "directory": new FormControl(""),
         "prefix": new FormControl("app"),
         "source-dir": new FormControl("src"),

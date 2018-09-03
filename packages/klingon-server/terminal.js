@@ -24,7 +24,7 @@ app.post('/terminals', (req, res) => {
         name: 'xterm-color',
         cols: cols || 80,
         rows: rows || 24,
-        cwd: '/Users/wassimchegham/Sandbox/oss/klingon-workspace', //process.env.PWD
+        cwd: os.homedir(),
         env: process.env
     });
 
@@ -57,7 +57,7 @@ app.ws('/cli', (ws, res) => {
         console.log('<<<', flags);
 
         const child = spawn('ng', flags, {
-            cwd: '/Users/wassimchegham/Sandbox/oss/klingon-workspace', //process.env.PWD
+            cwd: msg.dir || os.homedir(),
             env: process.env
         });
 

@@ -34,7 +34,7 @@ export class CliService {
 
   serialize(values) {
     return Object.keys(values)
-      .filter( key => values[key] !== null && values[key] !== '' && key !== 'app-name')
+      .filter( key => values[key] !== null && values[key] !== '' && key !== 'app-name' && key !== 'root-dir')
       .map( key => `--${key}=${values[key]}`)
       .join(' ');
   }
@@ -47,18 +47,19 @@ export class CliService {
     return this.runNgCommand('help');
   }
 
-  runNgCommand(stdin) {
+  runNgCommand(stdin, dir=undefined) {
     if (this.isConnectionOn) {
-      this._send(stdin);
+      this._send(stdin, dir);
     }
     return this.response$;
   }
 
-  _send(stdin) {
+  _send(stdin, dir) {
     console.log(stdin);
-    
+
     this.ws.send(JSON.stringify({
-      stdin
+      stdin: stdin,
+      dir: dir
     }));
   }
 
