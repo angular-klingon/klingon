@@ -59,7 +59,7 @@ This monorepo hosts 4 projects:
 
 ### How to run locally (wip)
 
-1. [Install electron](https://github.com/electron/electron) if it hasn't been done already.
+1. Clone repo and install dependencies.
 2. Run the server `npm run start:server`
 3. Run the ui `npm run start:ui`
 4. Run the application within the electron shell `npm run start:app` or go to [http://localhost:4200](http://localhost:4200)

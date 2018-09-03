@@ -12,6 +12,7 @@
     },
     "scripts": {
         "start": "electron .",
+        "start:dev": "KLINGON_ENV=DEV electron .",
         "package:osx": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=$npm_package_config_klingonMacIcon --prune=true --out=$npm_package_config_releaseBuildsPath",
         "package:win": "electron-packager . ngKlingon --overwrite --asar=true --platform=win32 --arch=ia32 --icon=$npm_package_config_klingonWinIcon --prune=true --out=$npm_package_config_releaseBuildsPath",
         "package:linux": "electron-packager . ngKlingon --overwrite --asar=true --platform=linux --arch=x64 --icon=$npm_package_config_klingonLinuxIcon --prune=true --out=$npm_package_config_releaseBuildsPath"
