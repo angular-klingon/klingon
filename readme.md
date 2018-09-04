@@ -48,15 +48,6 @@
 | [klingon-server](https://github.com/manekinekko/klingon/tree/master/packages/klingon-server) | [![Klingon Server](https://img.shields.io/npm/v/@klingon/server.svg)](https://www.npmjs.com/package/@klingon/server) | the server (agent) application that serves a backend for the companion application. Its role is to spin up PTY instances and allow the companion app to communicate with those PTY instances via WebSocket. |
 | [klingon-website](https://github.com/manekinekko/klingon/tree/master/packages/klingon-website) | [![Klingon Website](https://img.shields.io/npm/v/@klingon/website.svg)](https://www.npmjs.com/package/@klingon/website) | the source code for [angular.run](https://angular.run). |
 
-### Repo organisation
-
-This monorepo hosts 4 projects:
-
-1. [klingon-ui](https://github.com/manekinekko/klingon/tree/master/packages/klingon-ui): the core application: the companion app. This app is built using the @angular/cli.
-2. [klingon-server](https://github.com/manekinekko/klingon/tree/master/packages/klingon-server): the server (agent) application that serves a backend for the companion application. Its role is to spin up PTY instances and allow the companion app to communicate with those PTY instances via WebSocket.
-3. [klingon-app](https://github.com/manekinekko/klingon/tree/master/packages/klingon-app): the electron shell host for the companion application.
-4. [klingon-website](https://github.com/manekinekko/klingon/tree/master/packages/klingon-website): the source code for [angular.run](https://angular.run).
-
 ### How to run locally (wip)
 
 1. Clone repo and install dependencies.
