@@ -16,3 +16,4 @@ RUN apk add --no-cache --virtual .gyp \
     && apk del .gyp
 
 RUN npm run build:app:ui
+
