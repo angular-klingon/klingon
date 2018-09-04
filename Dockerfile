@@ -8,8 +8,6 @@ RUN npm set progress=false && \
     
 RUN apk add --no-cache --virtual .gyp \
         python \
-        make \
-        g++ \
     && npm install -g lerna@3 @angular/cli@1.7 \
     && npm install \
     && lerna bootstrap \
