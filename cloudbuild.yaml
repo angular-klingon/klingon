@@ -5,7 +5,7 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/klingon"]
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
-- name: 'gcr.io/$PROJECT_ID/klingon'
-  args: ['/usr/local/bin/lerna','bootstrap']
+#- name: 'gcr.io/$PROJECT_ID/klingon'
+#  args: ['/usr/local/bin/lerna','bootstrap']
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'build:app:ui']
