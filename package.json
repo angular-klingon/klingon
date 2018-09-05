@@ -18,7 +18,7 @@
         "start:app": "cd packages/klingon-app && npm run start:dev",
         "build:website": "cd packages/klingon-website/ && npm run build",
         "build:server": "cd packages/klingon-server/ && npm run build",
-        "build:app:ui": "cd packages/klingon-ui/ && npm run build -- --bh . && cd - && cp -R ./packages/klingon-ui/dist ./packages/klingon-app/dist-ui",
+        "build:app:ui": "cd packages/klingon-ui/ && npm run build && cd - && cp -R ./packages/klingon-ui/dist ./packages/klingon-app/dist-ui",
         "package:app:osx": "npm run build:app:ui && cd ./packages/klingon-app/ && npm run package:osx",
         "package:app:linux": "npm run build:app:ui && cd ./packages/klingon-app/ && npm run package:linux",
         "package:app:win": "npm run build:app:ui && cd ./packages/klingon-app/ && npm run package:win"
