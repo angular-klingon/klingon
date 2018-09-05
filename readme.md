@@ -79,10 +79,3 @@ Please contact me ([@manekinekko](https://twitter.com/manekinekko)) if you need 
 
 Want to file a bug, contribute some code, or improve documentation? Excellent !
 Read up on our guidelines for [contributing](https://github.com/manekinekko/klingon/blob/master/CONTRIBUTING.md).
-
-### Contributors
-
-[<img alt="wassim chegham" src="https://avatars3.githubusercontent.com/u/1699357?s=60&v=4">](https://github.com/manekinekko)
-[<img alt="rudy-weber" src="https://avatars0.githubusercontent.com/u/3034760?s=60&v=4">](https://github.com/rudyWeber)
-[<img alt="olivier-leplus" src="https://avatars1.githubusercontent.com/u/2637742?s=60&v=4">](https://github.com/tagazok)
-[<img alt="Bram Borggreve" src="https://avatars0.githubusercontent.com/u/36491?s=60&v=4">](https://github.com/beeman)
