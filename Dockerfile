@@ -10,9 +10,9 @@ RUN apk add --no-cache --virtual .gyp \
         python \
         make \
         g++ \
-    && npm install -g lerna@3 @angular/cli@6 \
+    && npm install lerna@3 @angular/cli@6 \
     && npm install \
-    && lerna bootstrap \
+    && ./node_modules/.bin/lerna bootstrap \
     && apk del .gyp
 
 RUN npm run build:app:ui
