@@ -6,18 +6,12 @@ import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-cli-serve",
-  templateUrl: "./serve.component.html",
-  styleUrls: [
-    "./serve.component.css",
-    "../flags/flags.component.css"
-  ]
+  selector: 'app-cli-serve',
+  templateUrl: './serve.component.html',
+  styleUrls: ['./serve.component.css', '../flags/flags.component.css']
 })
 export class CliServeComponent extends FlagsComponent implements OnInit {
-
-  constructor(
-    public cli: CliService
-  ) {
+  constructor(public cli: CliService) {
     super();
     this.form = this.buildForm(FlagsComponent.Flags.SERVE);
   }
@@ -26,14 +20,14 @@ export class CliServeComponent extends FlagsComponent implements OnInit {
 
   serve() {
     this.isWorking = true;
-    this.cli.runNgCommand(`serve ${ this.cli.serialize(this.form.value)}`)  
+    this.cli
+      .runNgCommand(`serve ${this.cli.serialize(this.form.value)}`)
       .subscribe(data => {
         this.isWorking = false;
 
         if (data.stderr) {
           this.onStdErr.next(data.stderr);
-        }
-        else {
+        } else {
           this.onStdOut.next(data.stdout);
         }
       });

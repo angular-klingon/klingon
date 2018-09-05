@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs";
-
+import { Subject } from 'rxjs';
 
 export interface CommandResult {
   stderr: string;
@@ -10,7 +9,6 @@ export interface CommandResult {
 
 @Injectable()
 export class CliService {
-
   response$: Subject<CommandResult>;
   ws: WebSocket;
   isConnectionOn;
@@ -18,24 +16,30 @@ export class CliService {
   constructor() {
     this.response$ = new Subject();
     this.ws = new WebSocket(`ws://localhost:3000/cli`);
-    this.ws.onopen = (e) => {
+    this.ws.onopen = e => {
       this.isConnectionOn = true;
     };
-    this.ws.onclose = (e) => {
+    this.ws.onclose = e => {
       this.isConnectionOn = false;
     };
-    this.ws.onerror = (e) => {
+    this.ws.onerror = e => {
       this.isConnectionOn = false;
     };
-    this.ws.onmessage = (e) => {
+    this.ws.onmessage = e => {
       this.response$.next(JSON.parse(e.data));
     };
   }
 
   serialize(values) {
     return Object.keys(values)
-      .filter( key => values[key] !== null && values[key] !== '' && key !== 'app-name' && key !== 'root-dir')
-      .map( key => `--${key}=${values[key]}`)
+      .filter(
+        key =>
+          values[key] !== null &&
+          values[key] !== '' &&
+          key !== 'app-name' &&
+          key !== 'root-dir'
+      )
+      .map(key => `--${key}=${values[key]}`)
       .join(' ');
   }
 
@@ -47,7 +51,7 @@ export class CliService {
     return this.runNgCommand('help');
   }
 
-  runNgCommand(stdin, dir=undefined) {
+  runNgCommand(stdin, dir = undefined) {
     if (this.isConnectionOn) {
       this._send(stdin, dir);
     }
@@ -57,10 +61,11 @@ export class CliService {
   _send(stdin, dir) {
     console.log(stdin);
 
-    this.ws.send(JSON.stringify({
-      stdin: stdin,
-      dir: dir
-    }));
+    this.ws.send(
+      JSON.stringify({
+        stdin: stdin,
+        dir: dir
+      })
+    );
   }
-
 }

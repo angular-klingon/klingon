@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, SimpleChange } from "@angular/core";
+import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 
 export interface StdSimpleChange extends SimpleChange {
-  stderr: {currentValue:string};
-  stdout: {currentValue:string};
+  stderr: { currentValue: string };
+  stdout: { currentValue: string };
 }
 
 @Component({
@@ -16,11 +16,12 @@ export interface StdSimpleChange extends SimpleChange {
   styleUrls: ['./log.component.css']
 })
 export class LogComponent implements OnInit {
+  @Input()
+  stdout: string;
+  @Input()
+  stderr: string;
 
-  @Input() stdout: string;
-  @Input() stderr: string;
-
-  logs: {text: string; isError?: boolean}[];
+  logs: { text: string; isError?: boolean }[];
 
   keepHistory: boolean;
 
@@ -29,8 +30,7 @@ export class LogComponent implements OnInit {
     this.keepHistory = true;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   clear() {
     this.logs = [];
@@ -50,5 +50,4 @@ export class LogComponent implements OnInit {
       });
     }
   }
-
 }

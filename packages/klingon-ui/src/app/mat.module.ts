@@ -15,7 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgModule } from '@angular/core';
 
-const imports =  [
+const imports = [
   MatTabsModule,
   MatIconModule,
   MatToolbarModule,

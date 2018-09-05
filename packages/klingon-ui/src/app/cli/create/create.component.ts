@@ -6,20 +6,15 @@ import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-cli-create",
-  templateUrl: "./create.component.html",
-  styleUrls: [
-    "./create.component.css",
-    "../flags/flags.component.css"
-  ]
+  selector: 'app-cli-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css', '../flags/flags.component.css']
 })
 export class CliCreateComponent extends FlagsComponent implements OnInit {
-
   form: FormGroup;
-  styleExt = ['css', 'scss','less','sass','styl'];
+  styleExt = ['css', 'scss', 'less', 'sass', 'styl'];
 
-  constructor(
-    public cli: CliService) {
+  constructor(public cli: CliService) {
     super();
   }
 
@@ -35,20 +30,25 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
     this.run();
   }
 
-  run(extra='') {
+  run(extra = '') {
     // save project directory to local storage to remember next time
     const rootDir = this.form.value['root-dir'];
-    localStorage.setItem('ui.lastUsedRootDirectory', rootDir || "");
+    localStorage.setItem('ui.lastUsedRootDirectory', rootDir || '');
 
     this.isWorking = true;
-    this.cli.runNgCommand(`new ${this.form.value['app-name']} ${this.cli.serialize(this.form.value)} ${extra}`, rootDir)
+    this.cli
+      .runNgCommand(
+        `new ${this.form.value['app-name']} ${this.cli.serialize(
+          this.form.value
+        )} ${extra}`,
+        rootDir
+      )
       .subscribe(data => {
         this.isWorking = false;
 
         if (data.stderr) {
           this.onStdErr.next(data.stderr);
-        }
-        else {
+        } else {
           this.onStdOut.next(data.stdout);
         }
       });
