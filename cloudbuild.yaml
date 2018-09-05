@@ -5,8 +5,9 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/klingon"]
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
+  dir: '.'
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['install', 'packages/klingon-ui']
-  dir: './pacakges/'
+  args: ['install']
+  dir: 'packages/klingon-ui'
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'build:app:ui']
