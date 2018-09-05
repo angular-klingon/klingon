@@ -29,67 +29,65 @@ export interface Terminal {
   write(message: string);
   send(data: string);
   clear();
-};
+}
 
 @Injectable()
 export class TerminalService {
-
   term: Terminal;
   pid: number;
   socketURL: string;
   socket: WebSocket;
 
-  constructor(
-    public cli: CliService
-  ) {
-  }
+  constructor(public cli: CliService) {}
 
   async createTerminal(terminalContainer: HTMLElement) {
+    return new Promise(async (resolve, reject) => {
+      this.term = new (window as any).Terminal({
+        cursorBlink: false,
+        debug: true
+      });
+      this.term.on('resize', size => {
+        if (!this.pid) {
+          return;
+        }
+        const cols = size.cols;
+        const rows = size.rows;
+        const url = `http://localhost:3000/terminals/${
+          this.pid
+        }/size?cols=${cols}&rows=${rows}`;
 
-    return new Promise( async(resolve, reject) => {
+        fetch(url, { method: 'POST' });
+      });
 
-    this.term = new (window as any).Terminal({
-      cursorBlink: false,
-      debug: true
-    });
-    this.term.on('resize', (size) => {
-      if (!this.pid) {
-        return;
-      }
-      const cols = size.cols;
-      const rows = size.rows;
-      const url = `http://localhost:3000/terminals/${this.pid}/size?cols=${cols}&rows=${rows}`;
+      this.socketURL = `ws://localhost:3000/terminals`;
 
-      fetch(url, { method: 'POST' });
-    });
+      this.term.open(terminalContainer, false);
+      this.term.fit();
 
-    this.socketURL = `ws://localhost:3000/terminals`;
+      const initialGeometry = this.term.proposeGeometry();
+      const cols = 180;
+      const rows = 50;
 
-    this.term.open(terminalContainer, false);
-    this.term.fit();
+      const res = await fetch(
+        `http://localhost:3000/terminals?cols=${cols}&rows=${rows}`,
+        {
+          method: 'POST'
+        }
+      );
 
-    const initialGeometry = this.term.proposeGeometry();
-    const cols = 180;
-    const rows = 50;
-
-    const res = await fetch(`http://localhost:3000/terminals?cols=${cols}&rows=${rows}`, {
-      method: 'POST'
-    });
-
-    const pid = await res.text();
-    this.socket = new WebSocket(`${this.socketURL}/${pid}`);
-    this.socket.onopen = () => {
-      this.term.attach(this.socket);
-      this.term._initialized = true;
-      setTimeout(_ => resolve(), 100);
-    };
-    this.socket.onclose = this.socketError;
-    this.socket.onerror = this.socketError;
+      const pid = await res.text();
+      this.socket = new WebSocket(`${this.socketURL}/${pid}`);
+      this.socket.onopen = () => {
+        this.term.attach(this.socket);
+        this.term._initialized = true;
+        setTimeout(_ => resolve(), 100);
+      };
+      this.socket.onclose = this.socketError;
+      this.socket.onerror = this.socketError;
     });
   }
 
-  socketError() {
-  }
+  socketError() {}
 
   on(event, callback) {
     this.term.on(event, callback);
@@ -98,8 +96,7 @@ export class TerminalService {
   send(data) {
     // this.term.clear();
     // this.term.send(`${data}\n`);
-    return this.cli.runNgCommand(data)
-      
+    return this.cli.runNgCommand(data);
   }
 
   write(data) {
@@ -109,5 +106,4 @@ export class TerminalService {
   stop() {
     this.term.send('\x03');
   }
-
 }

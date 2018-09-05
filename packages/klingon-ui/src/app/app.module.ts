@@ -9,7 +9,11 @@ import { MatModule } from './mat.module';
 
 import { CliService } from './cli/cli.service';
 import { TerminalModule } from './_shared/terminal/terminal.module';
-import { AppComponent, SnackBarErrorComponent, SnackBarSuccessComponent } from './app.component';
+import {
+  AppComponent,
+  SnackBarErrorComponent,
+  SnackBarSuccessComponent
+} from './app.component';
 import { DropDownComponent } from './_shared/drop-down/drop-down.component';
 import { CliCreateComponent } from './cli/create/create.component';
 import { CliServeComponent } from './cli/serve/serve.component';
@@ -31,10 +35,7 @@ import { LogComponent } from './_shared/log/log.component';
     SnackBarSuccessComponent,
     SnackBarErrorComponent
   ],
-  entryComponents: [
-    SnackBarSuccessComponent,
-    SnackBarErrorComponent
-  ],
+  entryComponents: [SnackBarSuccessComponent, SnackBarErrorComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -46,4 +47,4 @@ import { LogComponent } from './_shared/log/log.component';
   providers: [CliService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

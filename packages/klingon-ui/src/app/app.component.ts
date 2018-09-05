@@ -7,20 +7,20 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   selector: 'app-snack-bar-error',
   styles: [
     `
-    :host {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-    span {
-      color: #F44336;
-      font-family: Roboto,"Helvetica Neue",sans-serif;
-    }
-    mat-icon {
-      color: #F44336;
-    }
-  `
+      :host {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      span {
+        color: #f44336;
+        font-family: Roboto, 'Helvetica Neue', sans-serif;
+      }
+      mat-icon {
+        color: #f44336;
+      }
+    `
   ],
   template:
     '<mat-icon>error</mat-icon><span>An error has occured. Check the logs tab.</span>'
@@ -31,20 +31,20 @@ export class SnackBarErrorComponent {}
   selector: 'app-snack-bar-success',
   styles: [
     `
-    :host {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-    span {
-      color: #81C784;
-      font-family: Roboto,"Helvetica Neue",sans-serif;
-    }
-    mat-icon {
-      color: #4CAF50;
-    }
-  `
+      :host {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      span {
+        color: #81c784;
+        font-family: Roboto, 'Helvetica Neue', sans-serif;
+      }
+      mat-icon {
+        color: #4caf50;
+      }
+    `
   ],
   template:
     '<mat-icon>verified_user</mat-icon><span>Command executed successfully.</span>'

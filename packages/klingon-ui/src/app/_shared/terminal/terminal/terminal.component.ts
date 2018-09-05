@@ -9,7 +9,7 @@ import {
   HostListener,
   Input,
   Renderer2
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
   selector: 'app-terminal',
@@ -18,41 +18,51 @@ import {
       <main #terminalRef ></main>
     </section>
   `,
-  styles: [`
-    :host {
-      display: block;
-      bottom: 0;
-      background: black;
-      width: 100%;
-    }
+  styles: [
+    `
+      :host {
+        display: block;
+        bottom: 0;
+        background: black;
+        width: 100%;
+      }
 
-    main {
+      main {
         height: 200px;
         padding: 10px;
-    }
-  `]
+      }
+    `
+  ]
 })
 export class TerminalComponent implements OnInit {
+  @ViewChild('terminalRef')
+  terminalRef: ElementRef;
 
-  @ViewChild('terminalRef') terminalRef: ElementRef;
+  @Input()
+  height: string = '100px';
 
-  @Input() height: string = "100px";
+  @Output()
+  open: EventEmitter<boolean>;
+  @Output()
+  close: EventEmitter<boolean>;
+  @Output()
+  key: EventEmitter<string>;
+  @Output()
+  keydown: EventEmitter<string>;
+  @Output()
+  keypress: EventEmitter<string>;
+  @Output()
+  scroll: EventEmitter<number>;
+  @Output()
+  resize: EventEmitter<{ terminal: HTMLElement; cols: number; rows: number }>;
+  @Output()
+  title: EventEmitter<string>;
+  @Output()
+  refresh: EventEmitter<{}>;
+  @Output()
+  data: EventEmitter<string>;
 
-  @Output() open: EventEmitter<boolean>;
-  @Output() close: EventEmitter<boolean>;
-  @Output() key: EventEmitter<string>;
-  @Output() keydown: EventEmitter<string>;
-  @Output() keypress: EventEmitter<string>;
-  @Output() scroll: EventEmitter<number>;
-  @Output() resize: EventEmitter<{terminal: HTMLElement, cols: number, rows: number}>;
-  @Output() title: EventEmitter<string>;
-  @Output() refresh: EventEmitter<{}>;
-  @Output() data: EventEmitter<string>;
-
-  constructor(
-    public term: TerminalService,
-    public r: Renderer2
-  ) {
+  constructor(public term: TerminalService, public r: Renderer2) {
     this.open = new EventEmitter();
     this.close = new EventEmitter();
     this.key = new EventEmitter();
@@ -66,7 +76,6 @@ export class TerminalComponent implements OnInit {
   }
 
   async ngOnInit() {
-
     this.r.setStyle(this.terminalRef.nativeElement, 'height', this.height);
 
     await this.term.createTerminal(this.terminalRef.nativeElement);
@@ -130,11 +139,12 @@ export class TerminalComponent implements OnInit {
 
   onRefresh(event) {
     console.log('Terminal::onRefresh', event);
-    const error = this.terminalRef.nativeElement.querySelector('.terminal .xterm-color-1');
+    const error = this.terminalRef.nativeElement.querySelector(
+      '.terminal .xterm-color-1'
+    );
 
     this.refresh.emit({
       error
     });
   }
-
 }
