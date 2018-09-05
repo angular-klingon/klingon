@@ -1,18 +1,5 @@
-FROM node:9-alpine
+# use latest Node LTS (Boron)
+FROM node:carbon
 
-COPY . .
-
-RUN npm set progress=false && \
-    npm config set depth 0 && \
-    npm cache clean --force
-    
-RUN apk add --no-cache --virtual .gyp \
-        python \
-        make \
-        g++ \
-    && npm install lerna@3 @angular/cli@6 \
-    && npm install \
-    && ./node_modules/.bin/lerna bootstrap \
-    && apk del .gyp
-
-RUN npm run build:app:ui
+# install Angular CLI
+RUN npm install -g @angular/cli --unsafe
