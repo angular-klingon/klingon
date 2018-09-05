@@ -10,12 +10,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styles: ['./flags.component.css']
 })
 export class FlagsComponent implements OnInit {
-  @Output()
-  onStdErr: EventEmitter<string>;
-  @Output()
-  onStdOut: EventEmitter<string>;
-
-  protected isWorking: boolean;
 
   static Flags = {
     CREATE: 0,
@@ -23,6 +17,13 @@ export class FlagsComponent implements OnInit {
     BUILD: 2,
     TEST: 3
   };
+
+  @Output()
+  onStdErr: EventEmitter<string>;
+  @Output()
+  onStdOut: EventEmitter<string>;
+
+  public isWorking: boolean;
 
   form: FormGroup;
 
