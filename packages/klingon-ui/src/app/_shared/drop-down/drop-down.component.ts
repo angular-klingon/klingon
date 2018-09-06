@@ -1,30 +1,26 @@
 import {
   Component,
   OnInit,
-  Input,
-  ElementRef,
-  ViewChild,
-  Renderer
+  Input
 } from '@angular/core';
 
 @Component({
   selector: 'app-drop-down',
   template: `
-    <mat-divider></mat-divider>
-    <header (click)="toggle()">
-      <ng-content select="mat-icon"></ng-content>
-      <ng-content select=".title"></ng-content>
-      <div>
-        <ng-content *ngIf=" state === 'keyboard_arrow_down'"  select=".sub-title"></ng-content>
-      </div>
-      <mat-icon>{{state}}</mat-icon>
-    </header>
-    <section [class.open]="state == 'keyboard_arrow_up'" >
-      <div #contentAreaRef class="content-area" >
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="open" (opened)="open=true" (closed)="open=false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <ng-content select="mat-icon"></ng-content>
+            <ng-content select=".title"></ng-content>
+          </mat-panel-title>
+          <mat-panel-description *ngIf="!open">
+            <ng-content select=".sub-title"></ng-content>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
         <ng-content select=".content"></ng-content>
-      </div>
-    </section>
-    <mat-divider></mat-divider>
+      </mat-expansion-panel>
+    </mat-accordion>
   `,
   styles: [
     `
@@ -54,7 +50,7 @@ import {
         margin: 0 10px 0 0;
       }
       ::ng-deep .title {
-        margin: 0;
+        margin: 3px 0px 0px 0px;
         font-size: 1em;
       }
       ::ng-deep .sub-title {
@@ -76,31 +72,8 @@ import {
 export class DropDownComponent implements OnInit {
   @Input()
   open: boolean = false;
-  @Input()
-  contentHeight: string = '30px';
-
-  @ViewChild('contentAreaRef')
-  contentAreaRef: ElementRef;
-
-  state = 'keyboard_arrow_down';
-
-  constructor(public r: Renderer) {}
 
   ngOnInit() {
-    this.state = this.open ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
   }
 
-  toggle() {
-    if (this.state === 'keyboard_arrow_up') {
-      this.r.setElementStyle(this.contentAreaRef.nativeElement, 'height', '0');
-      this.state = 'keyboard_arrow_down';
-    } else {
-      this.r.setElementStyle(
-        this.contentAreaRef.nativeElement,
-        'height',
-        this.contentHeight
-      );
-      this.state = 'keyboard_arrow_up';
-    }
-  }
 }

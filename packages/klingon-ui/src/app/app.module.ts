@@ -21,6 +21,7 @@ import { BuildComponent } from './cli/build/build.component';
 import { FlagsComponent } from './cli/flags/flags.component';
 import { CliTestComponent } from './cli/test/test.component';
 import { LogComponent } from './_shared/log/log.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LogComponent } from './_shared/log/log.component';
     HttpClientModule,
     TerminalModule,
     BrowserAnimationsModule,
-    MatModule
+    MatModule,
+    MatExpansionModule
   ],
   providers: [CliService],
   bootstrap: [AppComponent]
