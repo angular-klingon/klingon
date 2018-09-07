@@ -30,6 +30,10 @@
   <a href="https://angular.io">
     <img src="https://img.shields.io/badge/Made%20with-Angular-E13137.svg"/>
   </a>
+  <br/>
+  <a href="https://waffle.io/angular-klingon/klingon">
+    <img src="https://badge.waffle.io/angular-klingon/klingon.svg?columns=all"/>
+  </a>
   
 </p>
 <p align="center">
