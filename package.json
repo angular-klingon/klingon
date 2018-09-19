@@ -12,7 +12,7 @@
     },
     "scripts": {
         "publish:all": "lerna publish --skip-git --skip-npm && lerna exec -- npm publish --access=public",
-        "postinstall": "lerna bootstrap",
+        "postinstall": "lerna bootstrap && opencollective-postinstall",
         "start:ui": "cd packages/klingon-ui/ && npm start",
         "start:server": "cd packages/klingon-server/ && npm start",
         "start:app": "cd packages/klingon-app && npm run start:dev",
@@ -22,5 +22,13 @@
         "package:app:osx": "npm run build:app:ui && cd ./packages/klingon-app/ && npm run package:osx",
         "package:app:linux": "npm run build:app:ui && cd ./packages/klingon-app/ && npm run package:linux",
         "package:app:win": "npm run build:app:ui && cd ./packages/klingon-app/ && npm run package:win"
+    },
+    "dependencies": {
+        "opencollective-postinstall": "^2.0.0",
+        "opencollective": "^1.0.3"
+    },
+    "collective": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/klingon"
     }
 }
