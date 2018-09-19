@@ -2,12 +2,12 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/klingon', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/$PROJECT_ID/klingon"]
+  args: ['push', 'gcr.io/$PROJECT_ID/klingon']
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
   dir: '.'
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
   dir: 'packages/klingon-ui'
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/angular-cloud-builder/ng:latest'
   args: ['run', 'build:app:ui']
