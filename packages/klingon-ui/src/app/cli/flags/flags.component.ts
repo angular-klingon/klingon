@@ -1,4 +1,3 @@
-import { browser } from 'protractor';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -55,15 +54,12 @@ export class FlagsComponent implements OnInit {
         'root-dir': new FormControl(lastUsedRootDirectory),
         directory: new FormControl(''),
         prefix: new FormControl('app'),
-        'source-dir': new FormControl('src'),
         style: new FormControl('css'),
         verbose: new FormControl(false),
         'inline-style': new FormControl(false),
         'inline-template': new FormControl(false),
         'dry-run': new FormControl(false),
-        minimal: new FormControl(false),
         routing: new FormControl(false),
-        'skip-commit': new FormControl(false),
         'skip-git': new FormControl(false),
         'skip-install': new FormControl(false),
         'skip-tests': new FormControl(false)
