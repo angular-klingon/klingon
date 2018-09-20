@@ -34,10 +34,6 @@
         <mat-hint align="start">The style file default extension</mat-hint>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="source-dir" matInput placeholder="Source directory">
-        <mat-hint align="start">The name of the source directory.</mat-hint>
-      </mat-form-field>
-      <mat-form-field>
         <input formControlName="directory" matInput placeholder="App directory name">
         <mat-hint align="start">Name of the directory to create the app in, <em>relative</em> to the Project Root Directory. Leave empty to use this Application name</mat-hint>
       </mat-form-field>
@@ -56,13 +52,7 @@
           <mat-checkbox formControlName="inline-template">Should have an inline template</mat-checkbox>
         </mat-list-item>
         <mat-list-item>
-          <mat-checkbox formControlName="minimal">Should create a minimal app</mat-checkbox>
-        </mat-list-item>
-        <mat-list-item>
           <mat-checkbox formControlName="routing">Generate a routing module</mat-checkbox>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-checkbox formControlName="skip-commit">Skip committing the first commit to git</mat-checkbox>
         </mat-list-item>
         <mat-list-item>
           <mat-checkbox formControlName="skip-git">Skip initializing a git repository</mat-checkbox>
