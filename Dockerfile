@@ -1,18 +1,18 @@
-FROM node:9-alpine
+FROM gcr.io/angular-cloud-builder/ng
+
+COPY package.json package-lock.json ./
+COPY packages/klingon-ui/package.json packages/klingon-ui/package-lock.json ./packages/klingon-ui
+
+RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
+
+## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
+RUN npm i && \
+    mkdir /klingon && \
+    cp -R ./node_modules ./klingon && \
+    cp -R ./packages/klingon-ui/node_modules ./klingon/packages/klingon-ui/
+
+WORKDIR /klingon
 
 COPY . .
-
-RUN npm set progress=false && \
-    npm config set depth 0 && \
-    npm cache clean --force
-    
-RUN apk add --no-cache --virtual .gyp \
-        python \
-        make \
-        g++ \
-    && npm install -g lerna@3 @angular/cli@1.7 \
-    && npm install \
-    && lerna bootstrap \
-    && apk del .gyp
 
 RUN npm run build:app:ui
