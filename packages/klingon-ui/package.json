@@ -10,17 +10,17 @@
     "e2e": "ng e2e"
   },
   "dependencies": {
-    "@angular/animations": "~6.1.6",
-    "@angular/cdk": "^6.4.7",
-    "@angular/common": "~6.1.6",
-    "@angular/compiler": "^6.1.6",
-    "@angular/core": "~6.1.6",
-    "@angular/forms": "~6.1.6",
-    "@angular/http": "~6.1.6",
-    "@angular/material": "^6.4.7",
-    "@angular/platform-browser": "~6.1.6",
-    "@angular/platform-browser-dynamic": "~6.1.6",
-    "@angular/router": "~6.1.6",
+    "@angular/animations": "angular/animations-builds#master",
+    "@angular/cdk": "angular/cdk-builds#master",
+    "@angular/common": "angular/common-builds#master",
+    "@angular/compiler": "angular/compiler-builds#master",
+    "@angular/core": "angular/core-builds#master",
+    "@angular/forms": "angular/forms-builds#master",
+    "@angular/http": "angular/http-builds#master",
+    "@angular/material": "angular/material2-builds#master",
+    "@angular/platform-browser": "angular/platform-browser-builds#master",
+    "@angular/platform-browser-dynamic": "angular/platform-browser-dynamic-builds#master",
+    "@angular/router": "angular/router-builds#master",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
     "rxjs": "^6.3.1",
@@ -28,10 +28,10 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.7.0",
-    "@angular/cli": "^6.1.5",
-    "@angular/compiler-cli": "^6.1.6",
-    "@angular/language-service": "~6.1.6",
+    "@angular-devkit/build-angular": "angular/angular-devkit-build-angular-builds#master",
+    "@angular/cli": "angular/cli-builds#master",
+    "@angular/compiler-cli": "angular/compiler-cli-builds#master",
+    "@angular/language-service": "angular/language-service-builds#master",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
@@ -47,7 +47,8 @@
     "protractor": "^5.4.0",
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
-    "typescript": "2.9.2"
+    "typescript": "~3.0.3",
+    "webpack": "^4.20.2"
   },
   "repository": "git@github.com:manekinekko/klingon.git",
   "bugs": {
