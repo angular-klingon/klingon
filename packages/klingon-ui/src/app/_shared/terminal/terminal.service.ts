@@ -1,5 +1,6 @@
 import { CliService } from './../../cli/cli.service';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 export interface Terminal {
   _initialized: boolean;
@@ -52,14 +53,14 @@ export class TerminalService {
         }
         const cols = size.cols;
         const rows = size.rows;
-        const url = `http://localhost:3000/terminals/${
+        const url = environment.scheme + `://` + environment.host + `:` + environment.port + `/terminals/${
           this.pid
         }/size?cols=${cols}&rows=${rows}`;
 
         fetch(url, { method: 'POST' });
       });
 
-      this.socketURL = `ws://localhost:3000/terminals`;
+      this.socketURL = `ws://` + environment.host + `:` + environment.port + `/terminals`;
 
       this.term.open(terminalContainer, false);
       this.term.fit();
@@ -69,7 +70,7 @@ export class TerminalService {
       const rows = 50;
 
       const res = await fetch(
-        `http://localhost:3000/terminals?cols=${cols}&rows=${rows}`,
+        environment.scheme + `://` + environment.host + `:` + environment.port + `/terminals?cols=${cols}&rows=${rows}`,
         {
           method: 'POST'
         }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface CommandResult {
   stderr: string;
@@ -15,7 +16,7 @@ export class CliService {
 
   constructor() {
     this.response$ = new Subject();
-    this.ws = new WebSocket(`ws://localhost:3000/cli`);
+    this.ws = new WebSocket(`ws://` + environment.host +`:` + environment.port +`/cli`);
     this.ws.onopen = e => {
       this.isConnectionOn = true;
     };
