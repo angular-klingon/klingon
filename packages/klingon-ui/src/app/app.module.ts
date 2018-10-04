@@ -22,6 +22,8 @@ import { FlagsComponent } from './cli/flags/flags.component';
 import { CliTestComponent } from './cli/test/test.component';
 import { LogComponent } from './_shared/log/log.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     TerminalModule,
     BrowserAnimationsModule,
     MatModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [CliService],
   bootstrap: [AppComponent]
