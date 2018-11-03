@@ -45,7 +45,7 @@ export class TerminalService {
     return new Promise(async (resolve, reject) => {
       this.term = new (window as any).Terminal({
         cursorBlink: false,
-        debug: true
+        debug: !environment.production
       });
       this.term.on('resize', size => {
         if (!this.pid) {
