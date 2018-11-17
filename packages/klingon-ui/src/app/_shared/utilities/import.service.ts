@@ -37,7 +37,7 @@ export class ImportService {
     return new Promise((resolve, reject) => {
       if (dataTransfer.items.length > 0) {
         const entry: DirectoryEntry = dataTransfer.items[0].webkitGetAsEntry();
-        if (entry.isDirectory) {
+        if (entry && entry.isDirectory) {
           resolve(entry);
         } else {
           reject('Dropped object must be a directory');
