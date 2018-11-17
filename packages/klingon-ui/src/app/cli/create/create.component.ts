@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { TerminalService } from '../../_shared/terminal/terminal.service';
 
 @Component({
   selector: 'app-cli-create',
@@ -14,7 +15,7 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
   form: FormGroup;
   styleExt = ['css', 'scss', 'less', 'sass', 'styl'];
 
-  constructor(public cli: CliService) {
+  constructor(public cli: CliService, public terminal: TerminalService) {
     super();
   }
 
@@ -35,6 +36,8 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
     const rootDir = this.form.value['root-dir'];
     localStorage.setItem('ui.lastUsedRootDirectory', rootDir || '');
 
+    const appName = this.form.value['directory'] || this.form.value['app-name'];
+
     this.isWorking = true;
     this.cli
       .runNgCommand(
@@ -43,8 +46,12 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
         )} ${extra}`,
         rootDir
       )
-      .subscribe(data => {
+      .subscribe( (data: any) => {
         this.isWorking = false;
+
+        if (data.exit === 0) {
+          this.terminal.command(`cd ` + (rootDir + '/' + appName));
+        }
 
         if (data.stderr) {
           this.onStdErr.next(data.stderr);
