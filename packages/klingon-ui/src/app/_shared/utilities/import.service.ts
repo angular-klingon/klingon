@@ -36,6 +36,8 @@ export class ImportService {
   validate(dataTransfer: DataTransfer) {
     return new Promise((resolve, reject) => {
       if (dataTransfer.items.length > 0) {
+        console.log('userAgent', self.navigator.userAgent);
+        console.log('webKitEntry', dataTransfer.items[0].webkitGetAsEntry());
         const entry: DirectoryEntry = dataTransfer.items[0].webkitGetAsEntry();
         if (entry && entry.isDirectory) {
           resolve(entry);
