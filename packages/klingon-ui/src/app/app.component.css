@@ -1,7 +1,7 @@
 :host mat-toolbar {
     height: 149px;
     position: fixed;
-    background-image: url('/assets/ngKlingon__white.png');
+    background-image: url('../assets/ngKlingon__white.png');
     background-size: 90px;
     background-repeat: no-repeat;
     background-position: center top;
