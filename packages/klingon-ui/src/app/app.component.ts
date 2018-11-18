@@ -108,6 +108,7 @@ export class AppComponent implements OnInit {
   }
 
   onDrop(event: DragEvent) {
+    event.preventDefault();
     this.appCli.import(event);
   }
 

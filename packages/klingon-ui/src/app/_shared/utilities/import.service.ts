@@ -29,16 +29,6 @@ export class ImportService {
     return await new Promise(resolve => setTimeout(resolve, 0, this.getAngularConfig(entries, entry)));
   }
 
-  getFunctions(obj) {
-    const res = [];
-    for (const m in obj) {
-      if (typeof obj[m] === 'function') {
-        res.push(m);
-      }
-    }
-    return res;
-  }
-
   /**
    * validate dropped item
    * @param dataTransfer DataTransfer
@@ -46,9 +36,17 @@ export class ImportService {
   validate(dataTransfer: DataTransfer) {
     return new Promise((resolve, reject) => {
       if (dataTransfer.items.length > 0) {
-        console.log('userAgent', self.navigator.userAgent);
-        console.log('available methods', this.getFunctions(dataTransfer.items[0]));
-        const entry: DirectoryEntry = dataTransfer.items[0].webkitGetAsEntry();
+        let entry: DirectoryEntry = dataTransfer.items[0].webkitGetAsEntry();
+        console.log('directory entry webkitGetAsEntry', entry);
+        if (!entry) {
+          /**
+           * References:-
+           * 1) https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry
+           * 2) https://github.com/froala/wysiwyg-editor/issues/1457
+           */
+          entry = (dataTransfer.items[0] as any).getAsEntry();
+          console.log('directory entry getAsEntry', entry);
+        }
         if (entry && entry.isDirectory) {
           resolve(entry);
         } else {
