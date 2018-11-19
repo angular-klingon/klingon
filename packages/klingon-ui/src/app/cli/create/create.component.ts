@@ -49,6 +49,10 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
       .subscribe( (data: any) => {
         this.isWorking = false;
 
+        /**
+         * exit event of ng command returns exit code (0/1). So if it returns 0, means project was created successfully. Only then
+         * we change directory to project directory. Otherwise leave as it is
+         */
         if (data.exit === 0) {
           this.terminal.command(`cd ` + (rootDir + '/' + appName));
         }
