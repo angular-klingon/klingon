@@ -76,7 +76,7 @@ export class TerminalService {
         }
       );
 
-      this.pid = (Number) (await res.text());
+      this.pid = parseInt((await res.text()), 10);
       this.socket = new WebSocket(`${this.socketURL}/${this.pid}`);
       this.socket.onopen = () => {
         this.term.attach(this.socket);
