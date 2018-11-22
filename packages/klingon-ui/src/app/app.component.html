@@ -30,10 +30,10 @@
 
 </mat-card> -->
 
-<mat-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex">
+<mat-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex" (dragover)="onDrag($event)" (dragleave) = "onDragLeave($event)" (drop) = "onDrop($event)">
     <mat-tab>
         <ng-template mat-tab-label>New</ng-template>
-        <app-cli-create (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
+        <app-cli-create #appCli (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
     </mat-tab>
     <mat-tab [disabled]="true">
         <ng-template mat-tab-label>Generate</ng-template>
