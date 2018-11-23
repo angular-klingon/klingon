@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ImportService } from '../../_shared/utilities/import.service';
+import { TerminalService } from '../../_shared/terminal/terminal.service';
 
 @Component({
   selector: 'app-cli-create',
@@ -17,7 +18,7 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
   defaultStyleExt = 'css';
   styleExt = [this.defaultStyleExt, 'scss', 'less', 'sass', 'styl'];
 
-  constructor(public cli: CliService, public _import: ImportService) {
+  constructor(public cli: CliService, public _import: ImportService, public terminal: TerminalService) {
     super();
   }
 
