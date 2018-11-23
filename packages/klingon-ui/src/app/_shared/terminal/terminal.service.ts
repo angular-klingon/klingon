@@ -76,8 +76,8 @@ export class TerminalService {
         }
       );
 
-      const pid = await res.text();
-      this.socket = new WebSocket(`${this.socketURL}/${pid}`);
+      this.pid = parseInt((await res.text()), 10);
+      this.socket = new WebSocket(`${this.socketURL}/${this.pid}`);
       this.socket.onopen = () => {
         this.term.attach(this.socket);
         this.term._initialized = true;
@@ -98,6 +98,10 @@ export class TerminalService {
     // this.term.clear();
     // this.term.send(`${data}\n`);
     return this.cli.runNgCommand(data);
+  }
+
+  command(data) {
+    this.term.send(`${data}\n`);
   }
 
   write(data) {

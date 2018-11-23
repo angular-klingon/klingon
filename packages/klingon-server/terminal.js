@@ -6,6 +6,7 @@ const cors = require('cors');
 const pty = require('node-pty');
 const { spawn } = require('child_process');
 const bodyParser = require('body-parser');
+const guard = require('./core/guard');
 
 app.use(cors());
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -101,7 +102,9 @@ app.ws('/terminals/:pid', (ws, req) => {
     console.log(`Connected to terminal: ${term.pid}`);
     ws.send(logs[term.pid]);
 
+    let command = '';
     term.on('data', (data) => {
+        // This even will get emitted just after message event
         try {
             console.log('>>>', data);
             ws.send(data);
@@ -111,6 +114,26 @@ app.ws('/terminals/:pid', (ws, req) => {
     });
     ws.on('message', (msg) => {
         console.log('<<<', msg);
+        
+        // Check if input is "Enter" key
+        if (msg.charCodeAt(0) !== 13) {
+            /**
+             * When we type command from shell, 'message' event fires for every character. So we append each character until "Enter" (13 ascii code) is
+             * pressed. Once enter is pressed, it consider that the command is complete and validates 
+             * it and reset the command value accordingly or kill it if  
+             */
+            command += msg;
+        } else if (!guard.isValidShellCommand(command)) {
+
+            // Pass ^C command if command is invalid. 
+        
+            term.kill('SIGINT');
+            command = '';
+            return;
+        } else {
+            command = '';
+        }
+
         term.write(msg);
     });
     ws.on('close', () => {

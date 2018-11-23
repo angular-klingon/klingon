@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ImportService } from '../../_shared/utilities/import.service';
+import { TerminalService } from '../../_shared/terminal/terminal.service';
 
 @Component({
   selector: 'app-cli-create',
@@ -17,7 +18,7 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
   defaultStyleExt = 'css';
   styleExt = [this.defaultStyleExt, 'scss', 'less', 'sass', 'styl'];
 
-  constructor(public cli: CliService, public _import: ImportService) {
+  constructor(public cli: CliService, public _import: ImportService, public terminal: TerminalService) {
     super();
   }
 
@@ -38,6 +39,8 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
     const rootDir = this.form.value['root-dir'];
     localStorage.setItem('ui.lastUsedRootDirectory', rootDir || '');
 
+    const appName = this.form.value['directory'] || this.form.value['app-name'];
+
     this.isWorking = true;
     this.cli
       .runNgCommand(
@@ -46,8 +49,16 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
         )} ${extra}`,
         rootDir
       )
-      .subscribe(data => {
+      .subscribe( (data: any) => {
         this.isWorking = false;
+
+        /**
+         * exit event of ng command returns exit code (0/1). So if it returns 0, means project was created successfully. Only then
+         * we change directory to project directory. Otherwise leave as it is
+         */
+        if (data.exit === 0) {
+          this.terminal.command(`cd ` + (rootDir + '/' + appName));
+        }
 
         if (data.stderr) {
           this.onStdErr.next(data.stderr);
