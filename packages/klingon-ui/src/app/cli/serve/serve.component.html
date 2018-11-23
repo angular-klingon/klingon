@@ -13,6 +13,21 @@
                 <mat-hint align="start">Port to listen to for serving.</mat-hint>
             </mat-form-field>
         </p>
+
+        <p>
+            <mat-form-field>
+              <input autocomplete="off" formControlName="dir" matInput placeholder="Project Root Directory">
+              <mat-hint align="start">Angular CLI will treat this directory as a root directory to serve angular application. Leave empty to use your home directory.</mat-hint>
+            </mat-form-field>
+        </p>      
+
+        <p>
+            <mat-form-field>
+                <input autocomplete="off" formControlName="app" matInput placeholder="Application" required autofocus/>
+                <mat-hint align="start">The application to serve.</mat-hint>
+            </mat-form-field>
+        </p>
+
     </section>
 
     <app-drop-down [open]="false" contentHeight="1990px">
@@ -20,13 +35,6 @@
         <mat-icon>settings</mat-icon>
         <h6 class="sub-title">Configure other flags for the serve command</h6>
         <main class="content">
-
-            <p>
-                <mat-form-field>
-                    <input formControlName="app" matInput placeholder="Application" />
-                    <mat-hint align="start">The application to serve.</mat-hint>
-                </mat-form-field>
-            </p>
 
             <p>
                 <mat-form-field>
