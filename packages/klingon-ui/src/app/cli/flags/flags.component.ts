@@ -44,11 +44,12 @@ export class FlagsComponent implements OnInit {
   }
 
   buildForm(flag: number) {
-    if (flag === FlagsComponent.Flags.CREATE) {
-      const lastUsedRootDirectory = localStorage.getItem(
-        'ui.lastUsedRootDirectory'
-      );
 
+    const lastUsedRootDirectory = localStorage.getItem(
+      'ui.lastUsedRootDirectory'
+    );
+
+    if (flag === FlagsComponent.Flags.CREATE) {
       return new FormGroup({
         'app-name': new FormControl('', Validators.required),
         'root-dir': new FormControl(lastUsedRootDirectory),
@@ -66,6 +67,7 @@ export class FlagsComponent implements OnInit {
       });
     } else if (flag === FlagsComponent.Flags.SERVE) {
       return new FormGroup({
+        dir: new FormControl(lastUsedRootDirectory),
         host: new FormControl('127.0.0.1'),
         app: new FormControl(''),
         hmr: new FormControl(false),
