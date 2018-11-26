@@ -1,0 +1,160 @@
+<form [formGroup]="form">
+
+  <section>
+    <p>
+      <mat-form-field>
+        <input autocomplete="off" formControlName="app-name" matInput placeholder="Application name" required>
+        <mat-hint align="start">Default applications are created in a subdirectory of the same name, with an
+          initialized Angular application.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input autocomplete="off" formControlName="root-dir" matInput placeholder="Project Root Directory">
+        <mat-hint align="start">This app will be created in a subdirectory within this directory. Leave empty to use
+          your home directory.</mat-hint>
+      </mat-form-field>
+    </p>
+  </section>
+
+  <!-- Generate a component -->
+  <app-drop-down [open]="true" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Component</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a service worker -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Service Worker</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate an application -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Application</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a class -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Class</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a directive -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Directive</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate an enum -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Enum</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a guard -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Guard</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a interface -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Interface</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a module -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Module</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a pipe -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Pipe</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a service -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Service</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a universal -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Universal</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a appShell -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;appShell</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a library -->
+  <app-drop-down [open]="false" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox>&nbsp;Library</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+</form>

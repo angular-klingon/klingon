@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CliCreateComponent } from './cli/create/create.component';
+import { CliService, CommandResult } from './cli/cli.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-snack-bar-error',
@@ -26,7 +28,7 @@ import { CliCreateComponent } from './cli/create/create.component';
   template:
     '<mat-icon>error</mat-icon><span>An error has occured. Check the logs tab.</span>'
 })
-export class SnackBarErrorComponent {}
+export class SnackBarErrorComponent { }
 
 @Component({
   selector: 'app-snack-bar-success',
@@ -50,7 +52,7 @@ export class SnackBarErrorComponent {}
   template:
     '<mat-icon>verified_user</mat-icon><span>Command executed successfully.</span>'
 })
-export class SnackBarSuccessComponent {}
+export class SnackBarSuccessComponent { }
 
 @Component({
   selector: 'app-root',
@@ -60,12 +62,15 @@ export class SnackBarSuccessComponent {}
 export class AppComponent implements OnInit {
   selectedIndex = 0;
 
+  klingon = { generate: false };
+
   @ViewChild('appCli') appCli: CliCreateComponent;
 
   constructor(
     public snackBarError: MatSnackBar,
-    public snackBarSuccess: MatSnackBar
-  ) {}
+    public snackBarSuccess: MatSnackBar,
+    private cliService: CliService
+  ) { }
 
   ngOnInit() {
     this.selectedIndex = parseInt(
@@ -73,6 +78,26 @@ export class AppComponent implements OnInit {
       10
     );
     localStorage.setItem('ui.selectedIndex', `${this.selectedIndex}`);
+
+    this.subscribeToNgCreate();
+  }
+
+  subscribeToNgCreate() {
+    this.cliService.onNgCreate.subscribe((data: Subject<CommandResult>) => {
+      data.subscribe((response: any) => {
+        /**
+        * exit event of ng command returns exit code (0/1). So if it returns 0, means ng command executed successfully. Only then
+        * we enable generate tab.
+        */
+        if (response.exit === 0) {
+          console.log('onNgCreate event fired', response);
+          this.klingon.generate = true;
+        }
+      });
+    });
+  }
+
+  onNgCreateEvent(response: any) {
   }
 
   storeIndex(index: number) {

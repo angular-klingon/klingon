@@ -24,6 +24,7 @@ import { LogComponent } from './_shared/log/log.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CliGenerateComponent } from './cli/generate/generate.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { environment } from '../environments/environment';
     CliTestComponent,
     LogComponent,
     SnackBarSuccessComponent,
-    SnackBarErrorComponent
+    SnackBarErrorComponent,
+    CliGenerateComponent
   ],
   entryComponents: [SnackBarSuccessComponent, SnackBarErrorComponent],
   imports: [

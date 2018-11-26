@@ -14,7 +14,8 @@ export class FlagsComponent implements OnInit {
     CREATE: 0,
     SERVE: 1,
     BUILD: 2,
-    TEST: 3
+    TEST: 3,
+    GENERATE: 4
   };
 
   @Output()
@@ -139,6 +140,14 @@ export class FlagsComponent implements OnInit {
         'single-run': new FormControl(true),
         sourcemap: new FormControl(true),
         watch: new FormControl(false)
+      });
+    } else if (flag === FlagsComponent.Flags.GENERATE) {
+      const lastUsedRootDirectory = localStorage.getItem(
+        'ui.lastUsedRootDirectory'
+      );
+      return new FormGroup({
+        'app-name': new FormControl('', Validators.required),
+        'root-dir': new FormControl(lastUsedRootDirectory),
       });
     }
   }
