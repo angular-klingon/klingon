@@ -21,7 +21,7 @@ export class CliServeComponent extends FlagsComponent implements OnInit {
   serve() {
     this.isWorking = true;
     this.cli
-      .runNgCommand(`serve ${this.cli.serialize(this.form.value)}`)
+      .runNgCommand(`serve ${this.cli.serialize(this.form.value)}`, this.form.value['dir'] + '/' + this.form.value['app'])
       .subscribe(data => {
         this.isWorking = false;
 

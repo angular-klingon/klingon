@@ -82,6 +82,13 @@ export class TerminalService {
         this.term.attach(this.socket);
         this.term._initialized = true;
         setTimeout(_ => resolve(), 100);
+
+        /** If root directory is set, then update shell's current directory to it. */
+        const rootDir = localStorage.getItem('ui.lastUsedRootDirectory');
+        if (rootDir) {
+          this.command(`cd ` + rootDir);
+        }
+
       };
       this.socket.onclose = this.socketError;
       this.socket.onerror = this.socketError;
