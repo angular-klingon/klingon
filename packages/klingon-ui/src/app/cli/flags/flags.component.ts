@@ -144,12 +144,11 @@ export class FlagsComponent implements OnInit {
         watch: new FormControl(false)
       });
     } else if (flag === FlagsComponent.Flags.GENERATE) {
-      const lastUsedRootDirectory = localStorage.getItem(
-        'ui.lastUsedRootDirectory'
-      );
       return new FormGroup({
         'app-name': new FormControl('', Validators.required),
         'root-dir': new FormControl(lastUsedRootDirectory),
+        'component-name': new FormControl(''),
+        'style': new FormControl('')
       });
     }
   }

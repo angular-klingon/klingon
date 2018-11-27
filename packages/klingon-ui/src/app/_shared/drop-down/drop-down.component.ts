@@ -8,7 +8,7 @@ import {
   selector: 'app-drop-down',
   template: `
     <mat-accordion>
-      <mat-expansion-panel [expanded]="open" (opened)="open=true" (closed)="open=false">
+      <mat-expansion-panel [expanded]="open" [disabled]="disabled" (opened)="open=true" (closed)="open=false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <ng-content select="mat-icon"></ng-content>
@@ -70,8 +70,12 @@ import {
   ]
 })
 export class DropDownComponent implements OnInit {
+
   @Input()
   open: boolean = false;
+
+  @Input()
+  disabled: boolean = false;
 
   ngOnInit() {
   }
