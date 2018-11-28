@@ -148,7 +148,22 @@ export class FlagsComponent implements OnInit {
         'app-name': new FormControl('', Validators.required),
         'root-dir': new FormControl(lastUsedRootDirectory),
         'component-name': new FormControl(''),
-        'style': new FormControl('')
+        'change-detection': new FormControl(''),
+        'dryRun': new FormControl(false),
+        'entry-component': new FormControl(false),
+        'export': new FormControl(false),
+        'flat': new FormControl(false),
+        'force': new FormControl(false),
+        'module': new FormControl(''),
+        'prefix': new FormControl(''),
+        'project': new FormControl(''),
+        'selector': new FormControl(''),
+        'styleext': new FormControl(''),
+        'inline-style': new FormControl(false),
+        'inline-template': new FormControl(false),
+        'lint-fix': new FormControl(false),
+        'skip-import': new FormControl(false),
+        'spec': new FormControl(false)
       });
     }
   }
