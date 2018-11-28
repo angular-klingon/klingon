@@ -97,14 +97,6 @@
                 </mat-form-field>
             </p>
             <p>
-                <mat-hint class="fixe-height" align="start">Defines the build environment:</mat-hint>
-                <mat-select formControlName="environment">
-                    <mat-option *ngFor="let env of environments" [value]="env">
-                        {{ env }}
-                    </mat-option>
-                </mat-select>
-            </p>
-            <p>
                 <mat-hint class="fixe-height" align="start">Format of the localization file specified with --i18n-file:</mat-hint>
                 <mat-select formControlName="i18n-format">
                     <mat-option *ngFor="let format of i18nFormats" [value]="format">
@@ -120,22 +112,6 @@
                     </mat-option>
                 </mat-select>
             </p>
-            <p>
-                <mat-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</mat-hint>
-                <mat-select formControlName="output-hashing">
-                    <mat-option *ngFor="let hash of hashings" [value]="hash">
-                        {{ hash }}
-                    </mat-option>
-                </mat-select>
-            </p>
-            <p>
-                <mat-hint class="fixe-height" align="start">Define the output filename cache-busting hashing mode:</mat-hint>
-                <mat-select formControlName="target">
-                    <mat-option *ngFor="let target of targets" [value]="target">
-                        {{ target }}
-                    </mat-option>
-                </mat-select>
-            </p>
             <mat-list>
                 <mat-list-item>
                     <mat-checkbox formControlName="open">Opens the url in default browser</mat-checkbox>
@@ -147,9 +123,6 @@
                     <mat-checkbox formControlName="aot">Build using Ahead of Time compilation</mat-checkbox>
                 </mat-list-item>
                 <mat-list-item>
-                    <mat-checkbox formControlName="extract-css">Extract css from global styles onto css files instead of js ones</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
                     <mat-checkbox formControlName="hmr">Enable hot module replacement (HMR).</mat-checkbox>
                 </mat-list-item>
                 <mat-list-item>
@@ -157,9 +130,6 @@
                 </mat-list-item>
                 <mat-list-item>
                     <mat-checkbox formControlName="progress">Log progress to the console while building</mat-checkbox>
-                </mat-list-item>
-                <mat-list-item>
-                    <mat-checkbox formControlName="sourcemap">Output sourcemaps</mat-checkbox>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-checkbox formControlName="vendor-chunk">Use a separate bundle containing only vendor libraries</mat-checkbox>

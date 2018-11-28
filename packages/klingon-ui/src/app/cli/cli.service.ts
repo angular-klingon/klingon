@@ -39,7 +39,8 @@ export class CliService {
           values[key] !== '' &&
           key !== 'app-name' &&
           key !== 'root-dir' &&
-          key !== 'dir'
+          key !== 'dir' &&
+          key !== 'app'
       )
       .map(key => `--${key}=${values[key]}`)
       .join(' ');
