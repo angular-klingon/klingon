@@ -27,6 +27,7 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
   }
 
   dryRun() {
+    this.form.patchValue({'dry-run': true});
     this.run('--dry-run=true');
   }
 
@@ -56,7 +57,7 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
          * exit event of ng command returns exit code (0/1). So if it returns 0, means project was created successfully. Only then
          * we change directory to project directory. Otherwise leave as it is
          */
-        if (data.exit === 0) {
+        if (data.exit === 0 && !this.form.value['dry-run']) {
           this.terminal.command(`cd ` + (rootDir + '/' + appName));
         }
 
