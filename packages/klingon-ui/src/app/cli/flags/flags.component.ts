@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { Validators, FormArray } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -49,6 +49,8 @@ export class FlagsComponent implements OnInit {
     const lastUsedRootDirectory = localStorage.getItem(
       'ui.lastUsedRootDirectory'
     );
+
+    const appName = localStorage.getItem('ui.appName');
 
     if (flag === FlagsComponent.Flags.CREATE) {
       return new FormGroup({
@@ -141,25 +143,22 @@ export class FlagsComponent implements OnInit {
       });
     } else if (flag === FlagsComponent.Flags.GENERATE) {
       return new FormGroup({
-        'app-name': new FormControl('', Validators.required),
+        'app-name': new FormControl(appName, Validators.required),
         'root-dir': new FormControl(lastUsedRootDirectory),
-        'component-name': new FormControl(''),
-        'change-detection': new FormControl(''),
-        'dryRun': new FormControl(false),
-        'entry-component': new FormControl(false),
-        'export': new FormControl(false),
-        'flat': new FormControl(false),
-        'force': new FormControl(false),
-        'module': new FormControl(''),
-        'prefix': new FormControl(''),
-        'project': new FormControl(''),
-        'selector': new FormControl(''),
-        'styleext': new FormControl(''),
-        'inline-style': new FormControl(false),
-        'inline-template': new FormControl(false),
-        'lint-fix': new FormControl(false),
-        'skip-import': new FormControl(false),
-        'spec': new FormControl(false)
+        components: new FormArray([]),
+        serviceworkers: new FormArray([]),
+        applications: new FormArray([]),
+        classes: new FormArray([]),
+        directives: new FormArray([]),
+        enums: new FormArray([]),
+        guards: new FormArray([]),
+        interfaces: new FormArray([]),
+        modules: new FormArray([]),
+        pipes: new FormArray([]),
+        services: new FormArray([]),
+        universals: new FormArray([]),
+        appshells: new FormArray([]),
+        libraries: new FormArray([])
       });
     }
   }

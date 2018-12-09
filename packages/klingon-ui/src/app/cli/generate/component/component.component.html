@@ -1,0 +1,115 @@
+<p *ngIf="form.get('components').controls.length === 0">
+  Please add component to continue
+</p>
+<app-drop-down *ngFor="let component of form.get('components').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ component.value['component-name'] ? component.value['component-name'] : 'Component '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Application Component</h6>
+  <main class="content" [formGroup]="component">
+
+    <div class="component-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="component-name" matInput placeholder="Name of the component to create in the app"
+            required>
+          <mat-hint align="start">Name of the component to create in the app</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select formControlName="change-detection" placeholder="Specify change detection strategy for component (-c)">
+            <mat-option *ngFor="let value of changeDetection" [value]="value">
+              {{value}}
+            </mat-option>
+          </mat-select>
+          <mat-hint align="start">Specify change detection strategy for component</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select formControlName="styleext" placeholder="The file extension to be used for style files.">
+            <mat-option *ngFor="let style of styleExt" [value]="style">
+              {{ style }}
+            </mat-option>
+          </mat-select>
+          <mat-hint align="start">The file extension to be used for style files.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="module" matInput placeholder="Allows specification of the declaring module. (-m)">
+          <mat-hint align="start">Allows specification of the declaring module. (-m)</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="prefix" matInput placeholder="The prefix to apply to generated selectors. (-p)">
+          <mat-hint align="start">The prefix to apply to generated selectors. (-p)</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project">
+          <mat-hint align="start">The name of the project</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="selector" matInput placeholder="Selector">
+          <mat-hint align="start">The selector to use for the component.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="dryRun">Run through without making any changes. (-d)</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="entry-component">Entry component</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="export">Specifies if declaring module exports the component.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="flat">Flag to indicate if a dir is created.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="force">Forces overwriting of files. (-f)</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="inline-style">Specifies if the style will be in the ts file. (-s)</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="inline-template">Specifies if the template will be in the ts file. (-t)</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="lint-fix">Specifies whether to apply lint fixes after generating the
+              component.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="skip-import">Flag to skip the module import.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="spec">Specifies if a spec file is generated.</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeComponent(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewComponent($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

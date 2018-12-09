@@ -17,6 +17,7 @@ import {
           <mat-panel-description *ngIf="!open">
             <ng-content select=".sub-title"></ng-content>
           </mat-panel-description>
+          <ng-content select=".action"></ng-content>
         </mat-expansion-panel-header>
         <ng-content select=".content"></ng-content>
       </mat-expansion-panel>
@@ -52,6 +53,9 @@ import {
       ::ng-deep .title {
         margin: 3px 0px 0px 0px;
         font-size: 1em;
+      }
+      ::ng-deep .component-title {
+        margin: 9px 0px 0px 0px;
       }
       ::ng-deep .sub-title {
         padding: 6px;

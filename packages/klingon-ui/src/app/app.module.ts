@@ -25,6 +25,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CliGenerateComponent } from './cli/generate/generate.component';
+import { ComponentComponent } from './cli/generate/component/component.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CliGenerateComponent } from './cli/generate/generate.component';
     LogComponent,
     SnackBarSuccessComponent,
     SnackBarErrorComponent,
-    CliGenerateComponent
+    CliGenerateComponent,
+    ComponentComponent
   ],
   entryComponents: [SnackBarSuccessComponent, SnackBarErrorComponent],
   imports: [
