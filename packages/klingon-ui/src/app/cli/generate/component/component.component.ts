@@ -1,13 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroupDirective, FormBuilder, FormGroup, FormControl, FormArray, AbstractControl } from '@angular/forms';
-import { FlagsComponent } from '../../flags/flags.component';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-generate-component',
   templateUrl: './component.component.html',
-  styleUrls: ['./component.component.css']
+  styles: [`
+    .component-form mat-form-field {
+      width: 100%
+    }
+
+    mat-action-row {
+      border: none;
+    }
+  `]
 })
-export class ComponentComponent implements OnInit {
+export class ComponentComponent {
 
   @Input()
   public form: FormGroup;
@@ -27,12 +34,7 @@ export class ComponentComponent implements OnInit {
   defaultStyleExt = 'css';
   styleExt = [this.defaultStyleExt, 'scss', 'less', 'sass', 'styl'];
 
-
   componentName: string;
-
-  constructor() {
-
-  }
 
   static buildComponentForm() {
     return new FormGroup({
@@ -55,12 +57,6 @@ export class ComponentComponent implements OnInit {
       'spec': new FormControl(false)
     });
   }
-
-  ngOnInit() {
-    // const componentArray: any = this.form.get('components');
-    // this.formControls = this.form.get('components').controls;
-  }
-
 
   addNewComponent(event) {
     const formGroup = ComponentComponent.buildComponentForm();

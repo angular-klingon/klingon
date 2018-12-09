@@ -104,6 +104,7 @@ export class AppComponent implements OnInit {
   }
 
   storeIndex(index: number) {
+    // Set app-name from localStorage if generate tab is selected.
     if (index === 1) {
       this.appGenerate.form.patchValue({ 'app-name': localStorage.getItem('ui.appName') });
     }
