@@ -126,7 +126,16 @@ export class TerminalService {
   }
 
   command(data) {
-    this.term.send(`${data}\n`);
+    this.term.send(`${data}${this.getNewLine()}`);
+  }
+
+  /**
+   * MS-DOS uses the CR-LF convention.
+   * Reference:-
+   * https://en.wikipedia.org/wiki/Newline
+   */
+  getNewLine() {
+    return this.terminalData.platform === 'win32' ? '\n\r' : '\n';
   }
 
   write(data) {
