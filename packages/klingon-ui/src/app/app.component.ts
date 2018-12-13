@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CliCreateComponent } from './cli/create/create.component';
+import { TerminalData } from './_shared/terminal/terminal.service';
 
 @Component({
   selector: 'app-snack-bar-error',
@@ -112,4 +113,12 @@ export class AppComponent implements OnInit {
     this.appCli.import(event);
   }
 
+  onTerminalOpen(data: TerminalData) {
+    /**
+     * Set current directory from server if root directory field is empty
+     */
+    if(data.cwd && !this.appCli.form.value['root-dir']) {
+      this.appCli.form.patchValue({'root-dir': data.cwd});
+    }
+  }
 }

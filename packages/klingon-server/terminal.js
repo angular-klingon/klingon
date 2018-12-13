@@ -35,20 +35,20 @@ app.post('/terminals', (req, res) => {
     term.on('data', (data) => {
         logs[term.pid] += data;
     });
-    res.send(term.pid.toString());
+    res.send({pid: term.pid.toString(), cwd: os.homedir(),platform: process.platform});
     res.end();
 });
 
-// app.post('/terminals/:pid/size', (req, res) => {
-//     const pid = parseInt(req.params.pid);
-//     const cols = parseInt(req.query.cols);
-//     const rows = parseInt(req.query.rows);
-//     const term = terminals[pid];
+app.post('/terminals/:pid/size', (req, res) => {
+    const pid = parseInt(req.params.pid);
+    const cols = parseInt(req.query.cols);
+    const rows = parseInt(req.query.rows);
+    const term = terminals[pid];
 
-//     term.resize(cols, rows);
-//     console.log(`Resized terminal ${pid} to ${cols} cols and ${rows} rows.`);
-//     res.end();
-// });
+    term.resize(cols, rows);
+    console.log(`Resized terminal ${pid} to ${cols} cols and ${rows} rows.`);
+    res.end();
+});
 
 app.ws('/cli', (ws, res) => {
     ws.on('message', (msg) => {
