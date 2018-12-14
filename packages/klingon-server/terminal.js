@@ -7,6 +7,7 @@ const pty = require('node-pty');
 const { spawn } = require('child_process');
 const bodyParser = require('body-parser');
 const guard = require('./core/guard');
+const fs = require('fs');
 
 app.use(cors());
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -56,6 +57,10 @@ app.ws('/cli', (ws, res) => {
 
         const flags = msg.stdin.split(' ');
         console.log('<<<', flags);
+
+        if(msg.dir && !fs.existsSync(msg.dir)) {
+            fs.mkdirSync(msg.dir);            
+        }
 
         const child = spawn(os.platform() === 'win32' ? 'ng.cmd' : 'ng', flags, {
             cwd: msg.dir || os.homedir(),
