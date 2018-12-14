@@ -1,4 +1,4 @@
-import { TerminalService } from './../terminal.service';
+import { TerminalService, TerminalData } from './../terminal.service';
 import { ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import {
@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  HostListener,
   Input,
   Renderer2
 } from '@angular/core';
@@ -42,7 +41,7 @@ export class TerminalComponent implements OnInit {
   height: string = '100px';
 
   @Output()
-  open: EventEmitter<boolean>;
+  open: EventEmitter<TerminalData>;
   @Output()
   close: EventEmitter<boolean>;
   @Output()
@@ -78,15 +77,17 @@ export class TerminalComponent implements OnInit {
   async ngOnInit() {
     this.r.setStyle(this.terminalRef.nativeElement, 'height', this.height);
 
+    /** Define open and resize event handler before opening terminal */
+    this.term.on('open', this.onOpen.bind(this, event));
+    this.term.on('resize', this.onResize.bind(this));
+
     await this.term.createTerminal(this.terminalRef.nativeElement);
 
-    this.term.on('open', this.onOpen.bind(this));
     this.term.on('close', this.onClose.bind(this));
     this.term.on('key', this.onKey.bind(this));
     this.term.on('keydown', this.onKeydown.bind(this));
     this.term.on('keypress', this.onKeypress.bind(this));
     this.term.on('scroll', this.onScroll.bind(this));
-    this.term.on('resize', this.onResize.bind(this));
     this.term.on('title', this.onTitle.bind(this));
     this.term.on('refresh', this.onRefresh.bind(this));
     this.term.on('data', this.onData.bind(this));
@@ -94,7 +95,7 @@ export class TerminalComponent implements OnInit {
 
   onOpen(event) {
     console.log('Terminal::onOpen', event);
-    this.open.emit();
+    this.open.emit(this.term.terminalData);
   }
 
   onClose(event) {

@@ -32,21 +32,37 @@ export interface Terminal {
   clear();
 }
 
+export interface TerminalData {
+  pid: string;
+  cwd: string;
+  platform: string;
+}
+
 @Injectable()
 export class TerminalService {
   term: Terminal;
   pid: number;
   socketURL: string;
   socket: WebSocket;
+  terminalData: TerminalData;
 
-  constructor(public cli: CliService) {}
+  constructor(public cli: CliService) {
+    this.initializeTerminal();
+  }
+
+  /**
+   * Initialize xterm from constructor so that open and resize event handler of xterm can be defined and triggered 
+   * before calling createTerminal method. (Refer terminal.component.ts)
+   */
+  async initializeTerminal() {
+    this.term = new (window as any).Terminal({
+      cursorBlink: false,
+      debug: !environment.production
+    });
+  }
 
   async createTerminal(terminalContainer: HTMLElement) {
     return new Promise(async (resolve, reject) => {
-      this.term = new (window as any).Terminal({
-        cursorBlink: false,
-        debug: !environment.production
-      });
       this.term.on('resize', size => {
         if (!this.pid) {
           return;
@@ -61,11 +77,6 @@ export class TerminalService {
       });
 
       this.socketURL = `ws://` + environment.host + `:` + environment.port + `/terminals`;
-
-      this.term.open(terminalContainer, false);
-      this.term.fit();
-
-      const initialGeometry = this.term.proposeGeometry();
       const cols = 180;
       const rows = 50;
 
@@ -75,8 +86,15 @@ export class TerminalService {
           method: 'POST'
         }
       );
+    
+      this.terminalData = JSON.parse(await res.text());
+      this.pid = parseInt(this.terminalData.pid, 10);
+      
+      this.term.open(terminalContainer, false);
+      this.term.fit();
 
-      this.pid = parseInt((await res.text()), 10);
+      const initialGeometry = this.term.proposeGeometry();
+
       this.socket = new WebSocket(`${this.socketURL}/${this.pid}`);
       this.socket.onopen = () => {
         this.term.attach(this.socket);

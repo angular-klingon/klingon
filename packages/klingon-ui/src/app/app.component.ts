@@ -6,6 +6,7 @@ import { CliService, CommandResult } from './cli/cli.service';
 import { Subject } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { CliGenerateComponent } from './cli/generate/generate.component';
+import { TerminalData } from './_shared/terminal/terminal.service';
 
 @Component({
   selector: 'app-snack-bar-error',
@@ -144,4 +145,12 @@ export class AppComponent implements OnInit {
     this.appCli.import(event);
   }
 
+  onTerminalOpen(data: TerminalData) {
+    /**
+     * Set current directory from server if root directory field is empty
+     */
+    if(data.cwd && !this.appCli.form.value['root-dir']) {
+      this.appCli.form.patchValue({'root-dir': data.cwd});
+    }
+  }
 }

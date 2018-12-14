@@ -61,7 +61,7 @@
         <h3 class="title">Shell</h3>
         <h6 class="sub-title">Access the "GOD" mode!</h6>
         <div class="content">
-            <app-terminal height="500px"></app-terminal>
+            <app-terminal height="500px" (open)="onTerminalOpen($event);"></app-terminal>
         </div>
     </app-drop-down>
 </mat-card>
