@@ -59,7 +59,7 @@ app.ws('/cli', (ws, res) => {
         console.log('<<<', flags);
 
         if(msg.dir && !fs.existsSync(msg.dir)) {
-            fs.mkdirSync(msg.dir);            
+            fs.mkdirSync(msg.dir,{recursive: true});            
         }
 
         const child = spawn(os.platform() === 'win32' ? 'ng.cmd' : 'ng', flags, {
