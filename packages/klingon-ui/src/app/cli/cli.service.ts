@@ -77,7 +77,7 @@ export class CliService {
     const commandArray = stdin.split(' ');
 
     if (commandArray.length > 1) {
-      if (commandArray[0] === 'new') {
+      if (commandArray[0] === 'new' && commandArray.filter(item => item === '--dry-run=true').length === 0) {
         this.onNgCreate.emit(response);
       }
     }
