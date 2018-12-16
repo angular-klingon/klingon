@@ -26,6 +26,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CliGenerateComponent } from './cli/generate/generate.component';
 import { ComponentComponent } from './cli/generate/component/component.component';
+import { ClassComponent } from './cli/generate/class/class.component';
+import { DirectiveComponent } from './cli/generate/directive/directive.component';
+import { EnumComponent } from './cli/generate/enum/enum.component';
+import { InterfaceComponent } from './cli/generate/interface/interface.component';
+import { ModuleComponent } from './cli/generate/module/module.component';
+import { PipeComponent } from './cli/generate/pipe/pipe.component';
+import { ServiceComponent } from './cli/generate/service/service.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +47,14 @@ import { ComponentComponent } from './cli/generate/component/component.component
     SnackBarSuccessComponent,
     SnackBarErrorComponent,
     CliGenerateComponent,
-    ComponentComponent
+    ComponentComponent,
+    ClassComponent,
+    DirectiveComponent,
+    EnumComponent,
+    InterfaceComponent,
+    ModuleComponent,
+    PipeComponent,
+    ServiceComponent
   ],
   entryComponents: [SnackBarSuccessComponent, SnackBarErrorComponent],
   imports: [

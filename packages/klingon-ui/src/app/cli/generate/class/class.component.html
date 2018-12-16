@@ -1,0 +1,56 @@
+<p *ngIf="form.get('classes').controls.length === 0">
+  Please add class to continue
+</p>
+
+<app-drop-down *ngFor="let class of form.get('classes').controls; let i = index">
+  <h3 class="title class-title">
+    <span>
+      {{ class.value['class-name'] ? class.value['class-name'] : 'Class '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Class</h6>
+  <main class="content" [formGroup]="class">
+
+    <div class="class-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="class-name" matInput placeholder="Name of the class to create in the app" required>
+          <mat-hint align="start">Name of the class to create in the app</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project">
+          <mat-hint align="start">The name of the project</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="type" matInput placeholder="Adds a developer-defined type to the filename, in the format \'name.type.ts\'.">
+          <mat-hint align="start">Adds a developer-defined type to the filename, in the format "name.type.ts".</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="spec">Specifies if a spec file is generated.</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeClass(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewClass($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

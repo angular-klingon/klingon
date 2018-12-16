@@ -21,7 +21,7 @@
   <app-drop-down [open]="true" contentHeight="750px">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [checked]="generateConfig.component" [disabled] ="form.get('components').controls.length===0" >&nbsp;Component</mat-checkbox>
+      <mat-checkbox [checked]="generateConfig.component" [disabled] ="false" >&nbsp;Component</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Generate Components</h6>
@@ -52,30 +52,34 @@
   </app-drop-down>
 
   <!-- Generate a class -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Class</mat-checkbox>
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.class">&nbsp;Class</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
+
+    <main class="content">
+      <app-generate-class [index]="i" [form]="form" (onClassAdded)="addClass($event)" (onClassRemoved)="removeClass($event,index)"></app-generate-class>
+    </main>
   </app-drop-down>
 
   <!-- Generate a directive -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Directive</mat-checkbox>
+      <mat-checkbox [disabled]="false">&nbsp;Directive</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
   </app-drop-down>
 
   <!-- Generate an enum -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Enum</mat-checkbox>
+      <mat-checkbox [disabled]="false">&nbsp;Enum</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
@@ -92,40 +96,40 @@
   </app-drop-down>
 
   <!-- Generate a interface -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Interface</mat-checkbox>
+      <mat-checkbox [disabled]="false">&nbsp;Interface</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
   </app-drop-down>
 
   <!-- Generate a module -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Module</mat-checkbox>
+      <mat-checkbox [disabled]="false">&nbsp;Module</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
   </app-drop-down>
 
   <!-- Generate a pipe -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Pipe</mat-checkbox>
+      <mat-checkbox [disabled]="false">&nbsp;Pipe</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
   </app-drop-down>
 
   <!-- Generate a service -->
-  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="true">&nbsp;Service</mat-checkbox>
+      <mat-checkbox [disabled]="false">&nbsp;Service</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>

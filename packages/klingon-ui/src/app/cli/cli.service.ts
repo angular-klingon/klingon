@@ -43,6 +43,7 @@ export class CliService {
           key !== 'root-dir' &&
           key !== 'dir' &&
           key !== 'component-name' &&
+          key !== 'class-name' && 
           key !== 'app'
       )
       .map(key => `--${key}=${values[key]}`)
