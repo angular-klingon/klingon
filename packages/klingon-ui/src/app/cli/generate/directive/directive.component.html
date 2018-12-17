@@ -1,3 +1,73 @@
-<p>
-  directive works!
+<p *ngIf="form.get('directives').controls.length === 0">
+  Please add directive to continue
 </p>
+<app-drop-down *ngFor="let directive of form.get('directives').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ directive.value['directive-name'] ? directive.value['directive-name'] : 'Directive '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Application Directive</h6>
+  <main class="content" [formGroup]="directive">
+
+    <div class="directive-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="directive-name" matInput placeholder="The name of the new directive."
+            required>
+          <mat-hint align="start">The name of the new directive.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="prefix" matInput placeholder="The prefix to apply to generated selectors. (-p)">
+          <mat-hint align="start">The prefix to apply to generated selectors. (-p)</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project">
+          <mat-hint align="start">The name of the project</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="selector" matInput placeholder="Selector">
+          <mat-hint align="start">The selector to use for the component.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="export">Specifies if declaring module exports the component.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="flat">When true (the default), creates the new files at the top level of the current project.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="lint-fix">When true, applies lint fixes after generating the directive.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="skip-import">When true, does not import this directive into the owning NgModule.</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="spec">When true (the default), generates a "spec.ts" test file for the new directive.</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeDirective(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewDirective($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

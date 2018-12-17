@@ -1,0 +1,7 @@
+.directive-form mat-form-field {
+    width: 100%
+  }
+
+  mat-action-row {
+    border: none;
+  }

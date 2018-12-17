@@ -69,10 +69,14 @@
   <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="false">&nbsp;Directive</mat-checkbox>
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.directive">&nbsp;Directive</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
+
+    <main class="content">
+      <app-generate-directive [index]="i" [form]="form" (onDirectiveAdded)="addDirective($event)" (onDirectiveRemoved)="removeDirective($event,index)"></app-generate-directive>
+    </main>
   </app-drop-down>
 
   <!-- Generate an enum -->
@@ -177,10 +181,10 @@
 
   <section>
     <p class="button-container">
-      <button mat-raised-button color="warn" [disabled]="form.invalid || !generateConfig.component" (click)="stop()">
+      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive)" (click)="stop()">
         <mat-icon>stop</mat-icon> Stop
       </button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid || !generateConfig.component" (click)="generate()">
+      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive)" (click)="generate()">
         <mat-icon>play_circle_outline</mat-icon> Generate
       </button>
     </p>

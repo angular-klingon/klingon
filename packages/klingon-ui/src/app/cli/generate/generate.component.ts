@@ -12,7 +12,7 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   form: FormGroup;
 
-  generateConfig: any = { component: false, class: false };
+  generateConfig: any = { component: false, class: false, directive: false };
 
   constructor(public cli: CliService) {
     super();
@@ -51,6 +51,16 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       });
       this.form.controls.classes['controls'] = [];
       this.generateConfig.class = false;
+    }
+
+    // Generate directives if all required fields are entered.
+    if (this.isValid(this.form.controls.directives)) {
+      const directiveFormGroups: FormGroup[] = this.form.controls.directives['controls'];
+      directiveFormGroups.forEach(async directiveGroup => {
+        await new Promise(resolve => setTimeout(resolve, 0, this.generateDirective(directiveGroup)));
+      });
+      this.form.controls.directives['controls'] = [];
+      this.generateConfig.directive = false;
     }
   }
 
@@ -95,6 +105,33 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
           this.form.value['root-dir'] + '/' + this.form.value['app-name'])
         .subscribe((data: any) => {
           this.isWorking = false;
+          if (data.stderr) {
+            this.onStdErr.next(data.stderr);
+            reject(data);
+          } else {
+            if (data.exit === 0) {
+              resolve(data);
+            } else {
+              this.onStdOut.next(data.stdout);
+            }
+          }
+        });
+    });
+  }
+
+  /**
+   * Generate Classes
+   */
+  generateDirective(directive: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.isWorking = true;
+      this.cli
+        .runNgCommand(
+          `generate directive ${directive.value['directive-name']} ${this.cli.serialize(
+            directive.value)}`,
+          this.form.value['root-dir'] + '/' + this.form.value['app-name'])
+        .subscribe((data: any) => {
+          this.isWorking = false;
 
           if (data.stderr) {
             this.onStdErr.next(data.stderr);
@@ -125,6 +162,12 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
   addClass(_class: FormGroup) {
     _class.valueChanges.subscribe((data: any) => {
       this.generateConfig.class = this.isValid(this.form.controls.classes);
+    });
+  }
+
+  addDirective(directive: FormGroup) {
+    directive.valueChanges.subscribe((data: any) => {
+      this.generateConfig.directive = this.isValid(this.form.controls.directives);
       console.log(this.generateConfig);
     });
   }
@@ -139,6 +182,14 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   removeClass(index) {
     this.generateConfig.class = this.isValid(this.form.controls.classes);
+  }
+
+  /**
+   * Event handler of onComponentRemoved Event.
+   * It checks total number of valid components after a component is removed and enable generate form accordingly
+   */
+  removeDirective(index) {
+    this.generateConfig.directive = this.isValid(this.form.controls.directives);
   }
 
   /**
