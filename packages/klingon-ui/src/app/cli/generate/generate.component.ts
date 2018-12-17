@@ -12,7 +12,7 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   form: FormGroup;
 
-  generateConfig: any = { component: false, class: false, directive: false, enum: false };
+  generateConfig: any = { component: false, class: false, directive: false, enum: false, interface: false };
 
   constructor(public cli: CliService) {
     super();
@@ -71,6 +71,16 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       });
       this.form.controls.enums['controls'] = [];
       this.generateConfig.enum = false;
+    }
+
+    // Generate interfaces if all required fields are entered.
+    if (this.isValid(this.form.controls.interfaces)) {
+      const interfaceFormGroups: FormGroup[] = this.form.controls.interfaces['controls'];
+      interfaceFormGroups.forEach(async interfaceGroup => {
+        await new Promise(resolve => setTimeout(resolve, 0, this.generateInterface(interfaceGroup)));
+      });
+      this.form.controls.interfaces['controls'] = [];
+      this.generateConfig.interface = false;
     }
   }
 
@@ -160,13 +170,42 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
   /**
    * Generate Enums
    */
-  generateEnum(directive: FormGroup) {
+  generateEnum(_enum: FormGroup) {
     return new Promise((resolve, reject) => {
       this.isWorking = true;
       this.cli
         .runNgCommand(
-          `generate enum ${directive.value['enum-name']} ${this.cli.serialize(
-            directive.value)}`,
+          `generate enum ${_enum.value['enum-name']} ${this.cli.serialize(
+            _enum.value)}`,
+          this.form.value['root-dir'] + '/' + this.form.value['app-name'])
+        .subscribe((data: any) => {
+          this.isWorking = false;
+
+          if (data.stderr) {
+            this.onStdErr.next(data.stderr);
+            reject(data);
+          } else {
+            if (data.exit === 0) {
+              resolve(data);
+            } else {
+              this.onStdOut.next(data.stdout);
+            }
+          }
+        });
+    });
+  }
+
+  /**
+   * Generate Interfaces
+   */
+  generateInterface(_interface: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.isWorking = true;
+      const interfaceType = _interface.value['interface-type'] ? _interface.value['interface-type'] : '';
+      this.cli
+        .runNgCommand(
+          `generate interface ${_interface.value['interface-name']} ${interfaceType} ${this.cli.serialize(
+            _interface.value)}`,
           this.form.value['root-dir'] + '/' + this.form.value['app-name'])
         .subscribe((data: any) => {
           this.isWorking = false;
@@ -216,6 +255,14 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       console.log(this.generateConfig);
     });
   }
+
+  addInterface(_interface: FormGroup) {
+    _interface.valueChanges.subscribe((data: any) => {
+      this.generateConfig.interface = this.isValid(this.form.controls.interfaces);
+      console.log(this.generateConfig);
+    });
+  }
+
   /**
    * Event handler of onComponentRemoved Event.
    * It checks total number of valid components after a component is removed and enable generate form accordingly
@@ -238,6 +285,10 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   removeEnum(index) {
     this.generateConfig.enum = this.isValid(this.form.controls.enums);
+  }
+
+  removeInterface(index) {
+    this.generateConfig.interface = this.isValid(this.form.controls.interfaces);
   }
 
   /**

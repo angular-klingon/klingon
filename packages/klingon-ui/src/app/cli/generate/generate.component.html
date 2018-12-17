@@ -106,10 +106,13 @@
   <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="false">&nbsp;Interface</mat-checkbox>
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.interface">&nbsp;Interface</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-interface [index]="i" [form]="form" (onInterfaceAdded)="addInterface($event)" (onInterfaceRemoved)="removeInterface($event,index)"></app-generate-interface>
+    </main>
   </app-drop-down>
 
   <!-- Generate a module -->
@@ -184,10 +187,10 @@
 
   <section>
     <p class="button-container">
-      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum)" (click)="stop()">
+      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface)" (click)="stop()">
         <mat-icon>stop</mat-icon> Stop
       </button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum)" (click)="generate()">
+      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface)" (click)="generate()">
         <mat-icon>play_circle_outline</mat-icon> Generate
       </button>
     </p>
