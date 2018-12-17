@@ -83,10 +83,13 @@
   <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="false">&nbsp;Enum</mat-checkbox>
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.enum">&nbsp;Enum</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-enum [index]="i" [form]="form" (onEnumAdded)="addEnum($event)" (onEnumRemoved)="removeEnum($event,index)"></app-generate-enum>
+    </main>
   </app-drop-down>
 
   <!-- Generate a guard -->
@@ -181,10 +184,10 @@
 
   <section>
     <p class="button-container">
-      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive)" (click)="stop()">
+      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum)" (click)="stop()">
         <mat-icon>stop</mat-icon> Stop
       </button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive)" (click)="generate()">
+      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum)" (click)="generate()">
         <mat-icon>play_circle_outline</mat-icon> Generate
       </button>
     </p>

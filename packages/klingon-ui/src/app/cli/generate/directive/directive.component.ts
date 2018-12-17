@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './directive.component.html',
   styleUrls: ['./directive.component.css']
 })
-export class DirectiveComponent implements OnInit {
+export class DirectiveComponent {
 
   @Input()
   public form: FormGroup;
@@ -36,11 +36,6 @@ export class DirectiveComponent implements OnInit {
     });
   }
   
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   addNewDirective(event) {
     const formGroup = DirectiveComponent.buildDirectiveForm();
     this.form.controls.directives['controls'].push(formGroup);

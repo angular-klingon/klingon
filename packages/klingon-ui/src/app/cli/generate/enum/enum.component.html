@@ -1,3 +1,49 @@
-<p>
-  enum works!
+<p *ngIf="form.get('enums').controls.length === 0">
+  Please add enum to continue
 </p>
+<app-drop-down *ngFor="let enum of form.get('enums').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ enum.value['enum-name'] ? enum.value['enum-name'] : 'Enum '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Enum</h6>
+  <main class="content" [formGroup]="enum">
+
+    <div class="enum-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="enum-name" matInput placeholder="The name of the new enum."
+            required>
+          <mat-hint align="start">The name of the new enum.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project">
+          <mat-hint align="start">The name of the project</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="lint-fix">When true, applies lint fixes after generating the directive.</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeEnum(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewEnum($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

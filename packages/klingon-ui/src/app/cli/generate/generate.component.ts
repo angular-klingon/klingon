@@ -12,7 +12,7 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   form: FormGroup;
 
-  generateConfig: any = { component: false, class: false, directive: false };
+  generateConfig: any = { component: false, class: false, directive: false, enum: false };
 
   constructor(public cli: CliService) {
     super();
@@ -61,6 +61,16 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       });
       this.form.controls.directives['controls'] = [];
       this.generateConfig.directive = false;
+    }
+
+    // Generate enums if all required fields are entered.
+    if (this.isValid(this.form.controls.enums)) {
+      const enumFormGroups: FormGroup[] = this.form.controls.enums['controls'];
+      enumFormGroups.forEach(async enumGroup => {
+        await new Promise(resolve => setTimeout(resolve, 0, this.generateEnum(enumGroup)));
+      });
+      this.form.controls.enums['controls'] = [];
+      this.generateConfig.enum = false;
     }
   }
 
@@ -120,7 +130,7 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
   }
 
   /**
-   * Generate Classes
+   * Generate Directives
    */
   generateDirective(directive: FormGroup) {
     return new Promise((resolve, reject) => {
@@ -128,6 +138,34 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       this.cli
         .runNgCommand(
           `generate directive ${directive.value['directive-name']} ${this.cli.serialize(
+            directive.value)}`,
+          this.form.value['root-dir'] + '/' + this.form.value['app-name'])
+        .subscribe((data: any) => {
+          this.isWorking = false;
+
+          if (data.stderr) {
+            this.onStdErr.next(data.stderr);
+            reject(data);
+          } else {
+            if (data.exit === 0) {
+              resolve(data);
+            } else {
+              this.onStdOut.next(data.stdout);
+            }
+          }
+        });
+    });
+  }
+
+  /**
+   * Generate Enums
+   */
+  generateEnum(directive: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.isWorking = true;
+      this.cli
+        .runNgCommand(
+          `generate enum ${directive.value['enum-name']} ${this.cli.serialize(
             directive.value)}`,
           this.form.value['root-dir'] + '/' + this.form.value['app-name'])
         .subscribe((data: any) => {
@@ -172,6 +210,12 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
     });
   }
 
+  addEnum(_enum: FormGroup) {
+    _enum.valueChanges.subscribe((data: any) => {
+      this.generateConfig.enum = this.isValid(this.form.controls.enums);
+      console.log(this.generateConfig);
+    });
+  }
   /**
    * Event handler of onComponentRemoved Event.
    * It checks total number of valid components after a component is removed and enable generate form accordingly
@@ -190,6 +234,10 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
    */
   removeDirective(index) {
     this.generateConfig.directive = this.isValid(this.form.controls.directives);
+  }
+
+  removeEnum(index) {
+    this.generateConfig.enum = this.isValid(this.form.controls.enums);
   }
 
   /**
