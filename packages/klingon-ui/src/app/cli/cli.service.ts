@@ -48,6 +48,7 @@ export class CliService {
           key !== 'enum-name' && 
           key !== 'interface-name' && 
           key !== 'interface-type' && 
+          key !== 'module-name' && 
           key !== 'app'
       )
       .map(key => `--${key}=${values[key]}`)

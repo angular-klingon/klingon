@@ -12,7 +12,7 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   form: FormGroup;
 
-  generateConfig: any = { component: false, class: false, directive: false, enum: false, interface: false };
+  generateConfig: any = { component: false, class: false, directive: false, enum: false, interface: false, module: false };
 
   constructor(public cli: CliService) {
     super();
@@ -82,6 +82,17 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       this.form.controls.interfaces['controls'] = [];
       this.generateConfig.interface = false;
     }
+
+    // Generate modules if all required fields are entered.
+    if (this.isValid(this.form.controls.modules)) {
+      const moduleFormGroups: FormGroup[] = this.form.controls.modules['controls'];
+      moduleFormGroups.forEach(async moduleGroup => {
+        await new Promise(resolve => setTimeout(resolve, 0, this.generateModule(moduleGroup)));
+      });
+      this.form.controls.modules['controls'] = [];
+      this.generateConfig.module = false;
+    }
+
   }
 
   /**
@@ -225,6 +236,34 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
   }
 
   /**
+   * Generate Modules
+   */
+  generateModule(module: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.isWorking = true;
+      this.cli
+        .runNgCommand(
+          `generate module ${module.value['module-name']} ${this.cli.serialize(
+            module.value)}`,
+          this.form.value['root-dir'] + '/' + this.form.value['app-name'])
+        .subscribe((data: any) => {
+          this.isWorking = false;
+
+          if (data.stderr) {
+            this.onStdErr.next(data.stderr);
+            reject(data);
+          } else {
+            if (data.exit === 0) {
+              resolve(data);
+            } else {
+              this.onStdOut.next(data.stdout);
+            }
+          }
+        });
+    });
+  }
+
+  /**
    * Event handler of onComponentAdded Event.
    *
    * Subscribe to the newly added component.
@@ -263,6 +302,13 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
     });
   }
 
+  addModule(module: FormGroup) {
+    module.valueChanges.subscribe((data: any) => {
+      this.generateConfig.module = this.isValid(this.form.controls.modules);
+      console.log(this.generateConfig);
+    });
+  }
+
   /**
    * Event handler of onComponentRemoved Event.
    * It checks total number of valid components after a component is removed and enable generate form accordingly
@@ -289,6 +335,10 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   removeInterface(index) {
     this.generateConfig.interface = this.isValid(this.form.controls.interfaces);
+  }
+
+  removeModule(index) {
+    this.generateConfig.module = this.isValid(this.form.controls.modules);
   }
 
   /**
