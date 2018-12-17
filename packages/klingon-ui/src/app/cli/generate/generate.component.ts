@@ -12,7 +12,10 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   form: FormGroup;
 
-  generateConfig: any = { component: false, class: false, directive: false, enum: false, interface: false, module: false };
+  generateConfig: any = {
+    component: false, class: false, directive: false, enum: false,
+    interface: false, module: false, pipe: false, service: false
+  };
 
   constructor(public cli: CliService) {
     super();
@@ -93,6 +96,25 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
       this.generateConfig.module = false;
     }
 
+    // Generate pipes if all required fields are entered.
+    if (this.isValid(this.form.controls.pipes)) {
+      const pipeFormGroups: FormGroup[] = this.form.controls.pipes['controls'];
+      pipeFormGroups.forEach(async pipeGroup => {
+        await new Promise(resolve => setTimeout(resolve, 0, this.generatePipe(pipeGroup)));
+      });
+      this.form.controls.pipes['controls'] = [];
+      this.generateConfig.pipe = false;
+    }
+
+    // Generate services if all required fields are entered.
+    if (this.isValid(this.form.controls.services)) {
+      const serviceFormGroups: FormGroup[] = this.form.controls.services['controls'];
+      serviceFormGroups.forEach(async serviceGroup => {
+        await new Promise(resolve => setTimeout(resolve, 0, this.generateService(serviceGroup)));
+      });
+      this.form.controls.services['controls'] = [];
+      this.generateConfig.service = false;
+    }
   }
 
   /**
@@ -264,6 +286,63 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
   }
 
   /**
+   * Generate Modules
+   */
+  generatePipe(pipe: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.isWorking = true;
+      this.cli
+        .runNgCommand(
+          `generate pipe ${pipe.value['pipe-name']} ${this.cli.serialize(
+            pipe.value)}`,
+          this.form.value['root-dir'] + '/' + this.form.value['app-name'])
+        .subscribe((data: any) => {
+          this.isWorking = false;
+
+          if (data.stderr) {
+            this.onStdErr.next(data.stderr);
+            reject(data);
+          } else {
+            if (data.exit === 0) {
+              resolve(data);
+            } else {
+              this.onStdOut.next(data.stdout);
+            }
+          }
+        });
+    });
+  }
+
+  /**
+   * Generate Services
+   */
+  generateService(service: FormGroup) {
+    return new Promise((resolve, reject) => {
+      this.isWorking = true;
+      this.cli
+        .runNgCommand(
+          `generate service ${service.value['service-name']} ${this.cli.serialize(
+            service.value)}`,
+          this.form.value['root-dir'] + '/' + this.form.value['app-name'])
+        .subscribe((data: any) => {
+          this.isWorking = false;
+
+          if (data.stderr) {
+            this.onStdErr.next(data.stderr);
+            reject(data);
+          } else {
+            if (data.exit === 0) {
+              resolve(data);
+            } else {
+              this.onStdOut.next(data.stdout);
+            }
+          }
+        });
+    });
+  }
+
+
+  /**
    * Event handler of onComponentAdded Event.
    *
    * Subscribe to the newly added component.
@@ -309,6 +388,20 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
     });
   }
 
+  addPipe(pipe: FormGroup) {
+    pipe.valueChanges.subscribe((data: any) => {
+      this.generateConfig.pipe = this.isValid(this.form.controls.pipes);
+      console.log(this.generateConfig);
+    });
+  }
+
+  addService(service: FormGroup) {
+    service.valueChanges.subscribe((data: any) => {
+      this.generateConfig.service = this.isValid(this.form.controls.services);
+      console.log(this.generateConfig);
+    });
+  }
+
   /**
    * Event handler of onComponentRemoved Event.
    * It checks total number of valid components after a component is removed and enable generate form accordingly
@@ -339,6 +432,14 @@ export class CliGenerateComponent extends FlagsComponent implements OnInit {
 
   removeModule(index) {
     this.generateConfig.module = this.isValid(this.form.controls.modules);
+  }
+
+  removePipe(index) {
+    this.generateConfig.pipe = this.isValid(this.form.controls.pipes);
+  }
+
+  removeService(index) {
+    this.generateConfig.service = this.isValid(this.form.controls.services);
   }
 
   /**

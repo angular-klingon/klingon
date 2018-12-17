@@ -132,20 +132,26 @@
   <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="false">&nbsp;Pipe</mat-checkbox>
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.pipe">&nbsp;Pipe</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-pipe [index]="i" [form]="form" (onPipeAdded)="addPipe($event)" (onPipeRemoved)="removePipe($event,index)"></app-generate-pipe>
+    </main>
   </app-drop-down>
 
   <!-- Generate a service -->
   <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
 
     <h3 class="title" style="padding-bottom:5px;">
-      <mat-checkbox [disabled]="false">&nbsp;Service</mat-checkbox>
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.service">&nbsp;Service</mat-checkbox>
     </h3>
     <!-- <mat-icon>settings</mat-icon> -->
     <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-service [index]="i" [form]="form" (onServiceAdded)="addService($event)" (onServiceRemoved)="removeService($event,index)"></app-generate-service>
+    </main>
   </app-drop-down>
 
   <!-- Generate a universal -->
@@ -190,10 +196,10 @@
 
   <section>
     <p class="button-container">
-      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface && !generateConfig.module)" (click)="stop()">
+      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface && !generateConfig.module && !generateConfig.pipe && !generateConfig.service)" (click)="stop()">
         <mat-icon>stop</mat-icon> Stop
       </button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface && !generateConfig.module)" (click)="generate()">
+      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface && !generateConfig.module && !generateConfig.pipe && !generateConfig.service)" (click)="generate()">
         <mat-icon>play_circle_outline</mat-icon> Generate
       </button>
     </p>

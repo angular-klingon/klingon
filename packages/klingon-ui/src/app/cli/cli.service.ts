@@ -49,6 +49,8 @@ export class CliService {
           key !== 'interface-name' && 
           key !== 'interface-type' && 
           key !== 'module-name' && 
+          key !== 'pipe-name' && 
+          key !== 'service-name' && 
           key !== 'app'
       )
       .map(key => `--${key}=${values[key]}`)
