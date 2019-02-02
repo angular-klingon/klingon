@@ -51,7 +51,7 @@ export class TerminalService {
   }
 
   /**
-   * Initialize xterm from constructor so that open and resize event handler of xterm can be defined and triggered 
+   * Initialize xterm from constructor so that open and resize event handler of xterm can be defined and triggered
    * before calling createTerminal method. (Refer terminal.component.ts)
    */
   async initializeTerminal() {
@@ -86,10 +86,10 @@ export class TerminalService {
           method: 'POST'
         }
       );
-    
+
       this.terminalData = JSON.parse(await res.text());
       this.pid = parseInt(this.terminalData.pid, 10);
-      
+
       this.term.open(terminalContainer, false);
       this.term.fit();
 
@@ -104,7 +104,7 @@ export class TerminalService {
         /** If root directory is set, then update shell's current directory to it. */
         const rootDir = localStorage.getItem('ui.lastUsedRootDirectory');
         if (rootDir) {
-          this.command(`cd ` + rootDir);
+          this.command(`cd ` + (this.terminalData.platform === 'win32' ? '/d ' : '') + rootDir);
         }
 
       };

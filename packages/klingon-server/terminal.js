@@ -81,7 +81,8 @@ app.ws('/cli', (ws, res) => {
         child.on('exit', (exit) => {
             console.log("Child exited with code: " + exit);
             ws.send(JSON.stringify({
-                exit
+                exit: exit,
+                platform: os.platform()
             }));
         });
 
