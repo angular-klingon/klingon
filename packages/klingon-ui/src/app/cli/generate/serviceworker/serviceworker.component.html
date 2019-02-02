@@ -1,0 +1,35 @@
+<p *ngIf="form.get('serviceworkers').controls.length === 0">
+  Please add service worker to continue
+</p>
+<app-drop-down *ngFor="let sw of form.get('serviceworkers').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ sw.value['sw-name'] ? sw.value['sw-name'] : 'Service Worker '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Service Worker</h6>
+  <main class="content" [formGroup]="serviceworker">
+
+    <div class="serviceworker-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project.">
+          <mat-hint align="start">The name of the project.</mat-hint>
+        </mat-form-field>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeServiceWorker(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewServiceWorker($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

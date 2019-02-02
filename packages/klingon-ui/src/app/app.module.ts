@@ -33,6 +33,12 @@ import { InterfaceComponent } from './cli/generate/interface/interface.component
 import { ModuleComponent } from './cli/generate/module/module.component';
 import { PipeComponent } from './cli/generate/pipe/pipe.component';
 import { ServiceComponent } from './cli/generate/service/service.component';
+import { ServiceworkerComponent } from './cli/generate/serviceworker/serviceworker.component';
+import { ApplicationComponent } from './cli/generate/application/application.component';
+import { GuardsComponent } from './cli/generate/guards/guards.component';
+import { UniversalsComponent } from './cli/generate/universals/universals.component';
+import { AppshellsComponent } from './cli/generate/appshells/appshells.component';
+import { LibraryComponent } from './cli/generate/library/library.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +60,13 @@ import { ServiceComponent } from './cli/generate/service/service.component';
     InterfaceComponent,
     ModuleComponent,
     PipeComponent,
-    ServiceComponent
+    ServiceComponent,
+    ServiceworkerComponent,
+    ApplicationComponent,
+    GuardsComponent,
+    UniversalsComponent,
+    AppshellsComponent,
+    LibraryComponent
   ],
   entryComponents: [SnackBarSuccessComponent, SnackBarErrorComponent],
   imports: [
