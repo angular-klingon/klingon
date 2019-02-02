@@ -58,7 +58,7 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
          * we change directory to project directory. Otherwise leave as it is
          */
         if (data.exit === 0 && !this.form.value['dry-run']) {
-          this.terminal.command(`cd ` + (rootDir + '/' + appName));
+          this.terminal.command(`cd ` +  (data.platform === 'win32' ? '/d ' : '') + (rootDir + '/' + appName));
         }
 
         if (data.stderr) {
