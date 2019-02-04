@@ -54,7 +54,7 @@ export class CliService {
     return this.runNgCommand('help');
   }
 
-  runNgCommand(stdin, dir = undefined) {
+  runNgCommand(stdin, dir?) {
     if (this.isConnectionOn) {
       this._send(stdin, dir);
     }

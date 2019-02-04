@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, OnChanges } from '@angular/core';
 
 export interface StdSimpleChange extends SimpleChange {
   stderr: { currentValue: string };
@@ -15,7 +15,7 @@ export interface StdSimpleChange extends SimpleChange {
   `,
   styleUrls: ['./log.component.css']
 })
-export class LogComponent implements OnInit {
+export class LogComponent implements OnInit, OnChanges {
   @Input()
   stdout: string;
   @Input()

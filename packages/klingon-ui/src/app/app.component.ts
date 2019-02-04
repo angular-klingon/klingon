@@ -97,7 +97,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-
   onDrag(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
@@ -117,8 +116,8 @@ export class AppComponent implements OnInit {
     /**
      * Set current directory from server if root directory field is empty
      */
-    if(data.cwd && !this.appCli.form.value['root-dir']) {
-      this.appCli.form.patchValue({'root-dir': data.cwd});
+    if (data.cwd && !this.appCli.form.value['root-dir']) {
+      this.appCli.form.patchValue({ 'root-dir': data.cwd });
     }
   }
 }

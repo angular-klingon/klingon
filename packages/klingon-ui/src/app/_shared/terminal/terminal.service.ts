@@ -67,11 +67,9 @@ export class TerminalService {
         if (!this.pid) {
           return;
         }
-        const cols = size.cols;
-        const rows = size.rows;
         const url = environment.scheme + `://` + environment.host + `:` + environment.port + `/terminals/${
           this.pid
-        }/size?cols=${cols}&rows=${rows}`;
+        }/size?cols=${size.cols}&rows=${size.rows}`;
 
         fetch(url, { method: 'POST' });
       });

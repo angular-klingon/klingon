@@ -71,7 +71,7 @@ import {
 })
 export class DropDownComponent implements OnInit {
   @Input()
-  open: boolean = false;
+  open = false;
 
   ngOnInit() {
   }
