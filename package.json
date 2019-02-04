@@ -14,6 +14,7 @@
         "publish:all": "lerna publish --skip-git --skip-npm && lerna exec -- npm publish --access=public",
         "postinstall": "lerna bootstrap && opencollective-postinstall",
         "start:ui": "cd packages/klingon-ui/ && npm start",
+        "start:ui:lint": "cd packages/klingon-ui/ && npm run lint",
         "start:server": "cd packages/klingon-server/ && npm start",
         "start:app": "cd packages/klingon-app && npm run start:dev",
         "build:website": "cd packages/klingon-website/ && npm run build",

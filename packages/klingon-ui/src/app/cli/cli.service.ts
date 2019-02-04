@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -54,7 +53,7 @@ export class CliService {
     return this.runNgCommand('help');
   }
 
-  runNgCommand(stdin, dir = undefined) {
+  runNgCommand(stdin, dir?) {
     if (this.isConnectionOn) {
       this._send(stdin, dir);
     }

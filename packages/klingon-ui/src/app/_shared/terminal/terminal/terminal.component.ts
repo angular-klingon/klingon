@@ -38,7 +38,7 @@ export class TerminalComponent implements OnInit {
   terminalRef: ElementRef;
 
   @Input()
-  height: string = '100px';
+  height = '100px';
 
   @Output()
   open: EventEmitter<TerminalData>;

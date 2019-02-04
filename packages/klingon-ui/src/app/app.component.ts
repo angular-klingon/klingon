@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { CliCreateComponent } from './cli/create/create.component';
@@ -97,7 +96,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-
   onDrag(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
@@ -117,8 +115,8 @@ export class AppComponent implements OnInit {
     /**
      * Set current directory from server if root directory field is empty
      */
-    if(data.cwd && !this.appCli.form.value['root-dir']) {
-      this.appCli.form.patchValue({'root-dir': data.cwd});
+    if (data.cwd && !this.appCli.form.value['root-dir']) {
+      this.appCli.form.patchValue({ 'root-dir': data.cwd });
     }
   }
 }
