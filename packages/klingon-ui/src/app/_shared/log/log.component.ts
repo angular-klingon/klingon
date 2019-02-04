@@ -36,7 +36,7 @@ export class LogComponent implements OnInit, OnChanges {
     this.logs = [];
   }
 
-  ngOnChanges(r: StdSimpleChange) {
+  ngOnChanges(r: {[proname: string]: StdSimpleChange}) {
     if (r.stderr && r.stderr.currentValue) {
       this.logs.push({
         text: r.stderr.currentValue,

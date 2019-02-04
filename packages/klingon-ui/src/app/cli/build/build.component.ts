@@ -1,7 +1,5 @@
 import { FlagsComponent } from './../flags/flags.component';
-import { FormControl } from '@angular/forms';
 import { CliService } from './../cli.service';
-import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
