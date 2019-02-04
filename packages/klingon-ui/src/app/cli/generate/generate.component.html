@@ -1,0 +1,211 @@
+<form [formGroup]="form">
+
+  <section>
+    <p>
+      <mat-form-field>
+        <input autocomplete="off" formControlName="app-name" matInput placeholder="Application name" required>
+        <mat-hint align="start">Default applications are created in a subdirectory of the same name, with an
+          initialized Angular application.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input autocomplete="off" formControlName="root-dir" matInput placeholder="Project Root Directory">
+        <mat-hint align="start">This app will be created in a subdirectory within this directory. Leave empty to use
+          your home directory.</mat-hint>
+      </mat-form-field>
+    </p>
+  </section>
+
+  <!-- Generate a component -->
+  <app-drop-down [open]="true" contentHeight="750px">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [checked]="generateConfig.component" [disabled] ="false" >&nbsp;Component</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Generate Components</h6>
+
+    <main class="content">
+      <app-generate-component [index]="i" [form]="form" (onComponentAdded)="addComponent($event)" (onComponentRemoved)="removeComponent($event,index)"></app-generate-component>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a service worker -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="true">&nbsp;Service Worker</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate an application -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="true">&nbsp;Application</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a class -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.class">&nbsp;Class</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+
+    <main class="content">
+      <app-generate-class [index]="i" [form]="form" (onClassAdded)="addClass($event)" (onClassRemoved)="removeClass($event,index)"></app-generate-class>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a directive -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.directive">&nbsp;Directive</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+
+    <main class="content">
+      <app-generate-directive [index]="i" [form]="form" (onDirectiveAdded)="addDirective($event)" (onDirectiveRemoved)="removeDirective($event,index)"></app-generate-directive>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate an enum -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.enum">&nbsp;Enum</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-enum [index]="i" [form]="form" (onEnumAdded)="addEnum($event)" (onEnumRemoved)="removeEnum($event,index)"></app-generate-enum>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a guard -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="true">&nbsp;Guard</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a interface -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.interface">&nbsp;Interface</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-interface [index]="i" [form]="form" (onInterfaceAdded)="addInterface($event)" (onInterfaceRemoved)="removeInterface($event,index)"></app-generate-interface>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a module -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.module">&nbsp;Module</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-module [index]="i" [form]="form" (onModuleAdded)="addModule($event)" (onModuleRemoved)="removeModule($event,index)"></app-generate-module>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a pipe -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.pipe">&nbsp;Pipe</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-pipe [index]="i" [form]="form" (onPipeAdded)="addPipe($event)" (onPipeRemoved)="removePipe($event,index)"></app-generate-pipe>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a service -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="false">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="false" [checked]="generateConfig.service">&nbsp;Service</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+    <main class="content">
+      <app-generate-service [index]="i" [form]="form" (onServiceAdded)="addService($event)" (onServiceRemoved)="removeService($event,index)"></app-generate-service>
+    </main>
+  </app-drop-down>
+
+  <!-- Generate a universal -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="true">&nbsp;Universal</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a appShell -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="true">&nbsp;appShell</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+  <!-- Generate a library -->
+  <app-drop-down [open]="false" contentHeight="750px" [disabled]="true">
+
+    <h3 class="title" style="padding-bottom:5px;">
+      <mat-checkbox [disabled]="true">&nbsp;Library</mat-checkbox>
+    </h3>
+    <!-- <mat-icon>settings</mat-icon> -->
+    <h6 class="sub-title">Configure other flags for the create command</h6>
+  </app-drop-down>
+
+
+  <app-drop-down [open]="false" contentHeight="420px">
+    <mat-icon>subject</mat-icon>
+    <h3 class="title">Logs</h3>
+    <h6 class="sub-title">View command history and logs</h6>
+    <main class="content">
+      <app-cli-log [stdout]="onStdOut | async" [stderr]="onStdErr | async"></app-cli-log>
+    </main>
+  </app-drop-down>
+
+  <section>
+    <p class="button-container">
+      <button mat-raised-button color="warn" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface && !generateConfig.module && !generateConfig.pipe && !generateConfig.service)" (click)="stop()">
+        <mat-icon>stop</mat-icon> Stop
+      </button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid || (!generateConfig.component && !generateConfig.class && !generateConfig.directive && !generateConfig.enum && !generateConfig.interface && !generateConfig.module && !generateConfig.pipe && !generateConfig.service)" (click)="generate()">
+        <mat-icon>play_circle_outline</mat-icon> Generate
+      </button>
+    </p>
+  </section>
+
+</form>
+
+<mat-progress-bar *ngIf="isWorking" color="primary" mode="indeterminate">
+</mat-progress-bar>

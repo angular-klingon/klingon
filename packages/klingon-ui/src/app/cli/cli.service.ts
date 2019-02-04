@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -13,6 +13,8 @@ export class CliService {
   response$: Subject<CommandResult>;
   ws: WebSocket;
   isConnectionOn;
+
+  @Output() onNgCreate: EventEmitter<Subject<CommandResult>> = new EventEmitter<Subject<CommandResult>>();
 
   constructor() {
     this.response$ = new Subject();
@@ -40,6 +42,15 @@ export class CliService {
           key !== 'app-name' &&
           key !== 'root-dir' &&
           key !== 'dir' &&
+          key !== 'component-name' &&
+          key !== 'class-name' && 
+          key !== 'directive-name' && 
+          key !== 'enum-name' && 
+          key !== 'interface-name' && 
+          key !== 'interface-type' && 
+          key !== 'module-name' && 
+          key !== 'pipe-name' && 
+          key !== 'service-name' && 
           key !== 'app'
       )
       .map(key => `--${key}=${values[key]}`)
@@ -57,8 +68,27 @@ export class CliService {
   runNgCommand(stdin, dir = undefined) {
     if (this.isConnectionOn) {
       this._send(stdin, dir);
+      this.detectEvents(stdin, this.response$);
     }
     return this.response$;
+  }
+
+  /**
+   * Detect ng operations such as new, serve, build, generate etc.
+   * @param stdin string
+   */
+  private detectEvents(stdin: string, response: Subject<CommandResult>) {
+    if (!stdin) {
+      return;
+    }
+
+    const commandArray = stdin.split(' ');
+
+    if (commandArray.length > 1) {
+      if (commandArray[0] === 'new' && commandArray.filter(item => item === '--dry-run=true').length === 0) {
+        this.onNgCreate.emit(response);
+      }
+    }
   }
 
   _send(stdin, dir) {

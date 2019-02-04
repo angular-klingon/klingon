@@ -1,7 +1,5 @@
 import { FlagsComponent } from './../flags/flags.component';
 import { CliService } from './../cli.service';
-import { Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ImportService } from '../../_shared/utilities/import.service';
@@ -40,7 +38,9 @@ export class CliCreateComponent extends FlagsComponent implements OnInit {
     const rootDir = this.form.value['root-dir'];
     localStorage.setItem('ui.lastUsedRootDirectory', rootDir || '');
 
+    // save application name to local storage to reuse it in generate tab
     const appName = this.form.value['directory'] || this.form.value['app-name'];
+    localStorage.setItem('ui.appName', appName);
 
     this.isWorking = true;
     this.cli

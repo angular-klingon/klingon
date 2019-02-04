@@ -1,0 +1,61 @@
+<p *ngIf="form.get('interfaces').controls.length === 0">
+  Please add interface to continue
+</p>
+<app-drop-down *ngFor="let interface of form.get('interfaces').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ interface.value['interface-name'] ? interface.value['interface-name'] : 'Interface '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Interface</h6>
+  <main class="content" [formGroup]="interface">
+
+    <div class="interface-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="interface-name" matInput placeholder="The name of the new interface."
+            required>
+          <mat-hint align="start">The name of the new interface.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="interface-type" matInput placeholder="Adds a developer-defined type to the filename, in the format 'name.type.ts'.">
+          <mat-hint align="start">Adds a developer-defined type to the filename, in the format "name.type.ts".</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="prefix" matInput placeholder="A prefix to apply to generated selectors.">
+          <mat-hint align="start">A prefix to apply to generated selectors.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project">
+          <mat-hint align="start">The name of the project</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="lint-fix">When true, applies lint fixes after generating the directive.</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeInterface(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewInterface($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

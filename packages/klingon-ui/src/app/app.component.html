@@ -35,8 +35,9 @@
         <ng-template mat-tab-label>New</ng-template>
         <app-cli-create #appCli (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
     </mat-tab>
-    <mat-tab [disabled]="true">
+    <mat-tab [disabled]="!klingon.generate">
         <ng-template mat-tab-label>Generate</ng-template>
+        <app-cli-generate #appGenerate (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-generate>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>Serve</ng-template>

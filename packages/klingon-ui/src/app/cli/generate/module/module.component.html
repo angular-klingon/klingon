@@ -1,0 +1,68 @@
+<p *ngIf="form.get('modules').controls.length === 0">
+  Please add module to continue
+</p>
+<app-drop-down *ngFor="let module of form.get('modules').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ module.value['module-name'] ? module.value['module-name'] : 'Module '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Application Module</h6>
+  <main class="content" [formGroup]="module">
+
+    <div class="module-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="module-name" matInput placeholder="The name of the NgModule."
+            required>
+          <mat-hint align="start">The name of the NgModule.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="module" matInput placeholder="The declaring NgModule. (-m)">
+          <mat-hint align="start">The declaring NgModule.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project. (-m)">
+          <mat-hint align="start">The name of the project.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-select formControlName="routing-scope" placeholder="The scope for the new routing module. (Default: Child)">
+            <mat-option *ngFor="let value of routingScopes" [value]="value">
+              {{value}}
+            </mat-option>
+          </mat-select>
+          <mat-hint align="start">The scope for the new routing module.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="routing">When true, creates a routing module (Default: false).</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="flat">Flag to indicate if a dir is created.</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removeModule(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewModule($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

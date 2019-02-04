@@ -1,0 +1,67 @@
+<p *ngIf="form.get('pipes').controls.length === 0">
+  Please add pipe to continue
+</p>
+<app-drop-down *ngFor="let pipe of form.get('pipes').controls; let i = index">
+  <h3 class="title component-title">
+    <span>
+      {{ pipe.value['pipe-name'] ? pipe.value['pipe-name'] : 'Pipe '+(i+1) }}
+    </span>
+  </h3>
+  <h6 class="sub-title">Pipe</h6>
+  <main class="content" [formGroup]="pipe">
+
+    <div class="pipe-form">
+      <p>
+        <mat-form-field>
+          <input formControlName="pipe-name" matInput placeholder="The name of the pipe."
+            required>
+          <mat-hint align="start">The name of the pipe.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="module" matInput placeholder="The declaring NgModule. (-m)">
+          <mat-hint align="start">The declaring NgModule.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input formControlName="project" matInput placeholder="The name of the project.">
+          <mat-hint align="start">The name of the project.</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-list>
+          <mat-list-item>
+            <mat-checkbox formControlName="export">When true, the declaring NgModule exports this pipe. (Default: false).</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="flat">When true (the default) creates files at the top level of the project. (Default: true).</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="lint-fix">When true, applies lint fixes after generating the pipe. (Default: false).</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="skip-import">When true, does not import this pipe into the owning NgModule. (Default: false).</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox formControlName="spec">When true (the default), generates a "spec.ts" test file for the new pipe. (Default: true).</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+      </p>
+    </div>
+  </main>
+  <div class="action">
+    <button mat-icon-button type="button" (click)="removePipe(i);">
+      <mat-icon aria-label="Example icon-button with a heart icon">remove_circle</mat-icon>
+    </button>
+  </div>
+
+</app-drop-down>
+<mat-action-row>
+  <button mat-mini-fab color="primary" type="button" (click)="addNewPipe($event)">
+    <i class="material-icons action">
+      add
+    </i>
+  </button>
+</mat-action-row>

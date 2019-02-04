@@ -21,7 +21,7 @@ export class BuildComponent extends FlagsComponent implements OnInit {
     this.isWorking = true;
     this.cli
       .runNgCommand(`build ${this.cli.serialize(this.form.value)}`)
-      .subscribe(data => {
+      .subscribe( (data: any) => {
         this.isWorking = false;
 
         if (data.stderr) {

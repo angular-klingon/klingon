@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { Validators, FormArray } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -14,7 +14,8 @@ export class FlagsComponent implements OnInit {
     CREATE: 0,
     SERVE: 1,
     BUILD: 2,
-    TEST: 3
+    TEST: 3,
+    GENERATE: 4
   };
 
   @Output()
@@ -48,6 +49,8 @@ export class FlagsComponent implements OnInit {
     const lastUsedRootDirectory = localStorage.getItem(
       'ui.lastUsedRootDirectory'
     );
+
+    const appName = localStorage.getItem('ui.appName');
 
     if (flag === FlagsComponent.Flags.CREATE) {
       return new FormGroup({
@@ -137,6 +140,25 @@ export class FlagsComponent implements OnInit {
         'single-run': new FormControl(true),
         sourcemap: new FormControl(true),
         watch: new FormControl(false)
+      });
+    } else if (flag === FlagsComponent.Flags.GENERATE) {
+      return new FormGroup({
+        'app-name': new FormControl(appName, Validators.required),
+        'root-dir': new FormControl(lastUsedRootDirectory),
+        components: new FormArray([]),
+        serviceworkers: new FormArray([]),
+        applications: new FormArray([]),
+        classes: new FormArray([]),
+        directives: new FormArray([]),
+        enums: new FormArray([]),
+        guards: new FormArray([]),
+        interfaces: new FormArray([]),
+        modules: new FormArray([]),
+        pipes: new FormArray([]),
+        services: new FormArray([]),
+        universals: new FormArray([]),
+        appshells: new FormArray([]),
+        libraries: new FormArray([])
       });
     }
   }

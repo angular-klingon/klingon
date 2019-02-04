@@ -22,7 +22,7 @@ export class CliServeComponent extends FlagsComponent implements OnInit {
     this.isWorking = true;
     this.cli
       .runNgCommand(`serve ${this.cli.serialize(this.form.value)}`, this.form.value['dir'] + '/' + this.form.value['app'])
-      .subscribe(data => {
+      .subscribe((data: any) => {
         this.isWorking = false;
 
         if (data.stderr) {

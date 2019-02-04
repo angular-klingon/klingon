@@ -24,6 +24,21 @@ import { LogComponent } from './_shared/log/log.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CliGenerateComponent } from './cli/generate/generate.component';
+import { ComponentComponent } from './cli/generate/component/component.component';
+import { ClassComponent } from './cli/generate/class/class.component';
+import { DirectiveComponent } from './cli/generate/directive/directive.component';
+import { EnumComponent } from './cli/generate/enum/enum.component';
+import { InterfaceComponent } from './cli/generate/interface/interface.component';
+import { ModuleComponent } from './cli/generate/module/module.component';
+import { PipeComponent } from './cli/generate/pipe/pipe.component';
+import { ServiceComponent } from './cli/generate/service/service.component';
+import { ServiceworkerComponent } from './cli/generate/serviceworker/serviceworker.component';
+import { ApplicationComponent } from './cli/generate/application/application.component';
+import { GuardsComponent } from './cli/generate/guards/guards.component';
+import { UniversalsComponent } from './cli/generate/universals/universals.component';
+import { AppshellsComponent } from './cli/generate/appshells/appshells.component';
+import { LibraryComponent } from './cli/generate/library/library.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +51,22 @@ import { environment } from '../environments/environment';
     CliTestComponent,
     LogComponent,
     SnackBarSuccessComponent,
-    SnackBarErrorComponent
+    SnackBarErrorComponent,
+    CliGenerateComponent,
+    ComponentComponent,
+    ClassComponent,
+    DirectiveComponent,
+    EnumComponent,
+    InterfaceComponent,
+    ModuleComponent,
+    PipeComponent,
+    ServiceComponent,
+    ServiceworkerComponent,
+    ApplicationComponent,
+    GuardsComponent,
+    UniversalsComponent,
+    AppshellsComponent,
+    LibraryComponent
   ],
   entryComponents: [SnackBarSuccessComponent, SnackBarErrorComponent],
   imports: [

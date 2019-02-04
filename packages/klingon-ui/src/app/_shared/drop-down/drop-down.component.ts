@@ -8,7 +8,7 @@ import {
   selector: 'app-drop-down',
   template: `
     <mat-accordion>
-      <mat-expansion-panel [expanded]="open" (opened)="open=true" (closed)="open=false">
+      <mat-expansion-panel [expanded]="open" [disabled]="disabled" (opened)="open=true" (closed)="open=false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <ng-content select="mat-icon"></ng-content>
@@ -17,6 +17,7 @@ import {
           <mat-panel-description *ngIf="!open">
             <ng-content select=".sub-title"></ng-content>
           </mat-panel-description>
+          <ng-content select=".action"></ng-content>
         </mat-expansion-panel-header>
         <ng-content select=".content"></ng-content>
       </mat-expansion-panel>
@@ -53,6 +54,9 @@ import {
         margin: 3px 0px 0px 0px;
         font-size: 1em;
       }
+      ::ng-deep .component-title {
+        margin: 9px 0px 0px 0px;
+      }
       ::ng-deep .sub-title {
         padding: 6px;
         margin: 0;
@@ -70,8 +74,12 @@ import {
   ]
 })
 export class DropDownComponent implements OnInit {
+
   @Input()
   open: boolean = false;
+
+  @Input()
+  disabled: boolean = false;
 
   ngOnInit() {
   }
