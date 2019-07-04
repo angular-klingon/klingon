@@ -1,66 +1,69 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button>
-      <mat-icon>dehaze</mat-icon>
+  <button mat-icon-button>
+    <mat-icon>dehaze</mat-icon>
+  </button>
+  <!-- <h1>ngKlingon</h1> -->
+  <span class="fill-remaining-space"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>account_circle</mat-icon>
+      <span>About</span>
     </button>
-    <!-- <h1>ngKlingon</h1> -->
-    <span class="fill-remaining-space"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-        <mat-icon>account_circle</mat-icon>
-        <span>About</span>
-      </button>
-        <button mat-menu-item>
-        <mat-icon>bug_report</mat-icon>
-        <span>Contribute</span>
-      </button>
-        <!-- <button mat-menu-item (click)="openShell()">
+    <a href="https://github.com/angular-klingon/klingon/blob/master/CONTRIBUTING.md" target="_blank" mat-menu-item>
+      <!-- <button mat-menu-item> -->
+      <mat-icon>bug_report</mat-icon>
+      <span>Contribute</span>
+    </a>
+    <!-- </button> -->
+    <!-- <button mat-menu-item (click)="openShell()">
         <mat-icon>settings_input_composite</mat-icon>
         <span>Open Shell</span>
       </button> -->
-        <button mat-menu-item disabled>
-        <mat-icon>help</mat-icon>
-        <span>Help</span>
-      </button>
-    </mat-menu>
+    <button mat-menu-item disabled>
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>
 <!-- <mat-card>
 
 </mat-card> -->
 
-<mat-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex" (dragover)="onDrag($event)" (dragleave) = "onDragLeave($event)" (drop) = "onDrop($event)">
-    <mat-tab>
-        <ng-template mat-tab-label>New</ng-template>
-        <app-cli-create #appCli (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
-    </mat-tab>
-    <mat-tab [disabled]="true">
-        <ng-template mat-tab-label>Generate</ng-template>
-    </mat-tab>
-    <mat-tab>
-        <ng-template mat-tab-label>Serve</ng-template>
-        <app-cli-serve (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-serve>
-    </mat-tab>
-    <mat-tab>
-        <ng-template mat-tab-label>Test</ng-template>
-        <app-cli-test (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-test>
-    </mat-tab>
-    <mat-tab>
-        <ng-template mat-tab-label>Build</ng-template>
-        <app-cli-build (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-build>
-    </mat-tab>
+<mat-tab-group class="mat-card" (selectedIndexChange)="storeIndex($event)" [selectedIndex]="selectedIndex"
+  (dragover)="onDrag($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+  <mat-tab>
+    <ng-template mat-tab-label>New</ng-template>
+    <app-cli-create #appCli (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-create>
+  </mat-tab>
+  <mat-tab [disabled]="true">
+    <ng-template mat-tab-label>Generate</ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Serve</ng-template>
+    <app-cli-serve (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-serve>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Test</ng-template>
+    <app-cli-test (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-test>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>Build</ng-template>
+    <app-cli-build (onStdOut)="onSuccess($event)" (onStdErr)="onError($event)"></app-cli-build>
+  </mat-tab>
 </mat-tab-group>
 
 <br>
 
 <mat-card>
-    <app-drop-down contentHeight="542px">
-        <mat-icon>keyboard</mat-icon>
-        <h3 class="title">Shell</h3>
-        <h6 class="sub-title">Access the "GOD" mode!</h6>
-        <div class="content">
-            <app-terminal height="500px" (open)="onTerminalOpen($event);"></app-terminal>
-        </div>
-    </app-drop-down>
+  <app-drop-down contentHeight="542px">
+    <mat-icon>keyboard</mat-icon>
+    <h3 class="title">Shell</h3>
+    <h6 class="sub-title">Access the "GOD" mode!</h6>
+    <div class="content">
+      <app-terminal height="500px" (open)="onTerminalOpen($event);"></app-terminal>
+    </div>
+  </app-drop-down>
 </mat-card>
