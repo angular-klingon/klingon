@@ -55,7 +55,7 @@ app.ws('/cli', (ws, res) => {
     ws.on('message', (msg) => {
         msg = JSON.parse(msg);
 
-        const flags = msg.stdin.split(' ');
+        const flags = msg.stdin.trim().split(' ');
         console.log('<<<', flags);
 
         if(msg.dir && !fs.existsSync(msg.dir)) {

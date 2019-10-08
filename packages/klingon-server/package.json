@@ -15,7 +15,7 @@
         "cors": "^2.8.4",
         "express": "^4.15.3",
         "express-ws": "^3.0.0",
-        "node-pty": "^0.7.6",
+        "node-pty": "^0.9.0",
         "socket.io": "^2.0.3",
         "xterm": "^2.8.1"
     },
