@@ -34,7 +34,7 @@ import {
   ]
 })
 export class TerminalComponent implements OnInit {
-  @ViewChild('terminalRef')
+  @ViewChild('terminalRef', { static: true })
   terminalRef: ElementRef;
 
   @Input()

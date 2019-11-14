@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit } from '@angular/core';
 import { CliCreateComponent } from './cli/create/create.component';
 import { TerminalData } from './_shared/terminal/terminal.service';
 
@@ -60,7 +60,7 @@ export class SnackBarSuccessComponent {}
 export class AppComponent implements OnInit {
   selectedIndex = 0;
 
-  @ViewChild('appCli') appCli: CliCreateComponent;
+  @ViewChild('appCli', { static: true }) appCli: CliCreateComponent;
 
   constructor(
     public snackBarError: MatSnackBar,
