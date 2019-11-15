@@ -15,7 +15,9 @@ export class CliService {
 
   constructor() {
     this.response$ = new Subject();
-    this.ws = new WebSocket(`ws://` + environment.host + `:` + environment.port + `/cli`);
+    this.ws = new WebSocket(
+      `ws://` + environment.host + `:` + environment.port + `/cli`
+    );
     this.ws.onopen = e => {
       this.isConnectionOn = true;
     };

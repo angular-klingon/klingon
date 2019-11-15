@@ -23,6 +23,8 @@ import { LogComponent } from './_shared/log/log.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     MatModule,
     MatExpansionModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    DashboardModule,
+    AppRoutingModule
   ],
   providers: [CliService],
   bootstrap: [AppComponent]
