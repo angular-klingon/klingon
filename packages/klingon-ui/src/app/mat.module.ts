@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
 
 const imports = [
@@ -30,7 +31,8 @@ const imports = [
   MatListModule,
   MatSnackBarModule,
   MatProgressBarModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatSidenavModule
 ];
 
 @NgModule({
