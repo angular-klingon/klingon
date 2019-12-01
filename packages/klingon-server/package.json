@@ -3,7 +3,13 @@
     "version": "0.2.0",
     "description": "The backend service for the Klingon UI",
     "scripts": {
-        "start": "node terminal.js"
+        "build": "nest build",
+        "build:webpack": "nest build --watch --webpack",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "start": "nest start",
+        "start:dev": "nest start --watch",
+        "start:debug": "nest start --debug --watch",
+        "start:prod": "node dist/main"
     },
     "keywords": [
         "angular",
@@ -13,6 +19,7 @@
     "dependencies": {
         "@nestjs/common": "^6.10.1",
         "@nestjs/core": "^6.10.1",
+        "@nestjs/platform-express": "^6.10.4",
         "body-parser": "^1.17.2",
         "cors": "^2.8.4",
         "express": "^4.15.3",
@@ -21,6 +28,7 @@
         "reflect-metadata": "^0.1.13",
         "rxjs": "^6.5.3",
         "socket.io": "^2.0.3",
+        "webpack-dev-server": "^3.9.0",
         "xterm": "^2.8.1"
     },
     "repository": "git@github.com:manekinekko/klingon.git",
@@ -32,5 +40,27 @@
     "engines": {
         "node": ">= 6 <= 8",
         "npm": ">= 3"
+    },
+    "devDependencies": {
+        "@nestjs/cli": "^6.12.6",
+        "@nestjs/schematics": "^6.7.5",
+        "@nestjs/testing": "^6.10.4",
+        "@types/express": "^4.17.2",
+        "@types/jest": "^24.0.23",
+        "@types/node": "^12.12.14",
+        "@types/supertest": "^2.0.8",
+        "jest": "^24.9.0",
+        "json-parse-better-errors": "^1.0.2",
+        "prettier": "^1.19.1",
+        "supertest": "^4.0.2",
+        "ts-jest": "^24.2.0",
+        "ts-loader": "^6.2.1",
+        "ts-node": "^8.5.4",
+        "tsconfig-paths": "^3.9.0",
+        "tslint": "^5.20.1",
+        "typescript": "^3.7.2",
+        "webpack": "^4.41.2",
+        "webpack-cli": "^3.3.10",
+        "webpack-node-externals": "^1.7.2"
     }
 }
