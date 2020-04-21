@@ -7,33 +7,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatModule } from './mat.module';
 
 import { CliService } from './cli/cli.service';
-import { TerminalModule } from './_shared/terminal/terminal.module';
-import {
-  AppComponent,
-  SnackBarErrorComponent,
-  SnackBarSuccessComponent
-} from './app.component';
-import { DropDownComponent } from './_shared/drop-down/drop-down.component';
-import { CliCreateComponent } from './cli/create/create.component';
-import { CliServeComponent } from './cli/serve/serve.component';
-import { BuildComponent } from './cli/build/build.component';
-import { FlagsComponent } from './cli/flags/flags.component';
-import { CliTestComponent } from './cli/test/test.component';
-import { LogComponent } from './_shared/log/log.component';
+import { AppComponent } from './app.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeModule } from './home/home.module';
+import { SnackBarSuccessComponent, SnackBarErrorComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DropDownComponent,
-    CliCreateComponent,
-    CliServeComponent,
-    BuildComponent,
-    FlagsComponent,
-    CliTestComponent,
-    LogComponent,
     SnackBarSuccessComponent,
     SnackBarErrorComponent
   ],
@@ -42,11 +27,15 @@ import { environment } from '../environments/environment';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TerminalModule,
     BrowserAnimationsModule,
     MatModule,
     MatExpansionModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    }),
+    DashboardModule,
+    AppRoutingModule,
+    HomeModule
   ],
   providers: [CliService],
   bootstrap: [AppComponent]
